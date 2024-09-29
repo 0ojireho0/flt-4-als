@@ -16,7 +16,7 @@ export default function Home() {
         if (!user) {
             navigate('/sign-in'); 
         }
-    }, [w]); 
+    }, []); 
 
     return (
         <>
