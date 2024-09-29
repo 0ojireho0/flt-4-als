@@ -13,6 +13,9 @@ export default function TeachersAdmin() {
   const [showPersonalInformationSheet, setShowPersonalInformationSheet] = useState(true);
   const [getFullName, setgetFullName] = useState("")
   const navigate = useNavigate();
+  const [getActiveAdmin, setGetActiveAdmin] = useState(0)
+  const [getActiveTeacher, setgetActiveTeacher] = useState(0)
+
 
   const [getActiveStatus, setGetActiveStatus] = useState("")
   const [barangay, setbarangay] = useState("")
@@ -51,6 +54,14 @@ export default function TeachersAdmin() {
       const res = await axios.get("http://127.0.0.1:8000/api/employee");
       // console.log(res?.data?.employees)
       setGetEmployeesData(res?.data?.employees);
+      console.log(res?.data?.employees)
+
+      const adminCount = res?.data?.employees.filter(employee => employee.user_type === 'Admin').length;
+      setGetActiveAdmin(adminCount)
+
+      const teacherCount = res?.data?.employees.filter(employee => employee.user_type === 'ALS Teacher').length;
+      setgetActiveTeacher(teacherCount)
+      
     } catch (error) {
       console.log(error);
     }
@@ -64,9 +75,12 @@ export default function TeachersAdmin() {
       navigate('/employee/sign-in')
     }else{
       setgetFullName(user.fullname)
-      console.log(user)
+      // console.log(user)
     }
     fetchData();
+
+
+    
   }, []);
 
 
@@ -85,7 +99,7 @@ export default function TeachersAdmin() {
     sethouseNumber(data?.house_number)
     setaccountid(data?.id)
     setprovince(data?.province)
-    setUserType(data?.user_type)
+    // setUserType(data?.user_type)
 
   }
 
@@ -130,17 +144,20 @@ const handleCreateStudent = async(e) =>{
     city: addCity,
     province: addProvince,
     contact_number: addContactNumber,
-    user_type: addUserType,
+    user_type: "ALS Teacher",
 
 
   };
 
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/employee/', emplyeeData); // Update the URL as needed
-    if(response.status == 201){
+    const res = await axios.post('http://127.0.0.1:8000/api/teacher/', emplyeeData); // Update the URL as needed'
+    const response = await axios.post('http://127.0.0.1:8000/api/employee/', emplyeeData); // Update the URL as needed'
+    if(response.status == 201 || res.status == 201){
       setShowAddEmployeeModal(false);
       toast.success('Updated Successfully')
     }
+    
+
   } catch (error) {
     console.error('Error creating student:', error);
     // Handle error (e.g., show an error message to the user)
@@ -161,6 +178,13 @@ const handleDelete = async (employeeId) => {
   }
 };
 
+const handleLogout = () =>{
+  localStorage.removeItem('user'); 
+  // console.log('Item removed from localStorage');
+  navigate('/sign-in')
+
+}
+
   return (
     <>
       <Toaster />
@@ -168,8 +192,8 @@ const handleDelete = async (employeeId) => {
         <h1 className="text-2xl font-bold">Employees</h1>
         <div className="flex items-center">
           <p className="mr-4 text-gray-600">{getFullName}</p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-            UPDATE
+          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>
+            Logout
           </button>
         </div>
       </div>
@@ -205,15 +229,12 @@ const handleDelete = async (employeeId) => {
             )}
           </div>
           <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
-            <h2 className="text-lg font-bold">Active Employees</h2>
-            <p className="text-gray-600">3 Active</p>
+            <h2 className="text-lg font-bold">Active Teachers</h2>
+            <p className="text-gray-600">{getEmployeesData.length} Active</p>
             <div className="flex justify-center items-center mt-3">
-              <div className="grid grid-cols-2 gap-10">
+              <div className="">
                 <div>
-                  <p className="text-gray-600">1 Admin/s</p>
-                </div>
-                <div>
-                  <p className="text-gray-600">2 Faculty</p>
+                  <p className="text-gray-600">{getActiveTeacher} Teacher(s)</p>
                 </div>
               </div>
             </div>
@@ -410,7 +431,7 @@ const handleDelete = async (employeeId) => {
               {/* Student Masterlist */}
               <div className="bg-white p-8 shadow rounded-lg">
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-bold">Employee Masterlist</h2>
+                  <h2 className="text-lg font-bold">Teacher Masterlist</h2>
                   <button
                     className="bg-green-500 text-white py-2 px-4 rounded"
                     onClick={() =>
@@ -593,16 +614,16 @@ const handleDelete = async (employeeId) => {
                       </div>
 
                       <div>
-                        <label className="block mb-1 font-medium">
+                        {/* <label className="block mb-1 font-medium">
                           User Type
-                        </label>
-                        <select className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        </label> */}
+                        {/* <select className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                           value={addUserType} 
                           onChange={(e) => setAddUserType(e.target.value)}>
                           <option value="">Select User Type</option>
                           <option value="Admin">Admin</option>
                           <option value="ALS Teacher">Teacher</option>
-                        </select>
+                        </select> */}
                       </div>
                     </div>
 

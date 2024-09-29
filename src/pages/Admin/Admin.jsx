@@ -1,11 +1,41 @@
 // Dashboard.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Admin() {
 
   const [getFullName, setgetFullName] = useState("")
+  const [getAllStudent, setGetAllStudent] = useState([])
+  const [getActiveAdmin, setGetActiveAdmin] = useState(0)
+  const [getActiveTeacher, setgetActiveTeacher] = useState(0)
   const navigate = useNavigate();
+
+  const fetchStudent = async() =>{
+    try {
+      const res = await axios.get('http://127.0.0.1:8000/api/student')
+      // console.log(res.data.students)
+      setGetAllStudent(res.data.students)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
+  const fetchEmployee = async () => {
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/api/employee");
+
+      const adminCount = res?.data?.employees.filter(employee => employee.user_type === 'Admin').length;
+      setGetActiveAdmin(adminCount)
+
+      const teacherCount = res?.data?.employees.filter(employee => employee.user_type === 'ALS Teacher').length;
+      setgetActiveTeacher(teacherCount)
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   useEffect(()=>{
@@ -19,10 +49,19 @@ export default function Admin() {
       setgetFullName(user.fullname)
       console.log(user)
     }
-    
+
+    fetchStudent()
+    fetchEmployee()
 
 
   }, [])
+
+  const handleLogout = () =>{
+    localStorage.removeItem('user'); 
+    // console.log('Item removed from localStorage');
+    navigate('/sign-in')
+
+  }
 
 
   return (
@@ -31,7 +70,7 @@ export default function Admin() {
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <div className="flex items-center">
           <p className="mr-4 text-gray-600">{getFullName}</p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">UPDATE</button>
+          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
         </div>
       </div>
 
@@ -42,15 +81,15 @@ export default function Admin() {
         </div>
         <div className="bg-white shadow rounded-lg p-6 text-center">
           <h3 className="text-xl font-semibold">Active ALS Students</h3>
-          <p className="text-gray-600">9 Active</p>
+          <p className="text-gray-600">{getAllStudent.length} Active</p>
         </div>
         <div className="bg-white shadow rounded-lg p-6 text-center">
           <h3 className="text-xl font-semibold">ALS Teachers</h3>
-          <p className="text-gray-600">2 Active</p>
+          <p className="text-gray-600">{getActiveTeacher} Active</p>
         </div>
         <div className="bg-white shadow rounded-lg p-6 text-center">
           <h3 className="text-xl font-semibold">Admin</h3>
-          <p className="text-gray-600">1 Active</p>
+          <p className="text-gray-600">{getActiveAdmin} Active</p>
         </div>
       </div>
 

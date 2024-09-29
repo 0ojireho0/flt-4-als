@@ -190,7 +190,12 @@ export default function ALSStudents() {
       // Handle error (e.g., show an error message to the user)
     }
   };
-  
+  const handleLogout = () =>{
+    localStorage.removeItem('user'); 
+    // console.log('Item removed from localStorage');
+    navigate('/sign-in')
+
+  }
 
 
   return (
@@ -201,7 +206,7 @@ export default function ALSStudents() {
         <h1 className="text-2xl font-bold">ALS Student</h1>
         <div className="flex items-center">
           <p className="mr-4 text-gray-600"> {getFullName} </p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">UPDATE</button>
+          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
         </div>
       </div>
     <div className=" p-8 bg-gray-100 min-h-screen"> 
