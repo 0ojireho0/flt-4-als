@@ -36,6 +36,7 @@ export default function ALSStudents() {
   const [getStatus, setgetStatus] = useState("")
 
   const [getData, setgetData] = useState([])
+  const [listOfTeachers, setlistOfTeachers] = useState([])
 
 
   const [addFullName, setaddFullName] = useState("")
@@ -52,6 +53,8 @@ export default function ALSStudents() {
   const [addOccupation, setaddOccupation] = useState("")
   const [addEducation, setaddEducation] = useState("")
   const [addBirthday, setaddBirthday] = useState("")
+
+  const [teachers, setTeachers] = useState(0)
 
 
   const handleShowSettingsModal = () =>{
@@ -81,12 +84,23 @@ export default function ALSStudents() {
       navigate('/employee/sign-in')
     }else{
       setgetFullName(user.fullname)
-      console.log(user)
+      // console.log(user)
     }
     
     fetchStudent()
+    getListOfTeachers()
 
   },[])
+
+  const getListOfTeachers = async() =>{
+    try {
+      const res = await axios.get('http://127.0.0.1:8000/api/teacher')
+      // console.log(res.data);
+      setlistOfTeachers(res.data.teachers)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleGetStudentData = (student) =>{
     // console.log(student)
@@ -164,13 +178,37 @@ export default function ALSStudents() {
   
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/student/', studentData); // Update the URL as needed
-      console.log('Student created successfully:', response.data);
-      // Optionally, reset the form or close the modal
-      // setaddFullName('');
-      // setaddLRN('');
-      // setAddEmail('');
-      // setAddPassword('');
+      // console.log(teachers)
+      // console.log(response);
       setShowAddStudentModal(false);
+
+      if(response.status == 201){
+        try {
+          const res = await axios.get('http://127.0.0.1:8000/api/student')
+          // console.log(res.data.students.length - 1)
+          // console.log(res.data.students[res.data.students.length - 1])
+
+          if(res.status == 200){
+            const preTestStudent = {
+              students_id: res.data.students[res.data.students.length - 1].id,
+              teacher_id: parseInt(teachers)
+
+            }
+            try {
+              const res = await axios.post('http://127.0.0.1:8000/api/new-student-teacher', preTestStudent)
+              console.log(res)
+            } catch (error) {
+              console.log("Error adding pre-test students number 201", error)
+            }
+          }
+          
+        } catch (error) {
+          console.log("Error fetching api/student number 194", error)
+        }
+        
+      }
+
+
     } catch (error) {
       console.error('Error creating student:', error);
       // Handle error (e.g., show an error message to the user)
@@ -249,6 +287,7 @@ export default function ALSStudents() {
             disabled
             className="w-full mt-2 p-2 border border-gray-300 rounded"
             value={accountid}
+
 
           />
         </div>
@@ -356,7 +395,7 @@ export default function ALSStudents() {
                 <label className="block mb-1 font-bold">Birthday</label>
                 <div className="flex">
                     <input type="date" className="border p-2 w-full"     
-                    value={birthday.split(" ")[0]} // Take only the date part
+                    value={birthday.split(" ")[0]}
                     onChange={(e) => handleChange(index, "birthday", e.target.value)}  />
                 </div>
               </div>
@@ -548,7 +587,7 @@ export default function ALSStudents() {
                   onChange={(e) => setaddBirthday(e.target.value)}
                 />
               </div>
-              <div className=""> {/* Makes the gender dropdown span both columns */}
+              <div className=""> 
                 <label className="block mb-1 font-medium">Gender</label>
                 <select
                   name="gender"
@@ -647,6 +686,25 @@ export default function ALSStudents() {
                   value={addEducation} 
                   onChange={(e) => setaddEducation(e.target.value)}
                 />
+              </div>
+              <div className=""> 
+                <label className="block mb-1 font-medium">Teacher</label>
+                <select
+                  name="teacher"
+                  value={teachers}
+                  onChange={(e) => setTeachers(e.target.value)}
+                  className="w-full mt-2 p-2 border border-gray-300 rounded"
+                >
+                  <option value="">Select Teacher</option>
+                  {listOfTeachers.map((teacher, i)=>{
+                    return(
+                      <>
+                      <option value={teacher.id} key={i} >{teacher.fullname}</option>
+
+                      </>
+                    )
+                  })}
+                </select>
               </div>
               </div>
               

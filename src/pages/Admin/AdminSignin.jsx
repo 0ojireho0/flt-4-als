@@ -44,7 +44,7 @@ export default function AdminLoginForm() {
       <div className="w-96 p-8 bg-white rounded-lg shadow-lg relative">
         {/* Title */}
         
-        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">EMPLOYEES</h2>
+        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">ADMIN</h2>
 
         <form onSubmit={handleSubmit}>
         {/* Email Input */}

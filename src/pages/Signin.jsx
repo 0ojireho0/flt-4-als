@@ -12,7 +12,7 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const [error, setError] = useState('');
-    // const navigate = useNavigate(); 
+    const navigate = useNavigate(); 
     
 
     const handleShowText = () =>{
@@ -31,6 +31,10 @@ export default function LoginForm() {
         try {
           const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
             localStorage.setItem('user', JSON.stringify(response.data.user))
+            if(response?.status == 200){
+              
+              navigate('/student/answerPIS')
+            }
             console.log(response)
         } catch (err) {
           console.log(err)

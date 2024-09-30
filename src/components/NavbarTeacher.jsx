@@ -46,7 +46,7 @@ export default function NavbarTeacher({ children }) {
     {
       id: 3,
       title: 'LS1 Com. Skills (filipino)',
-      path: '/teacher/com-english'
+      path: '/teacher/com-filipino'
     },
     {
         id: 4,

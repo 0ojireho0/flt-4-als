@@ -28,6 +28,17 @@ import LS2ScientificLiteracy from './pages/Teacher/Modules/Advance Elementary/LS
 import LS3Mathematics from './pages/Teacher/Modules/Advance Elementary/LS3Mathematics'
 import LS4Life from './pages/Teacher/Modules/Advance Elementary/LS4Life'
 import LS6Digital from './pages/Teacher/Modules/Advance Elementary/LS6Digital'
+import ALSStudentPIS from './pages/Teacher/Students Response/ALSStudentPIS'
+import ALSComEnglish from './pages/Teacher/Students Response/ALSComEnglish'
+import ALSComFilipino from './pages/Teacher/Students Response/ALSComFilipino'
+import ALSScientific from './pages/Teacher/Students Response/ALSScientific'
+import ALSMath from './pages/Teacher/Students Response/ALSMath'
+import ALSLifeCareer from './pages/Teacher/Students Response/ALSLifeCareer'
+import ALSUnderstanding from './pages/Teacher/Students Response/ALSUnderstanding'
+import ALSDigitalCitizenship from './pages/Teacher/Students Response/ALSDigitalCitizenship'
+import NavbarStudent from './components/NavbarStudent'
+import StudentAnswerPIS from './pages/ALS Student/StudentAnswerPIS'
+import StudentDashboard from './pages/ALS Student/StudentDashboard'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -65,15 +76,23 @@ function LayoutTeacher(){
   )
 }
 
+function LayoutStudent(){
+  return(
+    <>
+      <NavbarStudent>
+        <Outlet />
+      </NavbarStudent>
+
+
+    </>
+  )
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "/",
-        element: <Home />
-      },
       {
         path: "/learning",
         element: <div>Learning Page</div>
@@ -105,7 +124,7 @@ const router = createBrowserRouter([
       {
         path: "/teacher/sign-in",
         element: <TeacherLoginForm />
-      }
+      },
     ]
   },
   {
@@ -197,6 +216,56 @@ const router = createBrowserRouter([
       {
         path: "/teacher/learning-modules/ael-ls6",
         element: <LS6Digital />
+      },
+      {
+        path: "/teacher/als-student-pis",
+        element: <ALSStudentPIS />
+      },
+      {
+        path: "/teacher/com-english",
+        element: <ALSComEnglish />
+      },
+      {
+        path: "/teacher/com-filipino",
+        element: <ALSComFilipino />
+      },
+      {
+        path: "/teacher/scientific",
+        element: <ALSScientific />
+      },
+      {
+        path: "/teacher/math",
+        element: <ALSMath />
+      },
+      {
+        path: "/teacher/life-career",
+        element: <ALSLifeCareer />
+      },
+      {
+        path: "/teacher/uts",
+        element: <ALSUnderstanding />
+      },
+      {
+        path: "/teacher/digital-citizenship",
+        element: <ALSDigitalCitizenship />
+      }
+    ]
+  },
+  {
+    path: "/student",
+    element: <LayoutStudent />,
+    children: [
+      {
+        path: "/student/answerPIS",
+        element: <StudentAnswerPIS />
+      },
+      {
+        path: "/student",
+        element: <Home />
+      },
+      {
+        path: "/student/dashboard",
+        element: <StudentDashboard />
       }
     ]
   }
