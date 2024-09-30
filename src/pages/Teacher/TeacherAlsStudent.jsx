@@ -20,6 +20,7 @@ export default function TeacherAlsStudent () {
   const [ls4, setls4] = useState(0)
   const [ls5, setls5] = useState(0)
   const [ls6, setls6] = useState(0)
+  const [pis, setpis] = useState(0)
 
   const getSpecificStudents = async() =>{
 
@@ -77,7 +78,7 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
   const handleShowPreTestModal = (student) =>{
     setShowPreTestModal(!showPreTestModal)
     setGetFullNameStudent(student.fullname)
-    setGetAllScores(student.ls1_english + student.ls1_filipino + student.ls2 + student.ls3 + student.ls4 + student.ls5 + student.ls6)
+    setGetAllScores(student.pis + student.ls1_english + student.ls1_filipino + student.ls2 + student.ls3 + student.ls4 + student.ls5 + student.ls6)
     setls1Filipino(student.ls1_filipino)
     setls1english(student.ls1_english)
     setls2(student.ls2)
@@ -85,6 +86,8 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
     setls4(student.ls4)
     setls5(student.ls5)
     setls6(student.ls6)
+    setpis(student.pis)
+ 
   }
 
   const handleGetAllScores = (score) => {
@@ -213,8 +216,8 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
                 <tbody>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">PIS</td>
-                        <td className="border border-gray-300 px-4 py-2">ll</td>
-                        <td className="border border-gray-300 px-4 py-2">o</td>
+                        <td className="border border-gray-300 px-4 py-2">{pis}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(pis)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS1 Communication Skills - English</td>

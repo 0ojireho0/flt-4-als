@@ -103,11 +103,11 @@ export default function NavbarStudent({children}) {
                 <img src={logo} className='object-contain w-14' alt="" />
             </div>
             <div className='flex  gap-3 '>
-                {navItems.map((item, i)=>{
+                {/* {navItems.map((item, i)=>{
                     return(
                         <NavLink key={i} to={item.path} className={({isActive}) => isActive ? "text-[#006299] " : "text-black"}>{item.title}</NavLink>
                     )
-                })}
+                })} */}
             </div>
             <div>
                 <Button className='bg-[#006299]' size='sm' onClick={handleLogout}>Logout</Button>

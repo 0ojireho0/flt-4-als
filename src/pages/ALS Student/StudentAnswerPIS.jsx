@@ -146,11 +146,10 @@ export default function StudentAnswerPIS() {
 
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-4 border-t pt-4">
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium"><Link to="/student/dashboard">Dashboard</Link></button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button>
+        <Link to="/student/dashboard"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Dashboard</button></Link>
+          <Link to="/student/answerPIS"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button></Link>
+          <Link to="/student/learnings"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button></Link>
           <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Assessments</button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Help</button>
         </div>
       </div>
 

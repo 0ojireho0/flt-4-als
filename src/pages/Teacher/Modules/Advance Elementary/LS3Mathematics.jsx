@@ -59,6 +59,19 @@ export default function LS3Mathematics() {
         fetchContent();
       }, []);
 
+      const handleDelete = async (pdf) => {
+        try {
+          const res = await axios.delete(`http://127.0.0.1:8000/api/ls3mathematics/${pdf.id}`); // Update the URL as needed
+          // if(res.status == 200){
+          //   toast.success('Deleted Successfully')
+          // }
+          console.log(res.data)
+    
+        } catch (error) {
+          console.error( error);
+
+        }
+      };
   return (
     <>
     <div className='flex gap-24'>
@@ -75,9 +88,10 @@ export default function LS3Mathematics() {
             <div>
             {getAllPDF.map((pdf, i) => {
                 return (
-                <div key={i} onClick={()=>fetchPdfContents(pdf.id, pdf.original_name)}>
+                  <div className='flex gap-10' key={i} >
                     {/* <h1>{pdf.id}</h1> */}
-                    <h1>{pdf.original_name}</h1>
+                    <h1 onClick={()=>fetchPdfContents(pdf.id, pdf.original_name)}>{pdf.original_name}</h1>
+                    <button onClick={()=>handleDelete(pdf)}>DELETE</button>
                 </div>
                 );
             })}

@@ -12,6 +12,7 @@ export default function ALSStudentPIS(){
   const [score, setScore] = useState(0)
   const [getStudentID, setgetStudentID] = useState(0)
   const [getTeacherID, setgetTeacherID] = useState(0)
+  const [disableScore, setdisableScore] = useState(false)
 
   const [getDatabaseFullname, setgetDatabaseFullname] = useState("")
   const [getDatabaseGender, setGetDatabaseGender] = useState("");
@@ -108,8 +109,15 @@ export default function ALSStudentPIS(){
     setGetAnswerOccupation("")
     setGetAnswerEducation("")
 
-    setScore(0)
-    // setgetStudentID(student.id)
+
+
+    if(student.pis !== null){
+      setdisableScore(true)
+      setScore(student.pis)
+    }else{
+      setdisableScore(false)
+      setScore(0)
+    }
 
     try {
       const res = await axios.get('http://127.0.0.1:8000/api/student-pis', {params: {students_id: student.id}})
@@ -134,12 +142,18 @@ export default function ALSStudentPIS(){
   const handleSubmitScore = async(e) =>{
     e.preventDefault()
     // console.log(getStudentID, getTeacherID, parseInt(score))
+    const submitData = {
+      students_id: getStudentID,
+      teacher_id: getTeacherID,
+      pis: parseInt(score)
+    }
 
-    // try {
-    //   const res = await axios.post('/submit-score')
-    // } catch (error) {
-      
-    // }
+    try {
+      const res = await axios.post('http://127.0.0.1:8000/api/submit-score', submitData)
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
 
   }
 
@@ -526,7 +540,7 @@ export default function ALSStudentPIS(){
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                   placeholder="Education"
                   value={score} 
-                  // disabled={disableEducation}
+                  disabled={disableScore}
                   onChange={(e) => setScore(e.target.value)}
                   // required
                 />

@@ -103,7 +103,7 @@ export default function TeacherFLTResult(){
                         <td className="py-2 px-4 border">{index + 1}</td>
                         <td className="py-2 px-4 border">{result.fullname}</td>
                         {/* <td className="py-2 px-4 border">{result.progress}</td> */}
-                        <td className="py-2 px-4 border">{result.PIS}</td>
+                        <td className="py-2 px-4 border">{result.pis}</td>
                         <td className="py-2 px-4 border">{result.ls1_english}</td>
                         <td className="py-2 px-4 border">{result.ls1_filipino}</td>
                         <td className="py-2 px-4 border">{result.ls2}</td>
@@ -111,7 +111,7 @@ export default function TeacherFLTResult(){
                         <td className="py-2 px-4 border">{result.ls4}</td>
                         <td className="py-2 px-4 border">{result.ls5}</td>
                         <td className="py-2 px-4 border">{result.ls6}</td>
-                        <td className="py-2 px-4 border">{result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6} / 54 <br /> {handleGetAllScores(result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6)}</td>
+                        <td className="py-2 px-4 border">{result.pis + result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6} / 54 <br /> {handleGetAllScores(result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6)}</td>
                     </tr>
                 )
             })}

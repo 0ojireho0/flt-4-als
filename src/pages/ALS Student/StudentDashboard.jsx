@@ -1,12 +1,42 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import dayjs from 'dayjs';
 
 
 export default function StudentDashboard(){
 
+  const [getFirstname, setgetFirstname] = useState("")
+  const [getLRN, setgetLRN] = useState("")
+  const [getGender, setgetGender] = useState("")
+  const [getBirthday, setgetBirthday] = useState("")
+  const [getAddress, setgetAddress] = useState("")
+  const [getReligion, setgetReligion] = useState("")
+  const [getCivilStatus, setgetCivilStatus] = useState("")
+  const [getOccupation, setgetOccupation] = useState("")
 
+
+  const getAgeByBirthday = (birthday) =>{
+    const birthDate = new Date(birthday);
+    const today = new Date();
+
+    return((today.getFullYear() - birthDate.getFullYear()) - 1)
+  }
+
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    // console.log(user)
+    setgetFirstname(user.fullname)
+    setgetLRN(user.lrn)
+    setgetGender(user.gender)
+    setgetBirthday(user.birthday)
+    setgetAddress(`${user.house_number} ${user.city} ${user.barangay} ${user.province}`)
+    setgetReligion(user.religion)
+    setgetOccupation(user.occupation)
+    setgetCivilStatus(user.civil_status)
+
+
+  },[])
 
 
     
@@ -18,8 +48,8 @@ export default function StudentDashboard(){
         <div className="flex items-center">
           <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
           <div>
-            <h2 className="text-xl font-semibold">Jenelle Pimentel</h2>
-            <p className="text-gray-500">LRN: 100234435694</p>
+            <h2 className="text-xl font-semibold">{getFirstname}</h2>
+            <p className="text-gray-500">LRN: {getLRN}</p>
           </div>
         </div>
         <div>
@@ -35,11 +65,10 @@ export default function StudentDashboard(){
       </div>
 
       <div className="flex justify-between mt-4 border-t pt-4">
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium"><Link to="/student/dashboard">Dashboard</Link></button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium"><Link to="/student/answerPIS">Answer my PIS</Link></button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button>
+          <Link to="/student/dashboard"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Dashboard</button></Link>
+          <Link to="/student/answerPIS"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button></Link>
+          <Link to="/student/learnings"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button></Link>
           <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Assessments</button>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Help</button>
         </div>
 
       
@@ -47,11 +76,11 @@ export default function StudentDashboard(){
 
 
       {/* Main content */}
-      <div className="bg-green-100 p-4 text-green-700 rounded-lg mb-6">
+      {/* <div className="bg-green-100 p-4 text-green-700 rounded-lg mb-6">
         Great Job! Your answers are submitted
-      </div>
+      </div> */}
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 mt-5">
         {/* Student ALS Level */}
         <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-4">STUDENT ALS LEVEL</h3>
@@ -67,16 +96,15 @@ export default function StudentDashboard(){
         <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-4">STUDENT INFORMATION</h3>
           <div>
-            <p><strong>Full Name:</strong> Jenelle Pimentel</p>
-            <p><strong>LRN:</strong> 100234435694</p>
-            <p><strong>Gender:</strong> Female</p>
-            <p><strong>Birthdate:</strong> April 15, 2002</p>
-            <p><strong>Age:</strong> 21</p>
-            <p><strong>Address:</strong> 240 Brgy. Mangaglo Manila, NCR</p>
-            <p><strong>Religion:</strong> Roman Catholic</p>
-            <p><strong>Civil Status:</strong> Walang asawa</p>
-            <p><strong>Occupation:</strong> Wala</p>
-            <p><strong>About the Student:</strong> Ako ay isang masiyahing bata.</p>
+            <p><strong>Full Name:</strong> {getFirstname}</p>
+            <p><strong>LRN:</strong> {getLRN}</p>
+            <p><strong>Gender:</strong> {getGender}</p>
+            <p><strong>Birthdate:</strong> {dayjs(getBirthday).format('MMMM DD, YYYY')}</p>
+            <p><strong>Age:</strong> {getAgeByBirthday(getBirthday)}</p>
+            <p><strong>Address:</strong> {getAddress}</p>
+            <p><strong>Religion:</strong> {getReligion}</p>
+            <p><strong>Civil Status:</strong> {getCivilStatus}</p>
+            <p><strong>Occupation:</strong> {getOccupation}</p>
           </div>
         </div>
 

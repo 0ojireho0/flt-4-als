@@ -39,6 +39,22 @@ import ALSDigitalCitizenship from './pages/Teacher/Students Response/ALSDigitalC
 import NavbarStudent from './components/NavbarStudent'
 import StudentAnswerPIS from './pages/ALS Student/StudentAnswerPIS'
 import StudentDashboard from './pages/ALS Student/StudentDashboard'
+import StudentLearnings from './pages/ALS Student/StudentLearnings'
+import StudentLS1ComSkills from './pages/ALS Student/Modules/Basic Literacy/StudentLS1ComSkills'
+import StudentLS2ProblemSolving from './pages/ALS Student/Modules/Basic Literacy/StudentLS2ProblemSolving'
+import StudentLS5Uts from './pages/ALS Student/Modules/Advance Elementary/StudentLS5Uts'
+import StudentLS2Scientific from './pages/ALS Student/Modules/Lower Elementary/StudentLS2Scientific'
+import StudentLS3Mathematical from './pages/ALS Student/Modules/Lower Elementary/StudentLS3Mathematical'
+import StudentLS5TheSelf from './pages/ALS Student/Modules/Lower Elementary/StudentLS5TheSelf'
+import StudentLS1English from './pages/ALS Student/Modules/Advance Elementary/StudentLS1English'
+import StudentLS1Filipino from './pages/ALS Student/Modules/Advance Elementary/StudentLS1Filipino'
+import StudentLS2ScientificLiteracy from './pages/ALS Student/Modules/Advance Elementary/StudentLS2ScientificLiteracy'
+import StudentLS3Mathematics from './pages/ALS Student/Modules/Advance Elementary/StudentLS3Mathematics'
+import StudentLS4Life from './pages/ALS Student/Modules/Advance Elementary/StudentLS4Life'
+import StudentLS5Understanding from './pages/ALS Student/Modules/Basic Literacy/StudentLS5Understanding'
+import StudentLS6Digital from './pages/ALS Student/Modules/Advance Elementary/StudentLS6Digital'
+import LS5TheSelf from './pages/Teacher/Modules/Lower Elementary/LS5TheSelf'
+import LS5Uts from './pages/Teacher/Modules/Advance Elementary/LS5Uts'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -187,7 +203,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/teacher/learning-modules/lem-ls5",
-        element: <LS5Understanding />
+        element: <LS5TheSelf />
       },
       {
         path: "/teacher/learning-modules/ael-ls1-english",
@@ -211,7 +227,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/teacher/learning-modules/ael-ls5",
-        element: <LS5Understanding />
+        element: <LS5Uts />
       },
       {
         path: "/teacher/learning-modules/ael-ls6",
@@ -266,7 +282,63 @@ const router = createBrowserRouter([
       {
         path: "/student/dashboard",
         element: <StudentDashboard />
-      }
+      },
+      {
+        path: "/student/learnings",
+        element: <StudentLearnings />
+      },
+      {
+        path: "/student/learning-modules/basic-ls1",
+        element: <StudentLS1ComSkills />
+      },
+      {
+        path: "/student/learning-modules/basic-ls2",
+        element: <StudentLS2ProblemSolving />
+      },
+      {
+        path: "/student/learning-modules/basic-ls5",
+        element: <StudentLS5Understanding />
+      },
+      {
+        path: "/student/learning-modules/lem-ls2",
+        element: <StudentLS2Scientific />
+      },
+      {
+        path: "/student/learning-modules/lem-ls3",
+        element: <StudentLS3Mathematical />
+      },
+      {
+        path: "/student/learning-modules/lem-ls5",
+        element: <StudentLS5TheSelf />
+      },
+      {
+        path: "/student/learning-modules/ael-ls1-english",
+        element: <StudentLS1English />
+      },
+      {
+        path: "/student/learning-modules/ael-ls1-filipino",
+        element: <StudentLS1Filipino />
+      },
+      {
+        path: "/student/learning-modules/ael-ls2",
+        element: <StudentLS2ScientificLiteracy />
+      },
+      {
+        path: "/student/learning-modules/ael-ls3",
+        element: <StudentLS3Mathematics />
+      },
+      {
+        path: "/student/learning-modules/ael-ls4",
+        element: <StudentLS4Life />
+      },
+      {
+        path: "/student/learning-modules/ael-ls5",
+        element: <StudentLS5Uts />
+      },
+      {
+        path: "/student/learning-modules/ael-ls6",
+        element: <StudentLS6Digital />
+      },
     ]
   }
 ])
