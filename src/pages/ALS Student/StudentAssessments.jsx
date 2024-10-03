@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function StudentAssessments(){
 
+  const navigate = useNavigate()
   const [getFirstname, setgetFirstname] = useState("")
   const [getLRN, setgetLRN] = useState("")
 
@@ -17,12 +18,21 @@ export default function StudentAssessments(){
 
   },[])
 
+  const handleLogout = () =>{
+    localStorage.removeItem('user'); 
+    // console.log('Item removed from localStorage');
+    navigate('/sign-in')
+  
+  }
 
     
   return (
     <>
     <div className="p-4 min-h-screen bg-gray-100">
       {/* Header */}
+      <div className='w-full flex justify-end items-center gap-3 md:w-full'>
+        <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mb-3" onClick={handleLogout} >Logout</button>
+      </div>
       <div className="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between mb-6">
         <div className="flex items-center">
           <div>
