@@ -104,14 +104,14 @@ export default function TeacherFLTResult(){
                         <td className="py-2 px-4 border">{result.fullname}</td>
                         {/* <td className="py-2 px-4 border">{result.progress}</td> */}
                         <td className="py-2 px-4 border">{result.pis}</td>
-                        <td className="py-2 px-4 border">{result.ls1_english}</td>
-                        <td className="py-2 px-4 border">{result.ls1_filipino}</td>
-                        <td className="py-2 px-4 border">{result.ls2}</td>
-                        <td className="py-2 px-4 border">{result.ls3}</td>
-                        <td className="py-2 px-4 border">{result.ls4}</td>
-                        <td className="py-2 px-4 border">{result.ls5}</td>
-                        <td className="py-2 px-4 border">{result.ls6}</td>
-                        <td className="py-2 px-4 border">{result.pis + result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6} / 54 <br /> {handleGetAllScores(result.ls1_english + result.ls1_filipino + result.ls2 + result.ls3 + result.ls4 + result.ls5 + result.ls6)}</td>
+                        <td className="py-2 px-4 border">{result.score_ls1_english}</td>
+                        <td className="py-2 px-4 border">{result.score_ls1_filipino}</td>
+                        <td className="py-2 px-4 border">{result.score_ls2_scientific}</td>
+                        <td className="py-2 px-4 border">{result.score_ls3_math}</td>
+                        <td className="py-2 px-4 border">{result.score_ls4_life}</td>
+                        <td className="py-2 px-4 border">{result.score_ls5_uts}</td>
+                        <td className="py-2 px-4 border">{result.score_ls6_digital}</td>
+                        <td className="py-2 px-4 border">{result.pis + result.score_ls1_english + result.score_ls1_filipino + result.score_ls2_scientific + result.score_ls3_math + result.score_ls4_life + result.score_ls5_uts + result.score_ls6_digital} / 54 <br /> {handleGetAllScores(result.ls1_english + result.ls1_filipino + result.score_ls2_scientific + result.score_ls3_math + result.score_ls4_life + result.score_ls5_uts + result.score_ls6_digital)}</td>
                     </tr>
                 )
             })}

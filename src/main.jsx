@@ -55,6 +55,8 @@ import StudentLS5Understanding from './pages/ALS Student/Modules/Basic Literacy/
 import StudentLS6Digital from './pages/ALS Student/Modules/Advance Elementary/StudentLS6Digital'
 import LS5TheSelf from './pages/Teacher/Modules/Lower Elementary/LS5TheSelf'
 import LS5Uts from './pages/Teacher/Modules/Advance Elementary/LS5Uts'
+import StudentAssessments from './pages/ALS Student/StudentAssessments'
+import StudentPreTest from './pages/ALS Student/Assessments/StudentPreTest'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -339,6 +341,14 @@ const router = createBrowserRouter([
         path: "/student/learning-modules/ael-ls6",
         element: <StudentLS6Digital />
       },
+      {
+        path: "/student/assessments",
+        element: <StudentAssessments />
+      },
+      {
+        path: "/student/pretest",
+        element: <StudentPreTest />
+      }
     ]
   }
 ])

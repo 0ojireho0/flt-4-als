@@ -160,7 +160,7 @@ export default function ALSStudentPIS(){
   return (
     <>
         {/* Header Section */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
       <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active ALS Student</h2>
         <h3 className="text-2xl">{getActiveStudents} Active</h3> {/* {getActiveStudents} */}
@@ -182,7 +182,7 @@ export default function ALSStudentPIS(){
         <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
       </div>
     </div>
-    <div className="grid gap-5 grid-cols-2 p-6 bg-gray-100">
+    <div className="grid gap-5 grid-cols-1 md:grid-cols-2 p-6 bg-gray-100">
 
 
       {/* FROM DATABASE */}
@@ -556,7 +556,7 @@ export default function ALSStudentPIS(){
         <div className='text-center'>Select Student's data</div>
       )}
 
-      <div className="w-[20rem] p-6 bg-white rounded-lg shadow-md mt-4 lg:mt-0">
+      <div className="w-full p-6 bg-white rounded-lg shadow-md mt-4 lg:mt-0">
         <h2 className="text-xl font-semibold mb-4">Student Masterlist</h2>
         <ul className="space-y-2">
           {getAllStudents.map((student, index) => (

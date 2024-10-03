@@ -44,9 +44,8 @@ export default function StudentDashboard(){
     <>
     <div className="p-4 min-h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between mb-6">
+      <div className="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between mb-6">
         <div className="flex items-center">
-          <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
           <div>
             <h2 className="text-xl font-semibold">{getFirstname}</h2>
             <p className="text-gray-500">LRN: {getLRN}</p>
@@ -64,12 +63,6 @@ export default function StudentDashboard(){
         </div>
       </div>
 
-      <div className="flex justify-between mt-4 border-t pt-4">
-          <Link to="/student/dashboard"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Dashboard</button></Link>
-          <Link to="/student/answerPIS"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button></Link>
-          <Link to="/student/learnings"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button></Link>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Assessments</button>
-        </div>
 
       
 
@@ -80,7 +73,7 @@ export default function StudentDashboard(){
         Great Job! Your answers are submitted
       </div> */}
 
-      <div className="grid grid-cols-3 gap-4 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
         {/* Student ALS Level */}
         <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-4">STUDENT ALS LEVEL</h3>

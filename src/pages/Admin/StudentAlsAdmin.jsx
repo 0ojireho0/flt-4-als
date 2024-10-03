@@ -240,19 +240,18 @@ export default function ALSStudents() {
 
     <>
       <Toaster />
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">ALS Student</h1>
-        <div className="flex items-center">
-          <p className="mr-4 text-gray-600"> {getFullName} </p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
-        </div>
+      <div className='w-full flex justify-end items-center gap-3 md:w-full'>
+        <h1>{getFullName}</h1>
+        <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
       </div>
-    <div className=" p-8 bg-gray-100 min-h-screen"> 
-      {/* Header */}
-      <div className="grid grid-cols-3 gap-4 mb-6"> 
+      <div className='mt-3'>
+        <h1 className='text-2xl font-bold'>ALS Student</h1>
+      </div>
+
+      <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3 '>
         <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
-          <h2 className="text-lg font-bold">Current School Year</h2>
-          <p className="text-gray-600">S.Y. 2024 - 2025</p>
+            <h2 className="text-lg font-bold">Current School Year</h2>
+            <p className="text-gray-600">S.Y. 2024 - 2025</p>
         </div>
         <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
           <h2 className="text-lg font-bold">ALS Student</h2>
@@ -272,10 +271,9 @@ export default function ALSStudents() {
         </div>
       </div>
 
-      
-
-    {showSettingsModal ? (
-      <div className="max-w-md mx-auto mt-10 p-5 bg-white rounded-lg shadow-md">
+      {showSettingsModal ? (
+        <>
+        <div className="max-w-md mx-auto mt-10 p-5 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold text-center mb-5">Student Account</h1>
       <form onSubmit={handleSubmit}>
         {/* Account Details */}
@@ -359,181 +357,186 @@ export default function ALSStudents() {
         </button>
       </form>
     </div>
-    ) : (
-      <>
-     {/* Student Form */}
-     <div className="grid grid-cols-2 gap-8">
-        <div className="bg-white p-8 shadow rounded-lg">
-          <h1 className="text-center font-bold text-2xl mb-3">Personal Information Sheet</h1>
-          {showPersonalInformationSheet ? (
-            <>
-              <div className="text-center">No data</div>
 
-            </>
-          ) : (
-          <form>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="block mb-1 font-bold">Gender</label>
-                <div className="flex items-center">
-                  <label className="mr-4">
-                    <input type="radio" name="gender" value="male" 
-                    checked={gender === "Male"}  
-                    onChange={(e) => handleChange(index, "gender", e.target.value)} />
-                    <span className="ml-2">Male</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="gender" value="female"                                    
-                      checked={gender === "Female"}
-                      onChange={(e) => handleChange(index, "gender", e.target.value)} />
-                    <span className="ml-2">Female</span>
-                  </label>
-                </div>
-              </div>
 
-              <div>
-                <label className="block mb-1 font-bold">Birthday</label>
-                <div className="flex">
-                    <input type="date" className="border p-2 w-full"     
-                    value={birthday.split(" ")[0]}
-                    onChange={(e) => handleChange(index, "birthday", e.target.value)}  />
-                </div>
-              </div>
+        </>
+      ) : (
+        <> 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-3">
+            <div className="bg-white p-8 shadow rounded-lg">
+              <h1 className="text-center font-bold text-2xl mb-3">Personal Information Sheet</h1>
+              {showPersonalInformationSheet ? (
+                <>
+                  <div className="text-center">No data</div>
+                </>
+              ) : (
+                <>
+                <form>
+                  <div className=" lg:grid lg:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label className="block mb-1 font-bold">Gender</label>
+                      <div className="flex items-center">
+                        <label className="mr-4">
+                          <input type="radio" name="gender" value="male" 
+                          checked={gender === "Male"}  
+                          onChange={(e) => handleChange(index, "gender", e.target.value)} />
+                          <span className="ml-2">Male</span>
+                        </label>
+                        <label>
+                          <input type="radio" name="gender" value="female"                                    
+                            checked={gender === "Female"}
+                            onChange={(e) => handleChange(index, "gender", e.target.value)} />
+                          <span className="ml-2">Female</span>
+                        </label>
+                      </div>
+                    </div>
 
-              <div className="col-span-2">
-                <label className="block mb-1 font-bold">Address</label>
-                <div className="flex mb-2">
-                  <input
-                    type="text"
-                    placeholder="House Number / Street"
-                    className="border p-2 w-1/2 mr-2"
-                    value={houseNumber}
-                    onChange={(e) => handleChange(index, "house_number", e.target.value)}
-                  />
-                  <input type="text" placeholder="Barangay" className="border p-2 w-1/2"                                 
-                    value={barangay}
-                    onChange={(e) => handleChange(index, "barangay", e.target.value)} />
-                </div>
-                <div className="flex">
-                  <input type="text" placeholder="City" className="border p-2 w-1/2 mr-2" 
-                    value={city}
-                    onChange={(e) => handleChange(index, "city", e.target.value)}
+                    <div>
+                      <label className="block mb-1 font-bold">Birthday</label>
+                      <div className="flex">
+                          <input type="date" className="border p-2 w-full"     
+                          value={birthday.split(" ")[0]}
+                          onChange={(e) => handleChange(index, "birthday", e.target.value)}  />
+                      </div>
+                    </div>
 
-                                       />
-                  <input type="text" placeholder="Province" className="border p-2 w-1/2"
-                                      value={province}
-                                      onChange={(e) => handleChange(index, "province", e.target.value)} />
-                </div>
-              </div>
+                    <div className="col-span-2">
+                      <label className="block mb-1 font-bold">Address</label>
+                      <div className="flex mb-2">
+                        <input
+                          type="text"
+                          placeholder="House Number / Street"
+                          className="border p-2 w-1/2 mr-2"
+                          value={houseNumber}
+                          onChange={(e) => handleChange(index, "house_number", e.target.value)}
+                        />
+                        <input type="text" placeholder="Barangay" className="border p-2 w-1/2"                                 
+                          value={barangay}
+                          onChange={(e) => handleChange(index, "barangay", e.target.value)} />
+                      </div>
+                      <div className="flex">
+                        <input type="text" placeholder="City" className="border p-2 w-1/2 mr-2" 
+                          value={city}
+                          onChange={(e) => handleChange(index, "city", e.target.value)}
 
-              <div>
-                <label className="block mb-1 font-bold">Religion</label>
-                <input
-                  type="text"
-                  placeholder="Roman Catholic"
-                  className="border p-2 w-full"
-                  value={religion}
-                  onChange={(e) => handleChange(index, "religion", e.target.value)}
-                />
-              </div>
+                                            />
+                        <input type="text" placeholder="Province" className="border p-2 w-1/2"
+                                            value={province}
+                                            onChange={(e) => handleChange(index, "province", e.target.value)} />
+                      </div>
+                    </div>
 
-              <div>
-                <label className="block mb-1 font-bold">Civil Status</label>
-                <div className="grid grid-cols-2">
-                  <label className="mr-4">
-                    <input type="radio" name="status" value="single"                       
-                      checked={civilStatus === "Walang Asawa"}
-                      onChange={(e) => handleChange(index, "civil_status", e.target.value)} />
-                    <span className="ml-2 text-[0.7rem] ">Walang asawa</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="status" value="married" checked={civilStatus === "May Asawa"}
-                      onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
-                    <span className="ml-2 text-[0.7rem]">May asawa</span>
-                  </label>
-                  <label className="mr-4">
-                    <input type="radio" name="status" value="widow" checked={civilStatus === "Biyudo / Biyuda"}
-                      onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
-                    <span className="ml-2 text-[0.7rem] ">Biyudo / Biyuda</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="status" value="separate" checked={civilStatus === "Hiwalay sa asawa"}
-                      onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
-                    <span className="ml-2 text-[0.7rem]">Hiwalay</span>
-                  </label>
-                </div>
-              </div>
+                    <div>
+                      <label className="block mb-1 font-bold">Religion</label>
+                      <input
+                        type="text"
+                        placeholder="Roman Catholic"
+                        className="border p-2 w-full"
+                        value={religion}
+                        onChange={(e) => handleChange(index, "religion", e.target.value)}
+                      />
+                    </div>
 
-              <div className="col-span-2">
-                <label className="block mb-1 font-bold">Occupation</label>
-                <input
-                  type="text"
-                  placeholder="N/A"
-                  className="border p-2 w-full"
-                  value={occupation}
-                  onChange={(e) => handleChange(index, "occupation", e.target.value)}
-                />
-              </div>
-              <div className="col-span-2">
-                <label className="block mb-1 font-bold">Highest Education Attainment</label>
-                <input
-                  type="text"
-                  placeholder="N/A"
-                  className="border p-2 w-full"
-                  value={education}
-                  onChange={(e) => handleChange(index, "education", e.target.value)}
-                />
-              </div>
+                    <div>
+                      <label className="block mb-1 font-bold">Civil Status</label>
+                      <div className="grid grid-cols-2">
+                        <label className="mr-4">
+                          <input type="radio" name="status" value="single"                       
+                            checked={civilStatus === "Walang Asawa"}
+                            onChange={(e) => handleChange(index, "civil_status", e.target.value)} />
+                          <span className="ml-2 text-[0.7rem] ">Walang asawa</span>
+                        </label>
+                        <label>
+                          <input type="radio" name="status" value="married" checked={civilStatus === "May Asawa"}
+                            onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
+                          <span className="ml-2 text-[0.7rem]">May asawa</span>
+                        </label>
+                        <label className="mr-4">
+                          <input type="radio" name="status" value="widow" checked={civilStatus === "Biyudo / Biyuda"}
+                            onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
+                          <span className="ml-2 text-[0.7rem] ">Biyudo / Biyuda</span>
+                        </label>
+                        <label>
+                          <input type="radio" name="status" value="separate" checked={civilStatus === "Hiwalay sa asawa"}
+                            onChange={(e) => handleChange(index, "civil_status", e.target.value)}  />
+                          <span className="ml-2 text-[0.7rem]">Hiwalay</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="col-span-2">
+                      <label className="block mb-1 font-bold">Occupation</label>
+                      <input
+                        type="text"
+                        placeholder="N/A"
+                        className="border p-2 w-full"
+                        value={occupation}
+                        onChange={(e) => handleChange(index, "occupation", e.target.value)}
+                      />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block mb-1 font-bold">Highest Education Attainment</label>
+                      <input
+                        type="text"
+                        placeholder="N/A"
+                        className="border p-2 w-full"
+                        value={education}
+                        onChange={(e) => handleChange(index, "education", e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <Button>Submit</Button>
+                  </div>
+                </form>
+
+                  
+                </>
+              )}
             </div>
-            <div className="flex justify-center items-center">
-              <Button>Submit</Button>
-            </div>
-          </form>
-          )}
-        </div>
 
-        {/* Student Masterlist */}
-        <div className="bg-white p-8 shadow rounded-lg">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold">Student Masterlist</h2>
-            <button className="bg-green-500 text-white py-2 px-4 rounded" 
-            onClick={() => setShowAddStudentModal(!showAddStudentModal)}>
-              Add Student
-            </button>
+            <div className="bg-white p-8 shadow rounded-lg">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-bold">Student Masterlist</h2>
+                <button className="bg-green-500 text-white py-2 px-4 rounded" 
+                onClick={() => setShowAddStudentModal(!showAddStudentModal)}>
+                  Add Student
+                </button>
+              </div>
+
+              <ul className="overflow-y-auto max-h-96">
+                <li className="mb-4">
+                {getAllStudent.map((student, i)=>{
+                  return(
+                    <div className="flex justify-between items-center" key={i}>
+                    <div className="cursor-pointer" onClick={()=> handleGetStudentData(student)}>
+                      <h3 className="font-bold">{student.fullname} </h3>
+                      <p className="text-sm text-gray-500">{student.lrn}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-10">
+                      <span className="text-green-500 font-bold">{student.active_status}</span>
+                      <span className="text-green-500 font-bold" onClick={() => handleDelete(student.id)}>Delete</span>
+                    </div>
+                  </div>
+                  )
+                })}
+                </li>
+              </ul>
+            </div>
           </div>
-
-          <ul className="overflow-y-auto max-h-96">
-            <li className="mb-4">
-            {getAllStudent.map((student, i)=>{
-              return(
-                <div className="flex justify-between items-center" key={i}>
-                <div className="cursor-pointer" onClick={()=> handleGetStudentData(student)}>
-                  <h3 className="font-bold">{student.fullname} </h3>
-                  <p className="text-sm text-gray-500">{student.lrn}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-10">
-                  <span className="text-green-500 font-bold">{student.active_status}</span>
-                  <span className="text-green-500 font-bold" onClick={() => handleDelete(student.id)}>Delete</span>
-                </div>
-              </div>
-              )
-            })}
-            </li>
-            {/* Repeat for other students */}
-          </ul>
-        </div>
-      </div>
+        </>
+      )}
 
       {showAddStudentModal && (
         <> 
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[70rem]">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-3 overflow-auto">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[70rem] mt-[60rem] md:mt-0 ">
             <h2 className="text-xl font-bold mb-4">Register New Student</h2>
             <p className="mb-4 text-sm">Enter student details and student account to register</p>
 
             {/* Form */}
             <form onSubmit={handleCreateStudent} className="">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:md-grid-cols-4 gap-4">
               <div className="">
                 <label className="block mb-1 font-medium">Full Name</label>
                 <input
@@ -711,7 +714,7 @@ export default function ALSStudents() {
               
 
               {/* Buttons */}
-              <div className="flex justify-end col-span-2 space-x-2">
+              <div className="flex justify-end col-span-2 space-x-2 mt-3">
                 <button
                   type="submit"
                   className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500"
@@ -737,9 +740,6 @@ export default function ALSStudents() {
 
 
 
-      </>
-    )}
-    </div>
   </>
   );
   

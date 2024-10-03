@@ -85,7 +85,7 @@ const handleLogout = () =>{
       <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
     </div>
     {/* Header Section */}
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 gap-4 mb-6">
       <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active ALS Student</h2>
         <h3 className="text-2xl">{getActiveStudents} Active</h3>

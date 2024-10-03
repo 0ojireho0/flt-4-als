@@ -27,6 +27,7 @@ export default function TeacherAlsStudent () {
     const user = JSON.parse(localStorage.getItem('user'))
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students', { params: { teacherId: user.id } });
+      console.log(response.data)
       setgetAllStudents(response?.data)
       setGetActiveStudents(response.data.length)
   } catch (error) {
@@ -78,14 +79,14 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
   const handleShowPreTestModal = (student) =>{
     setShowPreTestModal(!showPreTestModal)
     setGetFullNameStudent(student.fullname)
-    setGetAllScores(student.pis + student.ls1_english + student.ls1_filipino + student.ls2 + student.ls3 + student.ls4 + student.ls5 + student.ls6)
-    setls1Filipino(student.ls1_filipino)
-    setls1english(student.ls1_english)
-    setls2(student.ls2)
-    setls3(student.ls3)
-    setls4(student.ls4)
-    setls5(student.ls5)
-    setls6(student.ls6)
+    setGetAllScores(student.pis + student.score_ls1_filipino + student.score_ls1_english + student.score_ls2_scientific + student.score_ls3_math + student.score_ls4_life + student.score_ls5_uts + student.score_ls6_digital)
+    setls1Filipino(student.score_ls1_filipino)
+    setls1english(student.score_ls1_english)
+    setls2(student.score_ls2_scientific)
+    setls3(student.score_ls3_math)
+    setls4(student.score_ls4_life)
+    setls5(student.score_ls5_uts)
+    setls6(student.score_ls6_digital)
     setpis(student.pis)
  
   }
@@ -161,10 +162,10 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
                     </div>
                     </div>
                     <p className="text-gray-700">
-                    Pre-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span>
+                    {/* Pre-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span> */}
                     </p>
                     <p className="text-gray-700">
-                    Post-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span>
+                    {/* Post-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span> */}
                     </p>
                     <p className="text-gray-500">LRN: {student.lrn}</p>
                     <div className="grid grid-cols-2 gap-2 mb-3 justify-between mt-4">
@@ -186,12 +187,12 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
 
     {showPreTestModal && (
         <> 
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-3 overflow-auto">
+            <div className="bg-white rounded-lg shadow-lg w-full p-6  mt-[50rem] md:mt-0 ">
                 {/* Close Button */}
                 <button
                 onClick={()=>setShowPreTestModal(!showPreTestModal)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+                className=" text-gray-600 hover:text-gray-900"
                 >
                 &#x2715;
                 </button>

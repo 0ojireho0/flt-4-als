@@ -123,33 +123,22 @@ export default function StudentAnswerPIS() {
   return (
     <div className="">
       {/* Header Section */}
-      <div className="p-4 bg-gray-100">
-        <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between mb-6">
-          <div className="flex items-center">
-            <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
-            <div>
-              <h2 className="text-xl font-semibold">{getStudentFullname}</h2>
-              <p className="text-gray-500">LRN: {getStudentLRN}</p>
-            </div>
-          </div>
+      <div className="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between mb-6">
+        <div className="flex items-center">
           <div>
-            <div className="flex space-x-4">
-              <div>
-                <p className="text-sm text-gray-500">Current School Year</p>
-                <p className="font-semibold">S.Y. 2022-2023</p>
-              </div>
-              <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
-            </div>
-            <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+            <h2 className="text-xl font-semibold">{getStudentFullname}</h2>
+            <p className="text-gray-500">LRN: {getStudentID}</p>
           </div>
         </div>
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-between mt-4 border-t pt-4">
-        <Link to="/student/dashboard"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Dashboard</button></Link>
-          <Link to="/student/answerPIS"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button></Link>
-          <Link to="/student/learnings"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button></Link>
-          <button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Assessments</button>
+        <div>
+          <div className="flex space-x-4">
+            <div>
+              <p className="text-sm text-gray-500">Current School Year</p>
+              <p className="font-semibold">S.Y. 2022-2023</p>
+            </div>
+            <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
+          </div>
+          <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
         </div>
       </div>
 

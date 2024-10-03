@@ -65,16 +65,16 @@ export default function Admin() {
 
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <div className="flex items-center">
-          <p className="mr-4 text-gray-600">{getFullName}</p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
-        </div>
+    <>
+      <div className='w-full flex justify-end items-center gap-3 md:w-full'>
+        <h1>{getFullName}</h1>
+        <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
+      </div>
+      <div className='mt-3'>
+        <h1 className='text-2xl font-bold'>Dashboard</h1>
       </div>
 
-      <div className="grid grid-cols-4 gap-6 mb-8">
+      <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4 '>
         <div className="bg-white shadow rounded-lg p-6 text-center">
           <h3 className="text-xl font-semibold">Current School Year</h3>
           <p className="text-gray-600">S.Y. 2024-2025</p>
@@ -93,7 +93,7 @@ export default function Admin() {
         </div>
       </div>
 
-      <div className="bg-white shadow rounded-lg p-6 mb-6">
+      <div className="bg-white shadow rounded-lg p-6 mb-6 mt-5">
         <h2 className="text-2xl font-bold mb-4">Functional Literacy Test</h2>
         <p className="text-gray-700 mb-4">
           The Functional Literacy Test (FLT) assesses preparedness for the learning strands...
@@ -107,7 +107,11 @@ export default function Admin() {
           The teacher will be able to determine and evaluate the knowledge and skills of the pupils...
         </p>
       </div>
-    </div>
+
+
+
+
+    </>
   );
 };
 

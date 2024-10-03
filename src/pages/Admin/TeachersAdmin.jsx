@@ -186,25 +186,23 @@ const handleLogout = () =>{
 }
 
   return (
+
     <>
       <Toaster />
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Employees</h1>
-        <div className="flex items-center">
-          <p className="mr-4 text-gray-600">{getFullName}</p>
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
+      <div className='w-full flex justify-end items-center gap-3 md:w-full'>
+        <h1>{getFullName}</h1>
+        <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
       </div>
-      <div className=" p-8 bg-gray-100 min-h-screen">
-        {/* Header */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
+      <div className='mt-3'>
+        <h1 className='text-2xl font-bold'>Teacher</h1>
+      </div>
+
+      <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3 '>
+        <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
             <h2 className="text-lg font-bold">Current School Year</h2>
             <p className="text-gray-600">S.Y. 2024 - 2025</p>
-          </div>
-          <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
+        </div>
+        <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
             <h2 className="text-lg font-bold">Employee</h2>
             <p className="text-gray-600">{fullname}</p>
             <span className="bg-yellow-400 text-white text-sm py-1 px-2 rounded-full">
@@ -239,53 +237,43 @@ const handleLogout = () =>{
               </div>
             </div>
           </div>
+      </div>
+
+      {showSettingsModal ? (
+        <>
+        <div className="max-w-md mx-auto mt-10 p-5 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-center mb-5">Teacher Account</h1>
+      <form onSubmit={handleSubmit}>
+        {/* Account Details */}
+        <div className="mb-4">
+          <label className="block text-gray-700">Account ID</label>
+          <input
+            type="text"
+            name="accountId"
+            disabled
+            className="w-full mt-2 p-2 border border-gray-300 rounded"
+            value={accountid}
+
+
+          />
         </div>
 
-        {showSettingsModal ? (
-          <div className="max-w-md mx-auto mt-10 p-5 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold text-center mb-5">
-              Employee Account
-            </h1>
-            <form onSubmit={handleSubmit}> 
-              {/* Account Details */}
-              <div className="mb-4">
-                <label className="block text-gray-700">Account ID</label>
-                <input
-                  type="text"
-                  name="accountId"
-                  disabled
-                  className="w-full mt-2 p-2 border border-gray-300 rounded"
-                  value={accountid}
-                />
-              </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700">Date Registered</label>
-                <input
-                  type="text"
-                  name="dateRegistered"
-                  disabled
-                  className="w-full mt-2 p-2 border border-gray-300 rounded"
-                  value={createdAt}
-                />
-              </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Account Status</label>
+          <select
+            name="accountStatus"
+            className="w-full mt-2 p-2 border border-gray-300 rounded"
+            value={getActiveStatus} // Set the current status as the value
+            onChange={(e) => setGetActiveStatus(e.target.value)} // Update the status on change
+          >
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700">Account Status</label>
-                <select
-                  name="accountStatus"
-                  className="w-full mt-2 p-2 border border-gray-300 rounded"
-                  value={getActiveStatus} // Set the current status as the value
-                  onChange={(e) => setGetActiveStatus(e.target.value)} // Update the status on change
-                >
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div>
-
-              {/* Reset Password */}
-
-              <div className="mb-4">
+        {/* Reset Password */}
+        <div className="mb-4">
                 <label className="block text-gray-700">New Password</label>
                 <input
                   type="password"
@@ -294,35 +282,42 @@ const handleLogout = () =>{
                   placeholder="Enter new password"
                   onChange={(e) => setPassword(e.target.value)} 
                 />
-              </div>
-
-
-              <button
-                type="submit"
-                className="w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-200"
-              >
-                Update
-              </button>
-            </form>
           </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-2 gap-8">
-              <div className="bg-white p-8 shadow rounded-lg">
-                <h1 className="text-center font-bold text-2xl mb-3">
-                  Personal Information
-                </h1>
-                {showPersonalInformationSheet ? (
-                  <>
-                  <div className="text-center">
-                    No Data
-                  </div>
-                    
-                   
-                  </>
-                ) : (
-                  <form>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+
+        {/* <div className="mb-4">
+          <label className="block text-gray-700">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            className="w-full mt-2 p-2 border border-gray-300 rounded"
+            placeholder="Confirm new password"
+          />
+        </div> */}
+
+        <button
+          type="submit"
+          className="w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-200"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+
+
+        </>
+      ) : (
+        <> 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-3">
+            <div className="bg-white p-8 shadow rounded-lg">
+              <h1 className="text-center font-bold text-2xl mb-3">Personal Information Sheet</h1>
+              {showPersonalInformationSheet ? (
+                <>
+                  <div className="text-center">No data</div>
+                </>
+              ) : (
+                <>
+                <form>
+                <div className="grid grid-cols-2 gap-4 mb-4">
                       <div className="col-span-2">
                         <label className="block mb-1 font-bold">
                           Employee Name
@@ -424,13 +419,15 @@ const handleLogout = () =>{
                     <div className="flex justify-center items-center">
                       <Button>Submit</Button>
                     </div>
-                  </form>
-                )}
-              </div>
+                </form>
 
-              {/* Student Masterlist */}
-              <div className="bg-white p-8 shadow rounded-lg">
-                <div className="flex justify-between items-center mb-4">
+                  
+                </>
+              )}
+            </div>
+
+            <div className="bg-white p-8 shadow rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                   <h2 className="text-lg font-bold">Teacher Masterlist</h2>
                   <button
                     className="bg-green-500 text-white py-2 px-4 rounded"
@@ -441,7 +438,6 @@ const handleLogout = () =>{
                     Add Employee
                   </button>
                 </div>
-
                 <ul className="overflow-y-auto max-h-96">
                   <li className="mb-4">
                     {getEmployeesData.map((data, i) => {
@@ -464,26 +460,28 @@ const handleLogout = () =>{
                       );
                     })}
                   </li>
-                  {/* Repeat for other students */}
                 </ul>
-              </div>
             </div>
+          </div>
+        </>
+      )}
 
-            {showAddEmployeeModal && (
-              <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                <div className="bg-white p-8 rounded-lg shadow-lg w-2/3">
-                  <h2 className="text-xl font-bold mb-4">
+      {showAddEmployeeModal && (
+        <> 
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-3 overflow-auto">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[70rem] mt-[35rem] md:mt-0 ">
+            <h2 className="text-xl font-bold mb-4">
                     Register New Employee User
-                  </h2>
-                  <p className="mb-4 text-sm">
-                    Enter employee details and employee account to register
-                  </p>
+            </h2>
 
-                  {/* Form */}
-                  <form onSubmit={handleCreateStudent}>
-                    <div className="grid grid-cols-3 gap-4">
-                      {/* Employee Details */}
-                      <div>
+            <p className="mb-4 text-sm">
+                    Enter employee details and employee account to register
+            </p>
+
+            {/* Form */}
+            <form onSubmit={handleCreateStudent} className="">
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:md-grid-cols-4 gap-4">
+            <div>
                         <label className="block mb-1 font-medium">
                           Full Name
                         </label>
@@ -496,7 +494,6 @@ const handleLogout = () =>{
                         />
                       </div>
 
-                      {/* Address */}
                       <div>
                         <label className="block mb-1 font-medium">
                           House Number / Street
@@ -645,13 +642,18 @@ const handleLogout = () =>{
                         Close
                       </button>
                     </div>
-                  </form>
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </>
+
+            </form>
+          </div>
+        </div>
+
+        
+        
+        </>
+      )}
+
+
+
+  </>
   );
 }

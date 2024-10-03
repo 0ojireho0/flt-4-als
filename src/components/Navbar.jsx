@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-import logo from "../assets/logo-lms.png"
+import logo from "../assets/MHS_LOGO.png"
 
 import { Link, NavLink } from 'react-router-dom'
 

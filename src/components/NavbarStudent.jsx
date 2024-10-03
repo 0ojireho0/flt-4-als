@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-import logo from "../assets/logo-lms.png"
+import logo from "../assets/MHS_LOGO.png"
 
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
@@ -20,29 +20,29 @@ import { Button } from '@material-tailwind/react';
 
 export default function NavbarStudent({children}) {
 
-    const [showNavbar, setShowNavbar] = useState(false)
+    const [showSidebar, setShowSidebar] = useState(false)
     const navigate = useNavigate()
 
     const navItems = [
         {
             id: 1,
-            title: "Home",
-            path: '/student'
+            title: "Dashboard",
+            path: '/student/dashboard'
         },
         {
             id: 2,
-            title: "Learning",
-            path: "/student/learning"
+            title: "Answer my PIS",
+            path: "/student/answerPIS"
         }, 
         {
             id: 3,
-            title: "Assessments",
-            path: "/student/assessments"
+            title: "Learnings",
+            path: "/student/learnings"
         },
         {
             id: 4, 
-            title: "About",
-            path: "/student/about"
+            title: "Assessments",
+            path: "/student/assessments"
         }
     ]
 
@@ -56,68 +56,92 @@ export default function NavbarStudent({children}) {
   return (
     <>  
 
-        {/* Mobile */}
-        {showNavbar ? (
-            <> 
-            <div className='bg-[#EDE9E9] fixed top-0 left-0 w-1/2 h-full flex flex-col z-10 items-center p-2 md:hidden'>
-                <div className='flex justify-end w-full'>
-                    <FaXmark className='text-2xl' onClick={() => setShowNavbar(!showNavbar)}/>
-                </div>
-                <div className='w-full border-b-2 border-black/30 flex justify-center items-center '>
-                    <img src={logo} className=' object-contain w-[10rem] ' alt="logo lms" />
-                </div>
-                <div className='flex flex-col gap-3 mt-3'>
-                        {navItems.map((item, i)=>{
-                            return(
-                                <NavLink key={i} to={item.path} className={({isActive}) => isActive ? "text-[#006299] " : "text-black"}>{item.title}</NavLink>
-                            )
-                        })}
-                </div>
-                <div className='mt-10'>
-                    <Button className='bg-[#006299] ' size='sm'><Link to='/sign-in'>Sign In</Link></Button>
-                </div>
-            </div>
+{showSidebar ? (
+      <> 
 
-            <div className='mt-12'>
-                {children}
-            </div>
-            
-            
-            </>
-        ) : (
-            <> 
-            <div className='p-3 md:hidden'>
-                <CiMenuBurger className='text-2xl' onClick={() => setShowNavbar(!showNavbar)} />
-            </div>
 
-            <div className='md:mt-16'>
-                {children}
-            </div>
-            
-            </>
-        )}
+      <div className='bg-black/30 w-full h-screen'>
 
-        {/* Desktop */}
-        <div className='hidden md:absolute md:top-0 md:flex w-full h-16 bg-[#EDE9E9] p-3 items-center justify-between  '>
+        <div className='w-52 h-screen fixed bg-black/30 p-5 z-10'>
+
+          <div className='flex justify-end items-center'>
+            <FaXmark className='text-2xl' onClick={() =>setShowSidebar(!showSidebar)} />
+          </div>
+
+          <div className=' w-full flex justify-center items-center'>
             <div className='w-24'>
-                <img src={logo} className='object-contain w-14' alt="" />
+              <img src={logo} className='w-full object-contain' alt="" />
             </div>
-            <div className='flex  gap-3 '>
-                {/* {navItems.map((item, i)=>{
-                    return(
-                        <NavLink key={i} to={item.path} className={({isActive}) => isActive ? "text-[#006299] " : "text-black"}>{item.title}</NavLink>
-                    )
-                })} */}
-            </div>
-            <div>
-                <Button className='bg-[#006299]' size='sm' onClick={handleLogout}>Logout</Button>
-            </div>
+          </div>
 
-        </div>
-        
-        <div>
+          <div>
+            <ul>
+              {navItems.map((item, i)=>{
+                return(
+                  <>
+                    <li key={i} className='mt-10'>
+                      <NavLink to={item.path} className="flex items-center gap-2 "><span>{item.icon}</span>{item.title}</NavLink>
+                    </li>
 
+                  </>
+                )
+              })}
+            </ul>
+          </div>
         </div>
+
+      </div>
+
+
+      </>
+    ) : (
+      <> 
+      <div className='p-5 md:hidden'>
+        <CiMenuBurger className='text-2xl' onClick={()=>setShowSidebar(!showSidebar)}/>
+      </div>
+
+      <div className='hidden md:flex '>
+        <div className='w-52 bg-black/30 fixed h-screen  '>
+          <div className='w-full flex justify-center items-center p-5'>
+              <div className=' w-24 '>
+                <img src={logo} alt="" />
+              </div>
+          </div>
+          <div>
+            <ul className='p-5'>
+              {navItems.map((item, i)=>{
+                return(
+                  <>
+                    <li key={i} className='mt-10'>
+                      <NavLink to={item.path} className={({isActive}) => isActive ? "flex items-center gap-2 text-white" : "flex items-center gap-2 "}><span>{item.icon}</span>{item.title}</NavLink>
+                    </li>
+
+                  </>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+
+        <div className='p-5 ml-52 w-full'>
+          {children}
+        </div>
+
+
+      </div>
+
+      <div className='p-5 md:hidden' >
+          {children}
+        </div>
+
+
+      
+      </>
+    )}
+  
+
+
+
         
 
 
