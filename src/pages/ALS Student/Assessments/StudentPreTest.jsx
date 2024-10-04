@@ -6,6 +6,7 @@ export default function StudentPreTest() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
+    const navigate = useNavigate()
   
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
@@ -20,6 +21,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls1-english'
         },
         {
           id: 'LS1',
@@ -27,6 +29,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls1-filipino'
 
         },
         {
@@ -35,6 +38,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls2-scientific'
         },
         {
           id: 'LS3',
@@ -42,6 +46,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls3-math'
         },
         {
           id: 'LS4',
@@ -49,7 +54,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
-
+          link: '/student/pretest-ls4-life'
         },
         {
           id: 'LS5',
@@ -57,6 +62,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls5-understanding'
         },
         {
           id: 'LS6',
@@ -64,6 +70,7 @@ export default function StudentPreTest() {
           score: '0/0',
           avg: '0%',
           status: 'Not yet Answered',
+          link: '/student/pretest-ls6-citizenship'
         },
       ];
 
@@ -71,9 +78,8 @@ export default function StudentPreTest() {
     <>
     <div className="p-4 min-h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between mb-6">
+      <div className="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between mb-6">
         <div className="flex items-center">
-          <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
           <div>
             <h2 className="text-xl font-semibold">{getFirstname}</h2>
             <p className="text-gray-500">LRN: {getLRN}</p>
@@ -90,13 +96,6 @@ export default function StudentPreTest() {
           <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
         </div>
       </div>
-
-      <div className="flex justify-between mt-4 border-t pt-4">
-          <Link to="/student/dashboard"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Dashboard</button></Link>
-          <Link to="/student/answerPIS"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Answer my PIS</button></Link>
-          <Link to="/student/learnings"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Learnings</button></Link>
-          <Link to="/student/assessments"><button className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded font-medium">Assessments</button></Link>
-        </div>
 
         <div className="bg-gray-100 min-h-screen p-8">
       {/* Title */}
@@ -127,9 +126,10 @@ export default function StudentPreTest() {
 
             {/* Start Button or Locked Icon */}
             <div className="text-center">
+              <Link to={test.link}>           
                 <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
                   Start
-                </button>
+                </button></Link>
             </div>
           </div>
         ))}

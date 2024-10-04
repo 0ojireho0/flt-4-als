@@ -57,6 +57,13 @@ import LS5TheSelf from './pages/Teacher/Modules/Lower Elementary/LS5TheSelf'
 import LS5Uts from './pages/Teacher/Modules/Advance Elementary/LS5Uts'
 import StudentAssessments from './pages/ALS Student/StudentAssessments'
 import StudentPreTest from './pages/ALS Student/Assessments/StudentPreTest'
+import LS1PreTestEnglish from './pages/ALS Student/Assessments/LS1PreTestEnglish'
+import LS1PreTestFilipino from './pages/ALS Student/Assessments/LS1PreTestFilipino'
+import LS2PreTestScientific from './pages/ALS Student/Assessments/LS2PreTestScientific'
+import LS3PreTestMathematical from './pages/ALS Student/Assessments/LS3PreTestMathematical'
+import LS4PreTestLife from './pages/ALS Student/Assessments/LS4PreTestLife'
+import LS5PreTestUnderstanding from './pages/ALS Student/Assessments/LS5PreTestUnderstanding'
+import LS6PreTestDigital from './pages/ALS Student/Assessments/LS6PreTestDigital'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -348,6 +355,34 @@ const router = createBrowserRouter([
       {
         path: "/student/pretest",
         element: <StudentPreTest />
+      },
+      {
+        path: "/student/pretest-ls1-english",
+        element: <LS1PreTestEnglish />
+      },
+      {
+        path: "/student/pretest-ls1-filipino",
+        element: <LS1PreTestFilipino />
+      },
+      {
+        path: "/student/pretest-ls2-scientific",
+        element: <LS2PreTestScientific />
+      },
+      {
+        path: "/student/pretest-ls3-math",
+        element: <LS3PreTestMathematical />
+      },
+      {
+        path: "/student/pretest-ls4-life",
+        element: <LS4PreTestLife />
+      },
+      {
+        path: "/student/pretest-ls5-understanding",
+        element: <LS5PreTestUnderstanding />
+      },
+      {
+        path: "/student/pretest-ls6-citizenship",
+        element: <LS6PreTestDigital />
       }
     ]
   }
