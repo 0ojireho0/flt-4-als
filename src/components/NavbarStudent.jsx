@@ -79,7 +79,7 @@ export default function NavbarStudent({children}) {
               {navItems.map((item, i)=>{
                 return(
                   <>
-                    <li key={i} className='mt-10'>
+                    <li key={i} className='mt-10' onClick={() =>setShowSidebar(!showSidebar)}>
                       <NavLink to={item.path} className="flex items-center gap-2 "><span>{item.icon}</span>{item.title}</NavLink>
                     </li>
 

@@ -73,6 +73,7 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
     getSpecificStudents()
 
 
+
   }, [])
 
 
@@ -102,6 +103,95 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
         return "Basic Level (Grade 1)"
     }
     
+  }
+
+  const handleGetPISScore = (score) =>{
+    if(score >= 7 && score <= 10){
+      return "Junior HS (Grade 7-10)"
+    } else if(score == 6){
+      return "Advance Elem. (Grade 4-6)"
+    } else if(score == 5){
+      return "Lower Elem. (Grade 2-3)"
+    }else{
+      return "Basic Level (Grade 1)"
+    }
+  }
+
+  const handleGetEnglishScore = (score) =>{
+    if(score >= 5 && score <= 8){
+      return "Junior HS (Grade 7-10)"
+    } else if(score == 4){
+      return "Advance Elem. (Grade 4-6)"
+    } else if(score == 3){
+      return "Lower Elem. (Grade 2-3)"
+    }else{
+      return "Basic Level (Grade 1)"
+    }
+  }
+
+  const handleGetFilipinoScore = (score) =>{
+    if(score >= 4 && score <= 6){
+      return "Junior HS (Grade 7-10)"
+    } else if(score == 3){
+      return "Advance Elem. (Grade 4-6)"
+    } else if(score == 2){
+      return "Lower Elem. (Grade 2-3)"
+    }else{
+      return "Basic Level (Grade 1)"
+    }
+  }
+
+  const handleGetScientificScore = (score) =>{
+    if(score >= 3 && score <= 5){
+      return "Junior HS (Grade 7-10)"
+    } else if(score >= 1 && score <= 2){
+      return "Advance Elem. (Grade 4-6)"
+    }else{
+      return "Lower Elem. (Grade 2-3)"
+    }
+  }
+
+  const handleGetMathScore = (score) =>{
+    if(score >= 5 && score <= 8){
+      return "Junior HS (Grade 7-10)"
+    } else if(score == 4){
+      return "Advance Elem. (Grade 4-6)"
+    }else if(score == 3){
+      return "Lower Elem. (Grade 2-3)"
+    }
+    else{
+      return "Basic Level (Grade 1)"
+    }
+  }
+
+  const handleGetLifeScore = (score) =>{
+    if(score >= 4 && score <= 6){
+      return "Junior HS (Grade 7-10)"
+    } else if(score >= 1 && score <= 3){
+      return "Advance Elem. (Grade 4-6)"
+    }else{
+      return "Lower Elem. (Grade 2-3)"
+    }
+  }
+
+  const handleGetUTSScore = (score) =>{
+    if(score >= 4 && score <= 5){
+      return "Junior HS (Grade 7-10)"
+    } else if(score >= 1 && score <= 3){
+      return "Advance Elem. (Grade 4-6)"
+    }else{
+      return "Lower Elem. (Grade 2-3)"
+    }
+  }
+  
+  const handleGetDigitalScore = (score) =>{
+    if(score >= 3 && score <= 6){
+      return "Junior HS (Grade 7-10)"
+    } else if(score >= 1 && score <= 2){
+      return "Advance Elem. (Grade 4-6)"
+    }else{
+      return "Lower Elem. (Grade 2-3)"
+    }
   }
 
   const handleLogout = () =>{
@@ -218,47 +308,47 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">PIS</td>
                         <td className="border border-gray-300 px-4 py-2">{pis}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(pis)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetPISScore(pis)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS1 Communication Skills - English</td>
                         <td className="border border-gray-300 px-4 py-2">{ls1english}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls1english)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetEnglishScore(ls1english)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS1 Communication Skills - Filipino</td>
                         <td className="border border-gray-300 px-4 py-2">{ls1Filipino}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls1Filipino)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetFilipinoScore(ls1Filipino)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS2 Scientific and Critical Thinking Skills</td>
                         <td className="border border-gray-300 px-4 py-2">{ls2}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls2)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetScientificScore(ls2)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS3 Mathematical and Problem-solving Skills</td>
                         <td className="border border-gray-300 px-4 py-2">{ls3}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls3)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetMathScore(ls3)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS4 Life and Career</td>
                         <td className="border border-gray-300 px-4 py-2">{ls4}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls4)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetLifeScore(ls4)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS5 Understanding the Self and the Society</td>
                         <td className="border border-gray-300 px-4 py-2">{ls5}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls5)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetUTSScore(ls5)}</td>
                     </tr>
                     <tr>
                         <td className="border border-gray-300 px-4 py-2">LS6 Digital Citizenship</td>
                         <td className="border border-gray-300 px-4 py-2">{ls6}</td>
-                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(ls6)}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetDigitalScore(ls6)}</td>
                     </tr>
                     <tr className="bg-black/30">
                         <td className="border border-gray-300 px-4 py-2">Overall Score</td>
                         <td className="border border-gray-300 px-4 py-2">{getAllScores}</td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(getAllScores)}</td>
                     </tr>
                 </tbody>
                 </table>

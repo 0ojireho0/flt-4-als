@@ -1,17 +1,125 @@
 import React, { useEffect, useState } from 'react'
 import { Radio } from '@material-tailwind/react'
 import { Textarea } from '@material-tailwind/react'
+import {Button} from '@material-tailwind/react'
+import axios from 'axios'
 
 
 export default function LS1PreTestEnglish() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
-    useEffect(()=>{
+    const [getStudentID, setGetStudentID] = useState(0)
+
+
+    const [answer1, setAnswer1] = useState('');
+    const [answer2, setAnswer2] = useState('');
+    const [answer3, setAnswer3] = useState('');
+    const [answer4, setAnswer4] = useState('');
+    const [answer5, setAnswer5] = useState('');
+    const [answer6, setAnswer6] = useState('');
+
+    const [disableAnswer1, setDisableAnswer1] = useState(false)
+    const [disableAnswer2, setDisableAnswer2] = useState(false)
+    const [disableAnswer3, setDisableAnswer3] = useState(false)
+    const [disableAnswer4, setDisableAnswer4] = useState(false)
+    const [disableAnswer5, setDisableAnswer5] = useState(false)
+    const [disableAnswer6, setDisableAnswer6] = useState(false)
+
+    const [totalScore, setTotalScore] = useState(0)
+
+
+    useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
         setgetFirstname(user.fullname)
         setgetLRN(user.lrn)
-      },[])
+        setGetStudentID(user.id)
+
+        getSpecificStudents()
+    }, [])
+
+    useEffect(() => {
+        // Calculate score based on the selected answers
+        let score = 0;
+
+        if (answer1 === "A") score += 1;
+        if (answer2 === "B") score += 1;
+        if (answer3 === "D") score += 1;
+        if (answer4 === "A") score += 1;
+        if (answer5 === "D") score += 1;
+
+        setTotalScore(score);
+    }, [answer1, answer2, answer3, answer4, answer5])
+
+
+    const getSpecificStudents = async() =>{
+
+        const user = JSON.parse(localStorage.getItem('user'))
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/getStudents', { params: { students_id: parseInt(user.id) } });
+          console.log(response)
+
+        if(response.data[0].ls1_english_part1_1 !== null){
+            setAnswer1(response.data[0].ls1_english_part1_1)
+            setDisableAnswer1(true)
+        }
+        if(response.data[0].ls1_english_part1_2 !== null){
+            setAnswer2(response.data[0].ls1_english_part1_2)
+            setDisableAnswer2(true)
+        }
+        if(response.data[0].ls1_english_part1_3 !== null){
+            setAnswer3(response.data[0].ls1_english_part1_3)
+            setDisableAnswer3(true)
+        }
+        if(response.data[0].ls1_english_part1_4 !== null){
+            setAnswer4(response.data[0].ls1_english_part1_4)
+            setDisableAnswer4(true)
+        }
+        if(response.data[0].ls1_english_part1_5 !== null){
+            setAnswer5(response.data[0].ls1_english_part1_5)
+            setDisableAnswer5(true)
+        }
+        if(response.data[0].ls1_english_part2_6 !== null){
+            setAnswer6(response.data[0].ls1_english_part2_6)
+            setDisableAnswer6(true)
+        }
+  
+  
+      } catch (error) {
+          console.log(error);
+      }
+    }
+
+
+
+      const handleSubmitAnswers = async(e) =>{
+        e.preventDefault()
+
+        const sendAnswer = {
+            answer1: answer1,
+            answer2: answer2, 
+            answer3:answer3,
+            answer4:answer4, 
+            answer5:answer5,
+            answer6: answer6,
+            student_id: getStudentID,
+            total: totalScore
+        }
+
+
+
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswer',sendAnswer);
+            console.log(response);
+  
+
+        } catch (error) {
+            console.error('Error submitting answer:', error);
+        }
+      }
+
+
+    
 
 
   return (
@@ -50,76 +158,83 @@ export default function LS1PreTestEnglish() {
                 <h1 className='font-bold text-black/50 text-[0.8rem] '>Part I. Reading</h1>
                 <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for LS1 English</h1>
             </div>
-            <div className='mt-3'>
-                <h1>1. <span className='underline'>GREEN</span> light in the traffic sign means.</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='1' label="A. Go"  />
-                    <Radio name='1' label="B. Ready"  />
-                    <Radio name='1' label="C. Stop"  />
-                    <Radio name='1' label="D. Slow Down"  />
+            <form onSubmit={handleSubmitAnswers}>
+                <div className='mt-3'>
+                    <h1>1. <span className='underline'>GREEN</span> light in the traffic sign means.</h1>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                        <Radio name='1' label="A. Go" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="B. Ready" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="C. Stop" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="D. Slow Down" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                    </div>
                 </div>
-            </div>
-            <div className='mt-3'>
-                <h1>2. Identify the type of sentence according to use. </h1>
-                <div className='border-2 p-2 text-center'>
-                    <h1>I won the lottery!</h1>
+                <div className='mt-3'>
+                    <h1>2. Identify the type of sentence according to use. </h1>
+                    <div className='border-2 p-2 text-center'>
+                        <h1>I won the lottery!</h1>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                        <Radio name='2' label="A. Imperative" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="B. Exclamatory" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="C. Declarative"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="D. Interrogative" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                    </div>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='2' label="A. Imperative"  />
-                    <Radio name='2' label="B. Exclamatory"  />
-                    <Radio name='2' label="C. Declarative"  />
-                    <Radio name='2' label="D. Interrogative"  />
+                <div className='mt-3'>
+                    <h1>3. What is the main idea of the given paragraph? </h1>
+                    <div className='border-2 p-2'>
+                        <h1 className='text-justify'>The Sun is very important. Without it, there would be only darkness and our planet would be very cold and be without liquid water. Our planet would also be without people, animals, and plants because these things need sunlight and water to live. </h1>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                        <Radio name='3' label="A. Things need sunlight to live" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
+                        <Radio name='3' label="B. There would be darkness in our planet" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
+                        <Radio name='3' label="C. It would be very cold on Earth" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="D. The importance of the Sun" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                    </div>
                 </div>
-            </div>
-            <div className='mt-3'>
-                <h1>3. What is the main idea of the given paragraph? </h1>
-                <div className='border-2 p-2'>
-                    <h1 className='text-justify'>The Sun is very important. Without it, there would be only darkness and our planet would be very cold and be without liquid water. Our planet would also be without people, animals, and plants because these things need sunlight and water to live. </h1>
+                <div className='mt-3'>
+                    <h1>4. Fill in the blank with the correct word from the options below that will make the statement <strong>POSITIVE</strong>. Choose the letter of the correct answer.</h1>
+                    <div className=' p-2 text-center'>
+                        <h1 className=''>I will __________ eat that vegetable. It's delicious!</h1>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                        <Radio name='4' label="A. definitely" value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required  />
+                        <Radio name='4' label="B. hardly"  value="B" checked={answer4 == "B"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
+                        <Radio name='4' label="C. never" value="C" checked={answer4 == "C"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)}  required />
+                        <Radio name='4' label="D. not" value="D" checked={answer4 == "D"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
+                    </div>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='3' label="A. Things need sunlight to live"  />
-                    <Radio name='3' label="B. There would be darkness in our planet"  />
-                    <Radio name='3' label="C. It would be very cold on Earth"  />
-                    <Radio name='3' label="D. The importance of the Sun"  />
+                <div className='mt-3'>
+                    <h1>5. What is the main idea of the given paragraph?</h1>
+                    <div className='border-2 p-2'>
+                        <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                        <Radio name='5' label="A. Cells are building blocks of our bodies." value="A" checked={answer5 == "A"} disabled={disableAnswer5} onChange={(e) => setAnswer5(e.target.value)} required  />
+                        <Radio name='5' label="B. Body tissues are made up of cells." value="B" checked={answer5 == "B"} disabled={disableAnswer5}  onChange={(e) => setAnswer5(e.target.value)}  required/>
+                        <Radio name='5' label="C. Body organs are made up of tissue." value="C" checked={answer5 == "C"} disabled={disableAnswer5}  onChange={(e) => setAnswer5(e.target.value)} required />
+                        <Radio name='5' label="D. Living things are made up of cells." value="D" checked={answer5 == "D"} disabled={disableAnswer5}  onChange={(e) => setAnswer5(e.target.value)} required />
+                    </div>
                 </div>
-            </div>
-            <div className='mt-3'>
-                <h1>4. Fill in the blank with the correct word from the options below that will make the statement <strong>POSITIVE</strong>. Choose the letter of the correct answer.</h1>
-                <div className=' p-2 text-center'>
-                    <h1 className=''>I will __________ eat that vegetable. It's delicious!</h1>
+                <div className='mt-5'>
+                    <h1 className='font-bold text-black/70 text-[0.8rem] '>Part II. Writing</h1>
+                    <h1 className='font-bold text-black/70 text-[0.8rem]'>Directions: Read the item below. Write your answer on the blanks provided on the LS1 English answer sheet.</h1>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='4' label="A. definitely"  />
-                    <Radio name='4' label="B. hardly"  />
-                    <Radio name='4' label="C. never"  />
-                    <Radio name='4' label="D. not"  />
+                <div className='mt-3'>
+                    <h1>6. Choose one (1) member of your family and write a simple sentence to describe him/her. (1 point)</h1>
+                    <div className='border-2 p-2'>
+                        <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
+                    </div>
+                    <div className='w-full mt-2'>
+                        <Textarea label='Answer' value={answer6} disabled={disableAnswer6} onChange={(e) => setAnswer6(e.target.value)} required />
+                    </div>
                 </div>
-            </div>
-            <div className='mt-3'>
-                <h1>5. What is the main idea of the given paragraph?</h1>
-                <div className='border-2 p-2'>
-                    <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
+                <div className='mt-3'>
+                    <div className='flex justify-center items-center'>
+                        <Button type='submit'>Submit</Button>
+                    </div>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='5' label="A. Cells are building blocks of our bodies."  />
-                    <Radio name='5' label="B. Body tissues are made up of cells."  />
-                    <Radio name='5' label="C. Body organs are made up of tissue.    "  />
-                    <Radio name='5' label="D. Living things are made up of cells."  />
-                </div>
-            </div>
-            <div className='mt-5'>
-                <h1 className='font-bold text-black/70 text-[0.8rem] '>Part II. Writing</h1>
-                <h1 className='font-bold text-black/70 text-[0.8rem]'>Directions: Read the item below. Write your answer on the blanks provided on the LS1 English answer sheet.</h1>
-            </div>
-            <div className='mt-3'>
-                <h1>6. Choose one (1) member of your family and write a simple sentence to describe him/her. (1 point)</h1>
-                <div className='border-2 p-2'>
-                    <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
-                </div>
-                <div className='w-full mt-2'>
-                    <Textarea label='Answer' />
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
