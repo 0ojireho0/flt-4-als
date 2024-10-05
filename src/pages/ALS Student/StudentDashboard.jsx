@@ -39,7 +39,12 @@ export default function StudentDashboard(){
     setgetCivilStatus(user.civil_status)
 
 
+
+
   },[])
+
+
+
 
   const handleLogout = () =>{
     localStorage.removeItem('user'); 

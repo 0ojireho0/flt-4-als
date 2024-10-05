@@ -222,9 +222,6 @@ export default function LS1PreTestEnglish() {
                 </div>
                 <div className='mt-3'>
                     <h1>6. Choose one (1) member of your family and write a simple sentence to describe him/her. (1 point)</h1>
-                    <div className='border-2 p-2'>
-                        <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
-                    </div>
                     <div className='w-full mt-2'>
                         <Textarea label='Answer' value={answer6} disabled={disableAnswer6} onChange={(e) => setAnswer6(e.target.value)} required />
                     </div>

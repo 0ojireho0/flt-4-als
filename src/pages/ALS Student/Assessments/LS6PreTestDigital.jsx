@@ -4,6 +4,8 @@ import { Radio } from '@material-tailwind/react'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import Typography from '@material-tailwind/react'
+
 export default function LS6PreTestDigital() {
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")

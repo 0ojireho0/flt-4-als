@@ -1,34 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function StudentPreTest() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
+    const [getScoreLS1English, setGetScoreLS1English] = useState(0)
     const navigate = useNavigate()
   
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
       setgetFirstname(user.fullname)
       setgetLRN(user.lrn)
+
+      getSpecificStudents()
     },[])
+
+    const getSpecificStudents = async() =>{
+
+      const user = JSON.parse(localStorage.getItem('user'))
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/getStudents', { params: { students_id: parseInt(user.id) } });
+        console.log(response)
+        setGetScoreLS1English(response.data[0].score_ls1_english)
+  
+    } catch (error) {
+        console.log(error);
+    }
+  }
 
     const testData = [
         {
           id: 'LS1',
           title: 'Communication Skills (English)',
-          score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
+          score: `${getScoreLS1English}/8`,
           link: '/student/pretest-ls1-english'
         },
         {
           id: 'LS1',
           title: 'Communication Skills (Filipino)',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls1-filipino'
 
         },
@@ -36,40 +49,30 @@ export default function StudentPreTest() {
           id: 'LS2',
           title: 'Scientific Literacy And Critical Thinking Skills',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls2-scientific'
         },
         {
           id: 'LS3',
           title: 'Mathematical And Problem-Solving Skills',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls3-math'
         },
         {
           id: 'LS4',
           title: 'Life And Career Skills',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls4-life'
         },
         {
           id: 'LS5',
           title: 'Understanding The Self And Society',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls5-understanding'
         },
         {
           id: 'LS6',
           title: 'Digital Citizenship',
           score: '0/0',
-          avg: '0%',
-          status: 'Not yet Answered',
           link: '/student/pretest-ls6-citizenship'
         },
       ];
@@ -120,8 +123,6 @@ export default function StudentPreTest() {
 
               {/* Test Info */}
               <h3 className="text-md font-bold mb-2">{test.id}: {test.title}</h3>
-              <p className="text-gray-600">{test.avg} avg.</p>
-              <p className="text-gray-400">{test.status}</p>
             </div>
 
             {/* Start Button or Locked Icon */}
