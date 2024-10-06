@@ -67,6 +67,9 @@ export default function ALSComEnglish(){
     if(student.submit_finalscore_ls1english !== null){
       setaddScoreNumber6(student.submit_finalscore_ls1english)
       setDisableScoreNumber6(true)
+    }else{
+      setaddScoreNumber6(null)
+      setDisableScoreNumber6(false)
     }
 
 
@@ -270,7 +273,7 @@ export default function ALSComEnglish(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls1_english} / 8
+                {student.score_ls1_english} / 6
               </span>
             </li>
           ))}
