@@ -45,7 +45,7 @@ export default function LoginForm() {
     <div className="p-3 flex items-center justify-center min-h-screen bg-gray-200 lg:mt-[-5rem] ">
       <div className="w-96 p-8 bg-white rounded-lg shadow-lg relative">
         {/* Title */}
-        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">LMS4ALS</h2>
+        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">MHSLEARN</h2>
 
         <form onSubmit={handleSubmit}>
         {/* Email Input */}

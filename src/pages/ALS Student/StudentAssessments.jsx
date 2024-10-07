@@ -115,15 +115,13 @@ export default function StudentAssessments(){
               alt="Reading and Comprehension Test Logo" 
               className="mx-auto mb-4"
             />
-            <h3 className="text-xl font-bold mb-2">Reading and Comprehension Test</h3>
+            <h3 className="text-xl font-bold mb-2">Practice Reading and Comprehension</h3>
             <p className="text-gray-600">
               Assess students' reading and comprehension skills through a specialized test designed to gauge their understanding and interpretation of texts.
             </p>
           </div>
           <div className="text-center">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-              Start
-            </button>
+          <Link to="/student/reading-test"><button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start</button></Link>
           </div>
         </div>
       </div>

@@ -173,7 +173,7 @@ export default function NavbarTeacher({ children }) {
                 return(
                   <>
                     <li key={i} className='mb-3'>
-                      <NavLink to={item.path} className="flex items-center gap-2 ">{item.title}</NavLink>
+                      <NavLink to={item.path} className={({isActive}) => isActive ? "flex items-center gap-2 text-white" : "flex items-center gap-2 "}>{item.title}</NavLink>
                     </li>
 
                   </>

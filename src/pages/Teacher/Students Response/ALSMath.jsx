@@ -231,10 +231,7 @@ export default function ALSMath(){
           </div>
 
 
-          
-          <div className='flex justify-center'>
-            <Button type='submit'>Submit</Button>
-          </div>
+      
         </form>
 
         </>
@@ -256,7 +253,7 @@ export default function ALSMath(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls1_english} / 8
+                {student.score_ls3_math} / 8
               </span>
             </li>
           ))}

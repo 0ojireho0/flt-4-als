@@ -8,6 +8,12 @@ export default function StudentPreTest() {
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
     const [getScoreLS1English, setGetScoreLS1English] = useState(0)
+    const [getScoreLS1Filipino, setGetScoreLS1Filipino] = useState(0)
+    const [getScoreLS2, setGetScoreLS2] = useState(0)
+    const [getScoreLS3, setGetScoreLS3] = useState(0)
+    const [getScoreLS4, setGetScoreLS4] = useState(0)
+    const [getScoreLS5, setGetScoreLS5] = useState(0)
+    const [getScoreLS6, setGetScoreLS6] = useState(0)
     const navigate = useNavigate()
   
     useEffect(()=>{
@@ -24,8 +30,50 @@ export default function StudentPreTest() {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/getStudents', { params: { students_id: parseInt(user.id) } });
         console.log(response)
-        setGetScoreLS1English(response.data[0].score_ls1_english)
-  
+        
+
+        if(response.data[0].score_ls1_english == null){
+          setGetScoreLS1English(0)
+        }else{
+          setGetScoreLS1English(response.data[0].score_ls1_english)
+        }
+        
+        if(response.data[0].score_ls1_filipino == null){
+          setGetScoreLS1Filipino(0)
+        }else{
+          setGetScoreLS1Filipino(response.data[0].score_ls1_filipino)
+        }
+
+        if(response.data[0].score_ls2_scientific == null){
+          setGetScoreLS2(0)
+        }else{
+          setGetScoreLS2(response.data[0].score_ls2_scientific)
+        }
+
+        if(response.data[0].score_ls3_math == null){
+          setGetScoreLS3(0)
+        }else{
+          setGetScoreLS3(response.data[0].score_ls3_math)
+        }
+
+        if(response.data[0].score_ls4_life == null){
+          setGetScoreLS4(0)
+        }else{
+          setGetScoreLS4(response.data[0].score_ls4_life)
+        }
+
+        if(response.data[0].score_ls5_uts == null){
+          setGetScoreLS5(0)
+        }else{
+          setGetScoreLS5(response.data[0].score_ls5_uts)
+        }
+
+        if(response.data[0].score_ls6_digital == null){
+          setGetScoreLS6(0)
+        }else{
+          setGetScoreLS6(response.data[0].score_ls6_digital)
+        }
+
     } catch (error) {
         console.log(error);
     }
@@ -41,38 +89,38 @@ export default function StudentPreTest() {
         {
           id: 'LS1',
           title: 'Communication Skills (Filipino)',
-          score: '0/0',
+          score: `${getScoreLS1Filipino}/5`,
           link: '/student/pretest-ls1-filipino'
 
         },
         {
           id: 'LS2',
           title: 'Scientific Literacy And Critical Thinking Skills',
-          score: '0/0',
+          score: `${getScoreLS2}/5`,
           link: '/student/pretest-ls2-scientific'
         },
         {
           id: 'LS3',
           title: 'Mathematical And Problem-Solving Skills',
-          score: '0/0',
+          score: `${getScoreLS3}/8`,
           link: '/student/pretest-ls3-math'
         },
         {
           id: 'LS4',
           title: 'Life And Career Skills',
-          score: '0/0',
+          score: `${getScoreLS4}/6`,
           link: '/student/pretest-ls4-life'
         },
         {
           id: 'LS5',
           title: 'Understanding The Self And Society',
-          score: '0/0',
+          score: `${getScoreLS5}/5`,
           link: '/student/pretest-ls5-understanding'
         },
         {
           id: 'LS6',
           title: 'Digital Citizenship',
-          score: '0/0',
+          score: `${getScoreLS6}/6`,
           link: '/student/pretest-ls6-citizenship'
         },
       ];

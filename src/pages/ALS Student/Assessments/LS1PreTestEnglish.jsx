@@ -4,6 +4,8 @@ import { Textarea } from '@material-tailwind/react'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import question7 from "../../../assets/ls1-english-assessments/question7.png"
+
 
 export default function LS1PreTestEnglish() {
 
@@ -27,6 +29,8 @@ export default function LS1PreTestEnglish() {
     const [disableAnswer6, setDisableAnswer6] = useState(false)
 
     const [totalScore, setTotalScore] = useState(0)
+
+    
 
 
     useEffect(() => {
@@ -94,6 +98,7 @@ export default function LS1PreTestEnglish() {
 
       const handleSubmitAnswers = async(e) =>{
         e.preventDefault()
+        console.log(finalTranscript)
 
         const sendAnswer = {
             answer1: answer1,
@@ -118,6 +123,71 @@ export default function LS1PreTestEnglish() {
         }
       }
 
+
+      // Speech to Text
+      const [listening, setListening] = useState(false);
+      const [finalTranscript, setFinalTranscript] = useState(""); // Final transcript after speech ends
+      const [interimTranscript, setInterimTranscript] = useState(""); // Live transcript while speaking
+      const [error, setError] = useState(null);
+    
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+    
+      recognition.continuous = true; // Continue listening until explicitly stopped
+      recognition.interimResults = true; // Enable interim results for real-time transcription
+      recognition.lang = "en-US"; // Set the language (you can change this as needed)
+    
+      // Capture speech results
+      recognition.onresult = (event) => {
+        let interimText = "";
+        let finalText = "";
+    
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+    
+          if (event.results[i].isFinal) {
+            // If the result is final, update the final transcript
+            finalText += transcript + " ";
+          } else {
+            // If the result is not final, update the interim transcript
+            interimText += transcript;
+          }
+        }
+    
+        setFinalTranscript((prev) => prev + finalText); // Append to final transcript
+        setInterimTranscript(interimText); // Update interim transcript in real-time
+      };
+    
+      // Handle errors
+      recognition.onerror = (event) => {
+        setError("Error occurred in speech recognition: " + event.error);
+        setListening(false);
+      };
+    
+      // Stop recognition when the user stops speaking
+      recognition.onspeechend = () => {
+        stopListening();
+      };
+    
+      // Start speech recognition
+      const startListening = () => {
+        recognition.start();
+        setListening(true);
+        setError(null);
+      };
+    
+      // Stop speech recognition
+      const stopListening = () => {
+        recognition.stop();
+        setListening(false);
+        setInterimTranscript(""); // Clear interim transcript when stopping
+      };
+    
+      const resetTranscript = () =>{
+        setFinalTranscript('')
+      }
+    
 
     
 
@@ -224,6 +294,26 @@ export default function LS1PreTestEnglish() {
                     <h1>6. Choose one (1) member of your family and write a simple sentence to describe him/her. (1 point)</h1>
                     <div className='w-full mt-2'>
                         <Textarea label='Answer' value={answer6} disabled={disableAnswer6} onChange={(e) => setAnswer6(e.target.value)} required />
+                    </div>
+                </div>
+                <div className='mt-3'>
+                    <h1>7. Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <img src={question7} alt="" />
+                    </div>
+                    <div className='w-full mt-2'>
+                        <Textarea label='Answer' 
+                        value={finalTranscript} 
+                        disabled
+                        required 
+                        />
+                        {error && <p style={{ color: "red" }}>{error}</p>}
+                        {interimTranscript && <p>{interimTranscript}</p>}
+                    </div>
+                    <div className='flex justify-end gap-2'>
+                        <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
+                        </Button>
+                        <Button size='sm' className='bg-black/30' onClick={resetTranscript}>Reset</Button>
                     </div>
                 </div>
                 <div className='mt-3'>

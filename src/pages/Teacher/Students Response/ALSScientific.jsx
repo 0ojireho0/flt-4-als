@@ -178,10 +178,6 @@ export default function ALSScientific(){
           </div>
 
 
-          
-          <div className='flex justify-center'>
-            <Button type='submit'>Submit</Button>
-          </div>
         </form>
 
         </>
@@ -203,7 +199,7 @@ export default function ALSScientific(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls1_english} / 6
+                {student.score_ls2_scientific} / 5
               </span>
             </li>
           ))}

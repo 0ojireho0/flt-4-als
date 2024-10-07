@@ -64,6 +64,7 @@ import LS3PreTestMathematical from './pages/ALS Student/Assessments/LS3PreTestMa
 import LS4PreTestLife from './pages/ALS Student/Assessments/LS4PreTestLife'
 import LS5PreTestUnderstanding from './pages/ALS Student/Assessments/LS5PreTestUnderstanding'
 import LS6PreTestDigital from './pages/ALS Student/Assessments/LS6PreTestDigital'
+import StudentReadingTest from './pages/ALS Student/Assessments/StudentReadingTest'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -383,6 +384,10 @@ const router = createBrowserRouter([
       {
         path: "/student/pretest-ls6-citizenship",
         element: <LS6PreTestDigital />
+      },
+      {
+        path: "/student/reading-test",
+        element: <StudentReadingTest />
       }
     ]
   }
