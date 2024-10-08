@@ -53,6 +53,7 @@ export default function LS1PreTestEnglish() {
         if (answer5 === "D") score += 1;
 
         setTotalScore(score);
+        console.log(score)
     }, [answer1, answer2, answer3, answer4, answer5])
 
 
@@ -96,32 +97,39 @@ export default function LS1PreTestEnglish() {
 
 
 
-      const handleSubmitAnswers = async(e) =>{
-        e.preventDefault()
-        console.log(finalTranscript)
-
-        const sendAnswer = {
-            answer1: answer1,
-            answer2: answer2, 
-            answer3:answer3,
-            answer4:answer4, 
-            answer5:answer5,
-            answer6: answer6,
-            student_id: getStudentID,
-            total: totalScore
+    const handleSubmitAnswers = async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData();
+        formData.append('answer1', answer1);
+        formData.append('answer2', answer2);
+        formData.append('answer3', answer3);
+        formData.append('answer4', answer4);
+        formData.append('answer5', answer5);
+        formData.append('answer6', answer6);
+        formData.append('answer7', finalTranscript);
+        formData.append('student_id', getStudentID);
+        formData.append('total', totalScore);
+    
+        // Append the audio file if it exists
+        if (audioChunks.length > 0) {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioFile = new File([audioBlob], "recording.wav", { type: 'audio/wav' });
+            formData.append('audio', audioFile);
         }
-
-
-
+    
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswer',sendAnswer);
-            console.log(response);
-  
-
+            const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswer', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
         } catch (error) {
             console.error('Error submitting answer:', error);
         }
-      }
+    };
+    
 
 
       // Speech to Text
@@ -173,6 +181,7 @@ export default function LS1PreTestEnglish() {
       // Start speech recognition
       const startListening = () => {
         recognition.start();
+        startRecording();
         setListening(true);
         setError(null);
       };
@@ -180,13 +189,53 @@ export default function LS1PreTestEnglish() {
       // Stop speech recognition
       const stopListening = () => {
         recognition.stop();
+        stopRecording();
         setListening(false);
         setInterimTranscript(""); // Clear interim transcript when stopping
       };
     
       const resetTranscript = () =>{
         setFinalTranscript('')
+        setInterimTranscript("");
       }
+
+      const [mediaRecorder, setMediaRecorder] = useState(null);
+      const [audioChunks, setAudioChunks] = useState([]);
+      const [audioURL, setAudioURL] = useState('');
+
+      const startRecording = () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                const recorder = new MediaRecorder(stream);
+                setMediaRecorder(recorder);
+    
+                recorder.ondataavailable = (event) => {
+                    setAudioChunks(prev => [...prev, event.data]);
+                };
+    
+                recorder.start();
+            })
+            .catch(error => {
+                console.error("Error accessing microphone:", error);
+            });
+    };
+
+    const stopRecording = () => {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            mediaRecorder.stream.getTracks().forEach(track => track.stop()); // Stop all tracks
+        }
+    };
+
+    useEffect(() => {
+        console.log("Audio Chunks:", audioChunks);
+        if (audioChunks.length) {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const url = URL.createObjectURL(audioBlob);
+            setAudioURL(url);
+            console.log("Audio URL:", url); // Add this log
+        }
+    }, [audioChunks]);
     
 
     
@@ -296,6 +345,7 @@ export default function LS1PreTestEnglish() {
                         <Textarea label='Answer' value={answer6} disabled={disableAnswer6} onChange={(e) => setAnswer6(e.target.value)} required />
                     </div>
                 </div>
+                <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
                 <div className='mt-3'>
                     <h1>7. Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
                     <div className='border-2 p-2 flex justify-center items-center'>
@@ -310,6 +360,13 @@ export default function LS1PreTestEnglish() {
                         {error && <p style={{ color: "red" }}>{error}</p>}
                         {interimTranscript && <p>{interimTranscript}</p>}
                     </div>
+                    {audioURL && (
+                        <div>
+                            <h2>Recorded Audio:</h2>
+                            <audio controls src={audioURL}></audio>
+                            <a href={audioURL} download="recording.wav">Download Audio</a>
+                        </div>
+                    )}
                     <div className='flex justify-end gap-2'>
                         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
                         </Button>

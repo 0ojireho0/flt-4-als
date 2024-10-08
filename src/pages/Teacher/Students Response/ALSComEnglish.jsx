@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
+import question7 from "../../../assets/ls1-english-assessments/question7.png"
 
 export default function ALSComEnglish(){
 
@@ -16,11 +17,16 @@ export default function ALSComEnglish(){
   const [answer4, setAnswer4] = useState("")
   const [answer5, setAnswer5] = useState("")
   const [answer6, setAnswer6] = useState("")
+  const [answer7, setAnswer7] = useState("")
   const [score, setScore] = useState(0)
   const [addScoreNumber6, setaddScoreNumber6] = useState("")
+  const [addScoreNumber7, setaddScoreNumber7] = useState("")
   const [getStudentID, setGetStudentID] = useState(0)
   const [getTeacherID, setGetTeacherID] = useState(0)
   const [disableScoreNumber6, setDisableScoreNumber6] = useState(false)
+  const [disableScoreNumber7, setDisableScoreNumber7] = useState(false)
+  const [audioURL, setAudioURL] = useState(null);
+
 
 
 
@@ -60,9 +66,12 @@ export default function ALSComEnglish(){
     setAnswer4(student.ls1_english_part1_4)
     setAnswer5(student.ls1_english_part1_5)
     setAnswer6(student.ls1_english_part2_6)
+    setAnswer7(student.ls1_english_part3_7)
     setScore(student.score_ls1_english)
     setGetStudentID(student.students_id)
     setGetTeacherID(student.teacher_id)
+    setAudioURL(student.audio_ls1_english_part3_7)
+
 
     if(student.submit_finalscore_ls1english !== null){
       setaddScoreNumber6(student.submit_finalscore_ls1english)
@@ -72,6 +81,16 @@ export default function ALSComEnglish(){
       setDisableScoreNumber6(false)
     }
 
+    if(student.submit_finalscore_ls1english_part7 !== null){
+      setaddScoreNumber7(student.submit_finalscore_ls1english_part7)
+      setDisableScoreNumber7(true)
+    }else{
+      setaddScoreNumber6(null)
+      setDisableScoreNumber7(false)
+    }
+
+    
+
 
 
 
@@ -80,11 +99,13 @@ export default function ALSComEnglish(){
 
   const handleSubmitScore = async(e) =>{
     e.preventDefault()
+    console.log(addScoreNumber7)
 
     const numericAddScoreNumber6 = Number(addScoreNumber6);
+    const numericAddScoreNumber7 = Number(addScoreNumber7);
     const numericScore = Number(score);
 
-    const totalScore = numericAddScoreNumber6 + numericScore; 
+    const totalScore = numericAddScoreNumber6 + numericAddScoreNumber7 + numericScore; 
 
     const sendScore = {
       student_id: getStudentID,
@@ -94,7 +115,9 @@ export default function ALSComEnglish(){
   const submitData = {
     students_id: getStudentID,
     teacher_id: getTeacherID,
-    addScoreNumber6: addScoreNumber6
+    addScoreNumber6: parseInt(addScoreNumber6),
+    addScoreNumber7: parseInt(addScoreNumber7)
+    
   }
 
   try {
@@ -246,6 +269,32 @@ export default function ALSComEnglish(){
             <div className='flex justify-end'>
               <Radio name='6' label="1 point" value={1} checked={addScoreNumber6 == "1"} disabled={disableScoreNumber6} onChange={(e) =>setaddScoreNumber6(e.target.value)} />
               <Radio name='6' label="0 point" value={0} checked={addScoreNumber6 == "0"} disabled={disableScoreNumber6} onChange={(e) =>setaddScoreNumber6(e.target.value)} />
+            </div>
+          </div>
+
+          <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+            <p>7. Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question7} alt="" />
+            </div>
+            <div className='w-full mt-2'>
+              <Textarea label='Student Answer' disabled value={answer7 == null ? "" : answer7} />
+            </div>
+            {audioURL ? (
+                <div>
+                    <h2>Audio Recording:</h2>
+                    <audio controls>
+                        <source src={audioURL} type="audio/webm" />
+                        Your browser does not support the audio tag.
+                    </audio>
+                    <a href={audioURL} download="audio_recording.webm">Download Audio</a>
+                </div>
+            ) : (
+                <p>Loading audio...</p>
+            )}
+            <div className='flex justify-end'>
+              <Radio name='7' label="1 point" value={1} checked={addScoreNumber7 == "1"} disabled={disableScoreNumber7} onChange={(e) =>setaddScoreNumber7(e.target.value)} />
+              <Radio name='7' label="0 point" value={0} checked={addScoreNumber7 == "0"} disabled={disableScoreNumber7} onChange={(e) =>setaddScoreNumber7(e.target.value)} />
             </div>
           </div>
           
