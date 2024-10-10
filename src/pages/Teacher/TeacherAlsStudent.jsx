@@ -35,29 +35,10 @@ export default function TeacherAlsStudent () {
   }
 }
 
-const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
-    if(ls1_english == null && ls1_filipino == null && ls2 == null && ls3 == null && ls4 == null && ls5 == null && ls6 == null){
-        return "Pre-test is not yet started"
-    }else if(ls1_english == null || ls1_filipino == null || ls2 == null || ls3 == null || ls4 == null || ls5 == null || ls6 == null){
-        return "Pre-test is not yet completed"
-    }else{
-        return "Pre-test done"
-    }
-}
+
 
   useEffect(()=>{
 
-    // const getTeacherAlsStudent = async() =>{
-    //     try {
-    //         const res = await axios.get("http://127.0.0.1:8000/api/teacher-pretest");
-    //         console.log(res)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-
-    // }
-
-    // getTeacherAlsStudent()
     const user = JSON.parse(localStorage.getItem('user'))
 
 
@@ -209,7 +190,7 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
         <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
         </div>
       {/* Top Stats Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-green-100 p-4 rounded-lg shadow">
           <h3 className="text-xl font-bold">Active ALS Students</h3>
           <p className="text-green-600 text-2xl">{getActiveStudents} Active</p>
@@ -220,7 +201,7 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
           <p className="text-blue-600 text-2xl">S.Y. 2022-2023</p>
           <p>Date: July 24, 2023</p>
         </div>
-        <div className="bg-blue-100 p-4 rounded-lg shadow">
+        {/* <div className="bg-blue-100 p-4 rounded-lg shadow">
           <h3 className="text-xl font-bold">Active Test Period</h3>
           <p className="text-blue-600 text-2xl">Pre-test</p>
           <button className="bg-blue-500 text-white rounded-lg px-4 py-2 mt-2">
@@ -233,7 +214,7 @@ const handlePreTest = (ls1_english, ls1_filipino, ls2, ls3, ls4, ls5, ls6) =>{
           <button className="bg-green-500 text-white rounded-lg px-4 py-2 mt-2">
             Start Accepting Test Response
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Student Cards Section */}

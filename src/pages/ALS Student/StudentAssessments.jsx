@@ -101,9 +101,7 @@ export default function StudentAssessments(){
             </p>
           </div>
           <div className="text-center">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-              Start
-            </button>
+            <Link to="/student/posttest"><button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start</button></Link>
           </div>
         </div>
 

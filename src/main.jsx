@@ -65,6 +65,14 @@ import LS4PreTestLife from './pages/ALS Student/Assessments/LS4PreTestLife'
 import LS5PreTestUnderstanding from './pages/ALS Student/Assessments/LS5PreTestUnderstanding'
 import LS6PreTestDigital from './pages/ALS Student/Assessments/LS6PreTestDigital'
 import StudentReadingTest from './pages/ALS Student/Assessments/StudentReadingTest'
+import StudentPostTest from './pages/ALS Student/Assessments/StudentPostTest'
+import LS1PostTestEnglish from './pages/ALS Student/Assessments/LS1PostTestEnglish'
+import LS1PostTestFilipino from './pages/ALS Student/Assessments/LS1PostTestFilipino'
+import LS2PostTestScientific from './pages/ALS Student/Assessments/LS2PostTestScientific'
+import LS3PostTestMathematical from './pages/ALS Student/Assessments/LS3PostTestMathematical'
+import LS4PostTestLife from './pages/ALS Student/Assessments/LS4PostTestLife'
+import LS5PostTestUnderstanding from './pages/ALS Student/Assessments/LS5PostTestUnderstanding'
+import LS6PostTestDigital from './pages/ALS Student/Assessments/LS6PostTestDigital'
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -388,6 +396,38 @@ const router = createBrowserRouter([
       {
         path: "/student/reading-test",
         element: <StudentReadingTest />
+      },
+      {
+        path: "/student/posttest",
+        element: <StudentPostTest />
+      },
+      {
+        path: "/student/posttest-ls1-english",
+        element: <LS1PostTestEnglish />
+      },
+      {
+        path: "/student/posttest-ls1-filipino",
+        element: <LS1PostTestFilipino />
+      },
+      {
+        path: "/student/posttest-ls2-scientific",
+        element: <LS2PostTestScientific />
+      },
+      {
+        path: "/student/posttest-ls3-math",
+        element: <LS3PostTestMathematical />
+      },
+      {
+        path: "/student/posttest-ls4-life",
+        element: <LS4PostTestLife />
+      },
+      {
+        path: "/student/posttest-ls5-understanding",
+        element: <LS5PostTestUnderstanding />
+      },
+      {
+        path: "/student/posttest-ls6-citizenship",
+        element: <LS6PostTestDigital />
       }
     ]
   }

@@ -1,111 +1,61 @@
-// StudentInfoSheet.jsx
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 import question1 from '../../../assets/ls3-assessments/question1.png'
 import question2 from '../../../assets/ls3-assessments/question2.png'
-import ALSMathPostTest from './ALSMathPostTest';
 
-export default function ALSMath(){
+export default function ALSMathPostTest() {
 
-
-  const [getActiveStudents, setGetActiveStudents] = useState(0)
-  const [getAllStudents, setgetAllStudents] = useState([])
-  const [showStudentScore, setshowStudentScore] = useState(false)
-  const [fullname, setfullname] = useState("")
-  const [answer1, setAnswer1] = useState("")
-  const [answer2, setAnswer2] = useState("")
-  const [answer3, setAnswer3] = useState("")
-  const [answer4, setAnswer4] = useState("")
-  const [answer5, setAnswer5] = useState("")
-  const [score, setScore] = useState(0)
-  const [showPostTest, setShowPostTest] = useState(false)
-
-
-
-
-
-  const getSpecificStudents = async() =>{
-
-    const user = JSON.parse(localStorage.getItem('user'))
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students', { params: { teacherId: user.id } });
-      setgetAllStudents(response?.data)
-      setGetActiveStudents(response.data.length)
-      console.log(response)
-  } catch (error) {
-      console.log(error);
-  }
-}
-
-  useEffect(()=>{
+    const [getActiveStudents, setGetActiveStudents] = useState(0)
+    const [getAllStudents, setgetAllStudents] = useState([])
+    const [showStudentScore, setshowStudentScore] = useState(false)
+    const [fullname, setfullname] = useState("")
+    const [answer1, setAnswer1] = useState("")
+    const [answer2, setAnswer2] = useState("")
+    const [answer3, setAnswer3] = useState("")
+    const [answer4, setAnswer4] = useState("")
+    const [answer5, setAnswer5] = useState("")
+    const [score, setScore] = useState(0)
     
-    const user = JSON.parse(localStorage.getItem('user'))
 
+    const getSpecificStudents = async() =>{
 
-    if(user == null || user.user_type !== "ALS Teacher"){
-        navigate('/teacher/sign-in')
+        const user = JSON.parse(localStorage.getItem('user'))
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students-posttest', { params: { teacherId: user.id } });
+          setgetAllStudents(response?.data)
+          setGetActiveStudents(response.data.length)
+          console.log(response)
+      } catch (error) {
+          console.log(error);
       }
-
-      getSpecificStudents()
-
-  },[])
-
-  const handleGetStudentScore = (student) =>{
-    console.log(student)
-    setshowStudentScore(true)
-    setfullname(student.fullname)
-    setAnswer1(student.ls3_1)
-    setAnswer2(student.ls3_2)
-    setAnswer3(student.ls3_3)
-    setAnswer4(student.ls3_4)
-    setAnswer5(student.ls3_5)
-    setScore(student.score_ls3_math)
-  }
-
-
+    }
+    
+      useEffect(()=>{
+    
+          getSpecificStudents()
+    
+      },[])
+    
+      const handleGetStudentScore = (student) =>{
+        console.log(student)
+        setshowStudentScore(true)
+        setfullname(student.fullname)
+        setAnswer1(student.post_test_ls3_1)
+        setAnswer2(student.post_test_ls3_2)
+        setAnswer3(student.post_test_ls3_3)
+        setAnswer4(student.post_test_ls3_4)
+        setAnswer5(student.post_test_ls3_5)
+        setScore(student.post_test_score_ls3_math)
+      }
 
 
   return (
     <>
-        {/* Header Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 mb-6">
-      <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Active ALS Student</h2>
-        <h3 className="text-2xl">{getActiveStudents} Active</h3> {/* {getActiveStudents} */}
-        {/* <p className="text-sm">{getAllStudent.length} Registered ALS Student/s</p> */}
-      </div>
-      <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
-      </div>
-      {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Active Test Period</h2>
-        <h3 className="text-2xl">Pre-test</h3>
-        <button className="mt-2 px-4 py-2 bg-white text-blue-500 rounded-md">Start Post-test</button>
-      </div>
-      <div className="bg-red-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Test Status</h2>
-        <h3 className="text-2xl">Closed</h3>
-        <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
-      </div> */}
-    </div>
-    <div>
-        <h1 className='text-center font-bold mb-3 text-2xl' onClick={() => setShowPostTest(!showPostTest)}>{showPostTest ? "Post Test" : "Pre Test"}</h1>
-    </div>
-
-
-    {showPostTest ? (
-      <>
-      <ALSMathPostTest />
-      </>
-    ) : (
-      <>
-      <div className='flex flex-col md:flex-row p-6 bg-gray-100'>
+    <div className='flex flex-col md:flex-row p-6 bg-gray-100'>
         {showStudentScore ? (
-          <>
-          <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
+            <>
+            <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
           <div className="text-center mb-6">
           <h1 className="text-sm font-bold">LS3 Mathematical and Problem Solving Skills</h1>
           <p className="text-green-600 font-semibold">{fullname} - {score}/8</p>
@@ -231,11 +181,11 @@ export default function ALSMath(){
         </form>
 
           </div>
-          </>
+            </>
         ) : (
-          <>
-          <div className='text-center w-full'>Select Student to show score</div>
-          </>
+            <>
+            <div className='text-center w-full'>Select Student to show score</div>
+            </>
         )}
         <div className="w-full lg:w-4/12 p-6 bg-white ml-4 rounded-lg shadow-md mt-4 lg:mt-0">
         <h2 className="text-xl font-semibold mb-4">Student Masterlist</h2>
@@ -247,18 +197,15 @@ export default function ALSMath(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls3_math} / 8
+                {student.post_test_score_ls3_math} / 8
               </span>
             </li>
           ))}
         </ul>
       </div>
-      </div>
-      </>
-    )}
+    </div>
+
 
     </>
-  );
-};
-
-
+  )
+}

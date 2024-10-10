@@ -1,210 +1,157 @@
-// StudentInfoSheet.jsx
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
 import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
-import ALSComEnglishPostTest from './ALSComEnglishPostTest';
 
-export default function ALSComEnglish(){
+export default function ALSComEnglishPostTest() {
 
-
-  const [getActiveStudents, setGetActiveStudents] = useState(0)
-  const [getAllStudents, setgetAllStudents] = useState([])
-  const [showStudentScore, setshowStudentScore] = useState(false)
-  const [fullname, setfullname] = useState("")
-  const [answer1, setAnswer1] = useState("")
-  const [answer2, setAnswer2] = useState("")
-  const [answer3, setAnswer3] = useState("")
-  const [answer4, setAnswer4] = useState("")
-  const [answer5, setAnswer5] = useState("")
-  const [answer6, setAnswer6] = useState("")
-  const [answer7, setAnswer7] = useState("")
-  const [answer8, setAnswer8] = useState("")
-  const [score, setScore] = useState(0)
-  const [addScoreNumber6, setaddScoreNumber6] = useState("")
-  const [addScoreNumber7, setaddScoreNumber7] = useState("")
-  const [addScoreNumber8, setaddScoreNumber8] = useState("")
-  const [getStudentID, setGetStudentID] = useState(0)
-  const [getTeacherID, setGetTeacherID] = useState(0)
-  const [disableScoreNumber6, setDisableScoreNumber6] = useState(false)
-  const [disableScoreNumber7, setDisableScoreNumber7] = useState(false)
-  const [disableScoreNumber8, setDisableScoreNumber8] = useState(false)
-  const [audioURL, setAudioURL] = useState(null);
-  const [audioURL2, setAudioURL2] = useState(null)
-  const [disableButton, setDisableButton] = useState(false)
-  const [showPostTest, setShowPostTest] = useState(false)
+    const [getActiveStudents, setGetActiveStudents] = useState(0)
+    const [getAllStudents, setgetAllStudents] = useState([])
+    const [showStudentScore, setshowStudentScore] = useState(false)
+    const [fullname, setfullname] = useState("")
+    const [answer1, setAnswer1] = useState("")
+    const [answer2, setAnswer2] = useState("")
+    const [answer3, setAnswer3] = useState("")
+    const [answer4, setAnswer4] = useState("")
+    const [answer5, setAnswer5] = useState("")
+    const [answer6, setAnswer6] = useState("")
+    const [answer7, setAnswer7] = useState("")
+    const [answer8, setAnswer8] = useState("")
+    const [score, setScore] = useState(0)
+    const [addScoreNumber6, setaddScoreNumber6] = useState("")
+    const [addScoreNumber7, setaddScoreNumber7] = useState("")
+    const [addScoreNumber8, setaddScoreNumber8] = useState("")
+    const [getStudentID, setGetStudentID] = useState(0)
+    const [getTeacherID, setGetTeacherID] = useState(0)
+    const [disableScoreNumber6, setDisableScoreNumber6] = useState(false)
+    const [disableScoreNumber7, setDisableScoreNumber7] = useState(false)
+    const [disableScoreNumber8, setDisableScoreNumber8] = useState(false)
+    const [audioURL, setAudioURL] = useState(null);
+    const [audioURL2, setAudioURL2] = useState(null)
+    const [disableButton, setDisableButton] = useState(false)
 
 
-  const getSpecificStudents = async() =>{
+    const getSpecificStudents = async() =>{
 
-    const user = JSON.parse(localStorage.getItem('user'))
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students', { params: { teacherId: user.id } });
-      setgetAllStudents(response?.data)
-      setGetActiveStudents(response.data.length)
-      console.log(response)
-  } catch (error) {
-      console.log(error);
-  }
-}
-
-  useEffect(()=>{
-    
-    const user = JSON.parse(localStorage.getItem('user'))
-
-
-    if(user == null || user.user_type !== "ALS Teacher"){
-        navigate('/teacher/sign-in')
-      }
-
-      getSpecificStudents()
-
-  },[])
-
-  const handleGetStudentScore = (student) =>{
-    console.log(student)
-    setshowStudentScore(true)
-    setfullname(student.fullname)
-    setAnswer1(student.ls1_english_part1_1)
-    setAnswer2(student.ls1_english_part1_2)
-    setAnswer3(student.ls1_english_part1_3)
-    setAnswer4(student.ls1_english_part1_4)
-    setAnswer5(student.ls1_english_part1_5)
-    setAnswer6(student.ls1_english_part2_6)
-    setAnswer7(student.ls1_english_part3_7)
-    setAnswer8(student.ls1_english_part3_8)
-    setScore(student.score_ls1_english)
-    setGetStudentID(student.students_id)
-    setGetTeacherID(student.teacher_id)
-    setAudioURL(student.audio_ls1_english_part3_7)
-    setAudioURL2(student.audio_ls1_english_part3_8)
-
-
-    if(student.submit_finalscore_ls1english !== null){
-      setaddScoreNumber6(student.submit_finalscore_ls1english)
-      setDisableScoreNumber6(true)
-    }else{
-      setaddScoreNumber6(null)
-      setDisableScoreNumber6(false)
-    }
-
-    if(student.submit_finalscore_ls1english_part7 !== null){
-      setaddScoreNumber7(student.submit_finalscore_ls1english_part7)
-      setDisableScoreNumber7(true)
-    }else{
-      setaddScoreNumber7(null)
-      setDisableScoreNumber7(false)
-    }
-
-    if(student.submit_finalscore_ls1english_part8 !== null){
-      setaddScoreNumber8(student.submit_finalscore_ls1english_part8)
-      setDisableScoreNumber8(true)
-    }else{
-      setaddScoreNumber8(null)
-      setDisableScoreNumber8(false)
-    }
-
-    if(student.submit_finalscore_ls1english !== null && student.submit_finalscore_ls1english_part7 !== null & student.submit_finalscore_ls1english_part8 !== null){
-      setDisableButton(true)
-    }else{
-      setDisableButton(false)
-    }
-
-    
-
-
-
-
-    
-  }
-
-  const handleSubmitScore = async(e) =>{
-    e.preventDefault()
-    console.log(addScoreNumber8)
-
-    const numericAddScoreNumber6 = Number(addScoreNumber6);
-    const numericAddScoreNumber7 = Number(addScoreNumber7);
-    const numericAddScoreNumber8 = Number(addScoreNumber8)
-    const numericScore = Number(score);
-
-    const totalScore = numericAddScoreNumber6 + numericAddScoreNumber7 + numericScore + numericAddScoreNumber8; 
-
-    const sendScore = {
-      student_id: getStudentID,
-      total: totalScore
-  }
-
-  const submitData = {
-    students_id: getStudentID,
-    teacher_id: getTeacherID,
-    addScoreNumber6: parseInt(addScoreNumber6),
-    addScoreNumber7: parseInt(addScoreNumber7),
-    addScoreNumber8: parseInt(addScoreNumber8)
-    
-  }
-
-  try {
-    const response = await axios.post('http://127.0.0.1:8000/api/submitStudentScoreLS1English',sendScore);
-    // console.log(response);
-
-    if(response.status == 200){
-      try {
-        const response = await axios.post('http://127.0.0.1:8000/api/submit-score-ls1english', submitData)
-        console.log(response)
+        const user = JSON.parse(localStorage.getItem('user'))
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students-posttest', { params: { teacherId: user.id } });
+          setgetAllStudents(response?.data)
+          setGetActiveStudents(response.data.length)
+          console.log(response)
       } catch (error) {
-        console.log(error)
+          console.log(error);
       }
     }
     
-  } catch (error) {
-    console.error('Error submitting answer:', error);
-  }
+      useEffect(()=>{
+    
+          getSpecificStudents()
+    
+      },[])
+
+      const handleGetStudentScore = (student) =>{
+        console.log(student)
+        setshowStudentScore(true)
+        setfullname(student.fullname)
+        setAnswer1(student.post_test_ls1_english_part1_1)
+        setAnswer2(student.post_test_ls1_english_part1_2)
+        setAnswer3(student.post_test_ls1_english_part1_3)
+        setAnswer4(student.post_test_ls1_english_part1_4)
+        setAnswer5(student.post_test_ls1_english_part1_5)
+        setAnswer6(student.post_test_ls1_english_part2_6)
+        setAnswer7(student.post_test_ls1_english_part3_7)
+        setAnswer8(student.post_test_ls1_english_part3_8)
+        setScore(student.post_test_score_ls1_english)
+        setGetStudentID(student.students_id)
+        setGetTeacherID(student.teacher_id)
+        setAudioURL(student.post_test_audio_ls1_english_part3_7)
+        setAudioURL2(student.post_test_audio_ls1_english_part3_8)
     
     
-  }
+        if(student.post_tests_submit_finalscore_ls1english !== null){
+          setaddScoreNumber6(student.post_tests_submit_finalscore_ls1english)
+          setDisableScoreNumber6(true)
+        }else{
+          setaddScoreNumber6(null)
+          setDisableScoreNumber6(false)
+        }
+    
+        if(student.post_tests_submit_finalscore_ls1english_part7 !== null){
+          setaddScoreNumber7(student.post_tests_submit_finalscore_ls1english_part7)
+          setDisableScoreNumber7(true)
+        }else{
+          setaddScoreNumber7(null)
+          setDisableScoreNumber7(false)
+        }
+    
+        if(student.post_tests_submit_finalscore_ls1english_part8 !== null){
+          setaddScoreNumber8(student.post_tests_submit_finalscore_ls1english_part8)
+          setDisableScoreNumber8(true)
+        }else{
+          setaddScoreNumber8(null)
+          setDisableScoreNumber8(false)
+        }
+    
+        if(student.post_tests_submit_finalscore_ls1english !== null && student.post_tests_submit_finalscore_ls1english_part7 !== null & student.post_tests_submit_finalscore_ls1english_part8 !== null){
+          setDisableButton(true)
+        }else{
+          setDisableButton(false)
+        }
+        
+      }
+
+      const handleSubmitScore = async(e) =>{
+        e.preventDefault()
+        console.log(addScoreNumber8)
+    
+        const numericAddScoreNumber6 = Number(addScoreNumber6);
+        const numericAddScoreNumber7 = Number(addScoreNumber7);
+        const numericAddScoreNumber8 = Number(addScoreNumber8)
+        const numericScore = Number(score);
+    
+        const totalScore = numericAddScoreNumber6 + numericAddScoreNumber7 + numericScore + numericAddScoreNumber8; 
+    
+        const sendScore = {
+          student_id: getStudentID,
+          total: totalScore
+      }
+    
+      const submitData = {
+        students_id: getStudentID,
+        teacher_id: getTeacherID,
+        addScoreNumber6: parseInt(addScoreNumber6),
+        addScoreNumber7: parseInt(addScoreNumber7),
+        addScoreNumber8: parseInt(addScoreNumber8)
+        
+      }
+    
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/submitStudentScoreLS1EnglishPosttest',sendScore);
+        // console.log(response);
+    
+        if(response.status == 200){
+          try {
+            const response = await axios.post('http://127.0.0.1:8000/api/submit-score-ls1english-posttest', submitData)
+            console.log(response)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        
+      } catch (error) {
+        console.error('Error submitting answer:', error);
+      }
+        
+        
+      }
 
 
   return (
     <>
-
-      
-        {/* Header Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 mb-6">
-      <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Active ALS Student</h2>
-        <h3 className="text-2xl">{getActiveStudents} Active</h3> {/* {getActiveStudents} */}
-        {/* <p className="text-sm">{getAllStudent.length} Registered ALS Student/s</p> */}
-      </div>
-      <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
-      </div>
-      {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Active Test Period</h2>
-        <h3 className="text-2xl">Pre-test</h3>
-        <button className="mt-2 px-4 py-2 bg-white text-blue-500 rounded-md">Start Post-test</button>
-      </div>
-      <div className="bg-red-500 text-white p-4 rounded-lg text-center shadow-md">
-        <h2 className="text-lg font-semibold">Test Status</h2>
-        <h3 className="text-2xl">Closed</h3>
-        <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
-      </div> */}
-    </div>
-      <div>
-            <h1 className='text-center font-bold mb-3 text-2xl' onClick={() => setShowPostTest(!showPostTest)}>{showPostTest ? "Post Test" : "Pre Test"}</h1>
-      </div>
-
-      {showPostTest ? (
-        <>
-        <ALSComEnglishPostTest />
-
-        </>
-      ) : (
-        <>
-        <div className="flex flex-col md:flex-row p-6 bg-gray-100">
-        {showStudentScore ? (
+    <div className="flex flex-col md:flex-row p-6 bg-gray-100">
+            {showStudentScore ? (
           <>
           <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
           <div className="text-center mb-6">
@@ -368,11 +315,6 @@ export default function ALSComEnglish(){
         ) : (
           <div className='text-center w-full'>Select Student to show score</div>
         )}
-        
-   
-
-
-
       <div className="w-full lg:w-4/12 p-6 bg-white ml-4 rounded-lg shadow-md mt-4 lg:mt-0">
         <h2 className="text-xl font-semibold mb-4">Student Masterlist</h2>
         <ul className="space-y-2">
@@ -383,20 +325,15 @@ export default function ALSComEnglish(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls1_english} / 6
+                {student.post_test_score_ls1_english} / 6
               </span>
             </li>
           ))}
         </ul>
       </div>
-        </div>
-
-        </>
-      )}
-
-
+      </div>
     </>
-  );
-};
 
 
+  )
+}

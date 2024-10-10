@@ -85,7 +85,7 @@ const handleLogout = () =>{
       <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
     </div>
     {/* Header Section */}
-    <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-2 gap-4 mb-6">
       <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active ALS Student</h2>
         <h3 className="text-2xl">{getActiveStudents} Active</h3>
@@ -96,7 +96,7 @@ const handleLogout = () =>{
         <h3 className="text-2xl">S.Y. 2022-2023</h3>
         <p className="text-sm">Date: July 24, 2023</p>
       </div>
-      <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
+      {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
         <h3 className="text-2xl">Pre-test</h3>
         <button className="mt-2 px-4 py-2 bg-white text-blue-500 rounded-md">Start Post-test</button>
@@ -105,7 +105,7 @@ const handleLogout = () =>{
         <h2 className="text-lg font-semibold">Test Status</h2>
         <h3 className="text-2xl">Closed</h3>
         <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
-      </div>
+      </div> */}
     </div>
 
     {/* Functional Literacy Test Section */}

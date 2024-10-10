@@ -152,6 +152,7 @@ const handleCreateStudent = async(e) =>{
   try {
     const res = await axios.post('http://127.0.0.1:8000/api/teacher/', emplyeeData); // Update the URL as needed'
     const response = await axios.post('http://127.0.0.1:8000/api/employee/', emplyeeData); // Update the URL as needed'
+    console.log(res.data, response.data)
     if(response.status == 201 || res.status == 201){
       setShowAddEmployeeModal(false);
       toast.success('Updated Successfully')

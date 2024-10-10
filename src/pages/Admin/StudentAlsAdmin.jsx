@@ -177,36 +177,62 @@ export default function ALSStudents() {
     };
   
     try {
+      const res = await axios.post('http://127.0.0.1:8000/api/students-posttest', studentData);
       const response = await axios.post('http://127.0.0.1:8000/api/student/', studentData); // Update the URL as needed
-      // console.log(teachers)
-      // console.log(response);
+      
+      // console.log(res)
+      // console.log(response)
+    
       setShowAddStudentModal(false);
 
       if(response.status == 201){
         try {
           const res = await axios.get('http://127.0.0.1:8000/api/student')
-          // console.log(res.data.students.length - 1)
-          // console.log(res.data.students[res.data.students.length - 1])
-
           if(res.status == 200){
             const preTestStudent = {
               students_id: res.data.students[res.data.students.length - 1].id,
               teacher_id: parseInt(teachers)
-
             }
             try {
               const res = await axios.post('http://127.0.0.1:8000/api/new-student-teacher', preTestStudent)
+              const response = await axios.post('http://127.0.0.1:8000/api/new-student-teacher-posttest', preTestStudent)
               console.log(res)
+              console.log(response)
+
             } catch (error) {
-              console.log("Error adding pre-test students number 201", error)
+              console.log(error)
             }
           }
-          
         } catch (error) {
-          console.log("Error fetching api/student number 194", error)
+          console.log(error)
         }
-        
       }
+
+      // if(response.status == 201){
+      //   try {
+      //     const res = await axios.get('http://127.0.0.1:8000/api/student')
+      //     // console.log(res.data.students.length - 1)
+      //     // console.log(res.data.students[res.data.students.length - 1])
+
+      //     if(res.status == 200){
+      //       const preTestStudent = {
+      //         students_id: res.data.students[res.data.students.length - 1].id,
+      //         teacher_id: parseInt(teachers)
+
+      //       }
+      //       try {
+      //         const res = await axios.post('http://127.0.0.1:8000/api/new-student-teacher', preTestStudent)
+      //         console.log(res)
+      //       } catch (error) {
+      //         console.log("Error adding pre-test students number 201", error)
+      //       }
+      //     }
+          
+      //   } catch (error) {
+      //     console.log("Error fetching api/student number 194", error)
+      //   }
+        
+      // }
 
 
     } catch (error) {
