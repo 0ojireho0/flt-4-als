@@ -5,6 +5,7 @@ import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
+import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 
 
 export default function LS1PreTestEnglish() {
@@ -108,6 +109,7 @@ export default function LS1PreTestEnglish() {
         formData.append('answer5', answer5);
         formData.append('answer6', answer6);
         formData.append('answer7', finalTranscript);
+        formData.append('answer8', finalTranscript2)
         formData.append('student_id', getStudentID);
         formData.append('total', totalScore);
     
@@ -117,6 +119,14 @@ export default function LS1PreTestEnglish() {
             const audioFile = new File([audioBlob], "recording.wav", { type: 'audio/wav' });
             formData.append('audio', audioFile);
         }
+
+        if (audioChunks2.length > 0) {
+            const audioBlob = new Blob(audioChunks2, { type: 'audio/wav' });
+            const audioFile = new File([audioBlob], "recording.wav", { type: 'audio/wav' });
+            formData.append('audio2', audioFile);
+        }
+
+
     
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswer', formData, {
@@ -132,110 +142,173 @@ export default function LS1PreTestEnglish() {
     
 
 
-      // Speech to Text
-      const [listening, setListening] = useState(false);
-      const [finalTranscript, setFinalTranscript] = useState(""); // Final transcript after speech ends
-      const [interimTranscript, setInterimTranscript] = useState(""); // Live transcript while speaking
-      const [error, setError] = useState(null);
-    
-      const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-    
-      recognition.continuous = true; // Continue listening until explicitly stopped
-      recognition.interimResults = true; // Enable interim results for real-time transcription
-      recognition.lang = "en-US"; // Set the language (you can change this as needed)
-    
-      // Capture speech results
-      recognition.onresult = (event) => {
-        let interimText = "";
-        let finalText = "";
-    
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-    
-          if (event.results[i].isFinal) {
-            // If the result is final, update the final transcript
-            finalText += transcript + " ";
-          } else {
-            // If the result is not final, update the interim transcript
-            interimText += transcript;
-          }
+    // Speech to Text
+    const [listening, setListening] = useState(false);
+    const [finalTranscript, setFinalTranscript] = useState(""); // Final transcript after speech ends
+    const [interimTranscript, setInterimTranscript] = useState(""); // Live transcript while speaking
+    const [error, setError] = useState(null);
+
+    const [listening2, setListening2] = useState(false);
+    const [finalTranscript2, setFinalTranscript2] = useState(""); // Final transcript after speech ends
+    const [interimTranscript2, setInterimTranscript2] = useState(""); // Live transcript while speaking
+    const [error2, setError2] = useState(null);
+
+    const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition1 = new SpeechRecognition();
+    const recognition2 = new SpeechRecognition();
+
+    // Common settings for recognition
+    [recognition1, recognition2].forEach((recognition) => {
+    recognition.continuous = true; // Continue listening until explicitly stopped
+    recognition.interimResults = true; // Enable interim results for real-time transcription
+    recognition.lang = "en-US"; // Set the language (you can change this as needed)
+    });
+
+    // Capture speech results for first listener
+    recognition1.onresult = (event) => {
+    let interimText = "";
+    let finalText = "";
+
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+
+        if (event.results[i].isFinal) {
+        finalText += transcript + " ";
+        } else {
+        interimText += transcript;
         }
-    
-        setFinalTranscript((prev) => prev + finalText); // Append to final transcript
-        setInterimTranscript(interimText); // Update interim transcript in real-time
-      };
-    
-      // Handle errors
-      recognition.onerror = (event) => {
-        setError("Error occurred in speech recognition: " + event.error);
-        setListening(false);
-      };
-    
-      // Stop recognition when the user stops speaking
-      recognition.onspeechend = () => {
-        stopListening();
-      };
-    
-      // Start speech recognition
-      const startListening = () => {
-        recognition.start();
-        startRecording();
-        setListening(true);
-        setError(null);
-      };
-    
-      // Stop speech recognition
-      const stopListening = () => {
-        recognition.stop();
-        stopRecording();
-        setListening(false);
-        setInterimTranscript(""); // Clear interim transcript when stopping
-      };
-    
-      const resetTranscript = () =>{
-        setFinalTranscript('')
-        setInterimTranscript("");
-      }
+    }
 
-      const [mediaRecorder, setMediaRecorder] = useState(null);
-      const [audioChunks, setAudioChunks] = useState([]);
-      const [audioURL, setAudioURL] = useState('');
-
-      const startRecording = () => {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(stream => {
-                const recorder = new MediaRecorder(stream);
-                setMediaRecorder(recorder);
-    
-                recorder.ondataavailable = (event) => {
-                    setAudioChunks(prev => [...prev, event.data]);
-                };
-    
-                recorder.start();
-            })
-            .catch(error => {
-                console.error("Error accessing microphone:", error);
-            });
+    setFinalTranscript((prev) => prev + finalText); // Append to final transcript
+    setInterimTranscript(interimText); // Update interim transcript in real-time
     };
 
-    const stopRecording = () => {
-        if (mediaRecorder) {
-            mediaRecorder.stop();
-            mediaRecorder.stream.getTracks().forEach(track => track.stop()); // Stop all tracks
+    // Capture speech results for second listener
+    recognition2.onresult = (event) => {
+    let interimText = "";
+    let finalText = "";
+
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+
+        if (event.results[i].isFinal) {
+        finalText += transcript + " ";
+        } else {
+        interimText += transcript;
         }
+    }
+
+    setFinalTranscript2((prev) => prev + finalText); // Append to final transcript
+    setInterimTranscript2(interimText); // Update interim transcript in real-time
+    };
+
+    // Handle errors
+    recognition1.onerror = (event) => {
+    setError("Error occurred in speech recognition: " + event.error);
+    setListening(false);
+    };
+
+    recognition2.onerror = (event) => {
+    setError2("Error occurred in speech recognition: " + event.error);
+    setListening2(false);
+    };
+
+    // Stop recognition when the user stops speaking
+    recognition1.onspeechend = () => stopListening();
+    recognition2.onspeechend = () => stopListening2();
+
+    // Start/Stop speech recognition
+    const startListening = () => {
+    recognition1.start();
+    startRecording(setMediaRecorder, setAudioChunks);
+    setListening(true);
+    setError(null);
+    };
+
+    const stopListening = () => {
+    recognition1.stop();
+    stopRecording(mediaRecorder);
+    setListening(false);
+    setInterimTranscript(""); // Clear interim transcript when stopping
+    };
+
+    const resetTranscript = () => {
+    setFinalTranscript("");
+    setInterimTranscript("");
+    };
+
+    const startListening2 = () => {
+    recognition2.start();
+    startRecording(setMediaRecorder2, setAudioChunks2);
+    setListening2(true);
+    setError2(null);
+    };
+
+    const stopListening2 = () => {
+    recognition2.stop();
+    stopRecording(mediaRecorder2);
+    setListening2(false);
+    setInterimTranscript2(""); // Clear interim transcript when stopping
+    };
+
+    const resetTranscript2 = () => {
+    setFinalTranscript2("");
+    setInterimTranscript2("");
+    };
+
+    const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [audioChunks, setAudioChunks] = useState([]);
+    const [audioURL, setAudioURL] = useState('');
+
+    const [mediaRecorder2, setMediaRecorder2] = useState(null);
+    const [audioChunks2, setAudioChunks2] = useState([]);
+    const [audioURL2, setAudioURL2] = useState('');
+
+    // Recording function to reduce redundancy
+    const startRecording = (setRecorder, setChunks) => {
+    navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+        const recorder = new MediaRecorder(stream);
+        setRecorder(recorder);
+
+        recorder.ondataavailable = (event) => {
+            setChunks((prev) => [...prev, event.data]);
+        };
+
+        recorder.start();
+        })
+        .catch((error) => {
+        console.error("Error accessing microphone:", error);
+        });
+    };
+
+    const stopRecording = (recorder) => {
+    if (recorder) {
+        recorder.stop();
+        recorder.stream.getTracks().forEach((track) => track.stop()); // Stop all tracks
+    }
     };
 
     useEffect(() => {
-        console.log("Audio Chunks:", audioChunks);
-        if (audioChunks.length) {
-            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-            const url = URL.createObjectURL(audioBlob);
-            setAudioURL(url);
-            console.log("Audio URL:", url); // Add this log
-        }
+    if (audioChunks.length) {
+        const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+        const url = URL.createObjectURL(audioBlob);
+        setAudioURL(url);
+        console.log("Audio URL:", url);
+    }
     }, [audioChunks]);
+
+    useEffect(() => {
+    if (audioChunks2.length) {
+        const audioBlob = new Blob(audioChunks2, { type: "audio/wav" });
+        const url = URL.createObjectURL(audioBlob);
+        setAudioURL2(url);
+        console.log("Audio URL:", url);
+    }
+    }, [audioChunks2]);
+
     
 
     
@@ -357,7 +430,7 @@ export default function LS1PreTestEnglish() {
                         disabled
                         required 
                         />
-                        {error && <p style={{ color: "red" }}>{error}</p>}
+                        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
                         {interimTranscript && <p>{interimTranscript}</p>}
                     </div>
                     {audioURL && (
@@ -371,6 +444,33 @@ export default function LS1PreTestEnglish() {
                         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
                         </Button>
                         <Button size='sm' className='bg-black/30' onClick={resetTranscript}>Reset</Button>
+                    </div>
+                </div>
+                <div className='mt-3'>
+                    <h1>8. I will read an article. Listen carefully and try to understand what it means. Then explain what you understand, using at least (1) complete sentence. (Read the article slowly, and then use the Audio to save your voice). (1 point)</h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <audio controls src={question8}></audio>
+                    </div>
+                    <div className='w-full mt-2'>
+                        <Textarea label='Answer' 
+                        value={finalTranscript2} 
+                        disabled
+                        required 
+                        />
+                        {/* {error2 && <p style={{ color: "red" }}>{error2}</p>} */}
+                        {interimTranscript2 && <p>{interimTranscript2}</p>}
+                    </div>
+                    {audioURL2 && (
+                        <div>
+                            <h2>Recorded Audio:</h2>
+                            <audio controls src={audioURL2}></audio>
+                            <a href={audioURL2} download="recording.wav">Download Audio</a>
+                        </div>
+                    )}
+                    <div className='flex justify-end gap-2'>
+                        <Button size='sm' className='bg-black/30' onClick={listening2 ? stopListening2 : startListening2}>{listening2 ? "Stop Recording" : "Record your answer"}
+                        </Button>
+                        <Button size='sm' className='bg-black/30' onClick={resetTranscript2}>Reset</Button>
                     </div>
                 </div>
                 <div className='mt-3'>

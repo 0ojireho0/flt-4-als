@@ -2,6 +2,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
+import question5 from "../../../assets/ls1-filipino-assessments/habang-ikaw.mp3"
+
 
 export default function ALSComFilipino(){
 
@@ -14,11 +16,17 @@ export default function ALSComFilipino(){
   const [answer2, setAnswer2] = useState("")
   const [answer3, setAnswer3] = useState("")
   const [answer4, setAnswer4] = useState("")
+  const [answer5, setAnswer5] = useState("")
   const [score, setScore] = useState(0)
   const [addScoreNumber4, setaddScoreNumber4] = useState("")
+  const [addScoreNumber5, setAddScoreNumber5] = useState("")
   const [getStudentID, setGetStudentID] = useState(0)
   const [getTeacherID, setGetTeacherID] = useState(0)
   const [disableScoreNumber4, setDisableScoreNumber4] = useState(false)
+  const [disableScoreNumber5, setDisableScoreNumber5] = useState(false)
+  const [audioURL, setAudioURL] = useState(null);
+
+  const [disableButton, setDisableButton] = useState(false)
 
 
 
@@ -56,9 +64,11 @@ export default function ALSComFilipino(){
     setAnswer2(student.ls1_filipino_part1_2)
     setAnswer3(student.ls1_filipino_part1_3)
     setAnswer4(student.ls1_filipino_part2_4)
+    setAnswer5(student.ls1_filipino_part3_5)
     setScore(student.score_ls1_filipino)
     setGetStudentID(student.students_id)
     setGetTeacherID(student.teacher_id)
+    setAudioURL(student.audio_ls1_filipino_part3_5)
 
     if(student.submit_finalscore_ls1filipino !== null){
       setaddScoreNumber4(student.submit_finalscore_ls1filipino)
@@ -66,6 +76,20 @@ export default function ALSComFilipino(){
     }else{
       setaddScoreNumber4(null)
       setDisableScoreNumber4(false)
+    }
+
+    if(student.submit_finalscore_ls1filipino_part5 !== null){
+      setAddScoreNumber5(student.submit_finalscore_ls1filipino_part5)
+      setDisableScoreNumber5(true)
+    }else{
+      setAddScoreNumber5(null)
+      setDisableScoreNumber5(false)
+    }
+
+    if(student.submit_finalscore_ls1filipino !== null && student.submit_finalscore_ls1filipino_part5 !== null){
+      setDisableButton(true)
+    }else{
+      setDisableButton(false)
     }
 
 
@@ -78,9 +102,10 @@ export default function ALSComFilipino(){
     e.preventDefault()
 
     const numericAddScoreNumber4 = Number(addScoreNumber4);
+    const numericAddScoreNumber5 = Number(addScoreNumber5)
     const numericScore = Number(score);
 
-    const totalScore = numericAddScoreNumber4 + numericScore; 
+    const totalScore = numericAddScoreNumber4 + numericScore + numericAddScoreNumber5; 
 
     const sendScore = {
       student_id: getStudentID,
@@ -90,7 +115,8 @@ export default function ALSComFilipino(){
   const submitData = {
     students_id: getStudentID,
     teacher_id: getTeacherID,
-    addScoreNumber4: addScoreNumber4
+    addScoreNumber4: parseInt(addScoreNumber4),
+    addScoreNumber5: parseInt(addScoreNumber5)
   }
 
   try {
@@ -117,7 +143,7 @@ export default function ALSComFilipino(){
   return (
     <>
         {/* Header Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 mb-6">
       <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active ALS Student</h2>
         <h3 className="text-2xl">{getActiveStudents} Active</h3> {/* {getActiveStudents} */}
@@ -128,7 +154,7 @@ export default function ALSComFilipino(){
         <h3 className="text-2xl">S.Y. 2022-2023</h3>
         <p className="text-sm">Date: July 24, 2023</p>
       </div>
-      <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
+      {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
         <h3 className="text-2xl">Pre-test</h3>
         <button className="mt-2 px-4 py-2 bg-white text-blue-500 rounded-md">Start Post-test</button>
@@ -137,7 +163,7 @@ export default function ALSComFilipino(){
         <h2 className="text-lg font-semibold">Test Status</h2>
         <h3 className="text-2xl">Closed</h3>
         <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
-      </div>
+      </div> */}
     </div>
     <div className="flex flex-col md:flex-row p-6 bg-gray-100">
       {/* Left Container */}
@@ -148,7 +174,7 @@ export default function ALSComFilipino(){
         <>
         <div className="text-center mb-6">
           <h1 className="text-sm font-bold">LS1 COMMUNICATION SKILLS (FILIPINO)</h1>
-          <p className="text-green-600 font-semibold">{fullname} - {score}/4</p>
+          <p className="text-green-600 font-semibold">{fullname} - {score}/6</p>
         </div>
         <div className="mb-4">
           <h2 className=" font-bold text-sm">Part I. Pagbasa</h2>
@@ -221,9 +247,55 @@ export default function ALSComFilipino(){
               <Radio name='4' label="0 point" value={0} checked={addScoreNumber4 == "0"} disabled={disableScoreNumber4} onChange={(e) =>setaddScoreNumber4(e.target.value)} />
             </div>
           </div>
+          <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+            <p>5. Pakinggan mo ang aking isasalaysay na sitwasyon at sagutin nang malinaw ang kasunod na tanong. (2 points)</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <audio controls src={question5}></audio>
+            </div>
+            <div className='w-full mt-2'>
+              <Textarea label='Student Answer' disabled 
+              value={answer5 == null ? "" : answer5} 
+
+              />
+            </div>
+            {audioURL ? (
+                <div>
+                    <h2>Audio Recording:</h2>
+                    <audio controls>
+                        <source src={audioURL} type="audio/webm" />
+                        Your browser does not support the audio tag.
+                    </audio>
+                    {/* <a href={audioURL} download="audio_recording.webm">Download Audio</a> */}
+                </div>
+            ) : (
+                <p>Student is not yet answer number 5</p>
+            )}
+            <div className='flex justify-end'>
+
+            <Radio name='5' label="2 points" value={2} 
+              checked={addScoreNumber5 == "2"} 
+              disabled={disableScoreNumber5} 
+              onChange={(e) =>setAddScoreNumber5(e.target.value)} 
+
+              />
+
+              <Radio name='5' label="1 point" value={1} 
+              checked={addScoreNumber5 == "1"} 
+              disabled={disableScoreNumber5} 
+              onChange={(e) =>setAddScoreNumber5(e.target.value)} 
+
+              />
+              <Radio name='5' label="0 point" value={0} 
+              checked={addScoreNumber5 == "0"} 
+              disabled={disableScoreNumber5} 
+              onChange={(e) =>setAddScoreNumber5(e.target.value)} 
+
+              />
+            </div>
+          </div>
           
           <div className='flex justify-center'>
-            <Button type='submit'>Submit</Button>
+            <Button type='submit' disabled={disableButton} >Submit</Button>
           </div>
         </form>
 
@@ -246,7 +318,7 @@ export default function ALSComFilipino(){
                 <p className="text-sm text-gray-500">{student.lrn}</p>
               </div>
               <span className="text-sm font-semibold">
-                {student.score_ls1_filipino} / 4
+                {student.score_ls1_filipino} / 6
               </span>
             </li>
           ))}

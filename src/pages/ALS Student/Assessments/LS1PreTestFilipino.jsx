@@ -4,6 +4,8 @@ import { Textarea } from '@material-tailwind/react'
 import axios from 'axios'
 import {Button} from '@material-tailwind/react'
 
+import question5 from "../../../assets/ls1-filipino-assessments/habang-ikaw.mp3"
+
 
 
 export default function LS1PreTestFilipino() {
@@ -86,19 +88,35 @@ export default function LS1PreTestFilipino() {
       const handleSubmitAnswers = async(e) =>{
         e.preventDefault()
 
-        const sendAnswer = {
-            answer1: answer1,
-            answer2: answer2, 
-            answer3:answer3,
-            answer4:answer4, 
-            student_id: getStudentID,
-            total: totalScore
+        // const sendAnswer = {
+        //     answer1: answer1,
+        //     answer2: answer2, 
+        //     answer3:answer3,
+        //     answer4:answer4, 
+        //     student_id: getStudentID,
+        //     total: totalScore
+        // }
+
+        const formData = new FormData()
+        formData.append('answer1', answer1);
+        formData.append('answer2', answer2);
+        formData.append('answer3', answer3);
+        formData.append('answer4', answer4);
+        formData.append('answer5', finalTranscript);
+        formData.append('student_id', getStudentID);
+        formData.append('total', totalScore);
+
+        // Append the audio file if it exists
+        if (audioChunks.length > 0) {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioFile = new File([audioBlob], "recording.wav", { type: 'audio/wav' });
+            formData.append('audio', audioFile);
         }
 
 
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerFilipino',sendAnswer);
+            const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerFilipino',formData);
             console.log(response);
   
 
@@ -106,6 +124,104 @@ export default function LS1PreTestFilipino() {
             console.error('Error submitting answer:', error);
         }
       }
+
+
+      const [listening, setListening] = useState(false);
+      const [finalTranscript, setFinalTranscript] = useState(""); // Final transcript after speech ends
+      const [interimTranscript, setInterimTranscript] = useState(""); // Live transcript while speaking
+      const [error, setError] = useState(null);
+
+      const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition1 = new SpeechRecognition();
+      recognition1.continuous = true; // Continue listening until explicitly stopped
+      recognition1.interimResults = true; // Enable interim results for real-time transcription
+      recognition1.lang = "en-US"; // Set the language (you can change this as needed)
+
+      recognition1.onresult = (event) => {
+        let interimText = "";
+        let finalText = "";
+    
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+    
+            if (event.results[i].isFinal) {
+            finalText += transcript + " ";
+            } else {
+            interimText += transcript;
+            }
+        }
+    
+        setFinalTranscript((prev) => prev + finalText); // Append to final transcript
+        setInterimTranscript(interimText); // Update interim transcript in real-time
+        };
+
+    recognition1.onerror = (event) => {
+        setError("Error occurred in speech recognition: " + event.error);
+        setListening(false);
+    };
+
+    recognition1.onspeechend = () => stopListening();
+
+    const startListening = () => {
+        recognition1.start();
+        startRecording(setMediaRecorder, setAudioChunks);
+        setListening(true);
+        setError(null);
+        };
+    
+        const stopListening = () => {
+        recognition1.stop();
+        stopRecording(mediaRecorder);
+        setListening(false);
+        setInterimTranscript(""); // Clear interim transcript when stopping
+        };
+    
+        const resetTranscript = () => {
+        setFinalTranscript("");
+        setInterimTranscript("");
+        };
+
+        const [mediaRecorder, setMediaRecorder] = useState(null);
+        const [audioChunks, setAudioChunks] = useState([]);
+        const [audioURL, setAudioURL] = useState('');
+
+            // Recording function to reduce redundancy
+    const startRecording = (setRecorder, setChunks) => {
+        navigator.mediaDevices
+            .getUserMedia({ audio: true })
+            .then((stream) => {
+            const recorder = new MediaRecorder(stream);
+            setRecorder(recorder);
+    
+            recorder.ondataavailable = (event) => {
+                setChunks((prev) => [...prev, event.data]);
+            };
+    
+            recorder.start();
+            })
+            .catch((error) => {
+            console.error("Error accessing microphone:", error);
+            });
+        };
+    
+        const stopRecording = (recorder) => {
+        if (recorder) {
+            recorder.stop();
+            recorder.stream.getTracks().forEach((track) => track.stop()); // Stop all tracks
+        }
+        };
+    
+        useEffect(() => {
+        if (audioChunks.length) {
+            const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+            const url = URL.createObjectURL(audioBlob);
+            setAudioURL(url);
+            console.log("Audio URL:", url);
+        }
+        }, [audioChunks]);
+      
 
   return (
     <>
@@ -185,6 +301,33 @@ export default function LS1PreTestFilipino() {
                     <h1>4. Isulat sa patlang ang baybay sa Filipino ng salitang hiran na "computer"</h1>
                     <div className='mt-2'>
                         <Textarea label='Sagot' value={answer4} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
+                    </div>
+                </div>
+                <div className='mt-3'>
+                    <h1>5. Pakinggan mo ang aking isasalaysay na sitwasyon at sagutin nang malinaw ang kasunod na tanong. (2 points) </h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <audio controls src={question5}></audio>
+                    </div>
+                    <div className='w-full mt-2'>
+                        <Textarea label='Answer' 
+                        value={finalTranscript} 
+                        disabled
+                        required 
+                        />
+                        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+                        {interimTranscript && <p>{interimTranscript}</p>}
+                    </div>
+                    {audioURL && (
+                        <div>
+                            <h2>Recorded Audio:</h2>
+                            <audio controls src={audioURL}></audio>
+                            {/* <a href={audioURL} download="recording.wav">Download Audio</a> */}
+                        </div>
+                    )}
+                    <div className='flex justify-end gap-2'>
+                        <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
+                        </Button>
+                        <Button size='sm' className='bg-black/30' onClick={resetTranscript}>Reset</Button>
                     </div>
                 </div>
                 <div className='mt-3'>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
+import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 
 export default function ALSComEnglish(){
 
@@ -18,15 +19,19 @@ export default function ALSComEnglish(){
   const [answer5, setAnswer5] = useState("")
   const [answer6, setAnswer6] = useState("")
   const [answer7, setAnswer7] = useState("")
+  const [answer8, setAnswer8] = useState("")
   const [score, setScore] = useState(0)
   const [addScoreNumber6, setaddScoreNumber6] = useState("")
   const [addScoreNumber7, setaddScoreNumber7] = useState("")
+  const [addScoreNumber8, setaddScoreNumber8] = useState("")
   const [getStudentID, setGetStudentID] = useState(0)
   const [getTeacherID, setGetTeacherID] = useState(0)
   const [disableScoreNumber6, setDisableScoreNumber6] = useState(false)
   const [disableScoreNumber7, setDisableScoreNumber7] = useState(false)
+  const [disableScoreNumber8, setDisableScoreNumber8] = useState(false)
   const [audioURL, setAudioURL] = useState(null);
-
+  const [audioURL2, setAudioURL2] = useState(null)
+  const [disableButton, setDisableButton] = useState(false)
 
 
 
@@ -67,10 +72,12 @@ export default function ALSComEnglish(){
     setAnswer5(student.ls1_english_part1_5)
     setAnswer6(student.ls1_english_part2_6)
     setAnswer7(student.ls1_english_part3_7)
+    setAnswer8(student.ls1_english_part3_8)
     setScore(student.score_ls1_english)
     setGetStudentID(student.students_id)
     setGetTeacherID(student.teacher_id)
     setAudioURL(student.audio_ls1_english_part3_7)
+    setAudioURL2(student.audio_ls1_english_part3_8)
 
 
     if(student.submit_finalscore_ls1english !== null){
@@ -85,8 +92,22 @@ export default function ALSComEnglish(){
       setaddScoreNumber7(student.submit_finalscore_ls1english_part7)
       setDisableScoreNumber7(true)
     }else{
-      setaddScoreNumber6(null)
+      setaddScoreNumber7(null)
       setDisableScoreNumber7(false)
+    }
+
+    if(student.submit_finalscore_ls1english_part8 !== null){
+      setaddScoreNumber8(student.submit_finalscore_ls1english_part8)
+      setDisableScoreNumber8(true)
+    }else{
+      setaddScoreNumber8(null)
+      setDisableScoreNumber8(false)
+    }
+
+    if(student.submit_finalscore_ls1english !== null && student.submit_finalscore_ls1english_part7 !== null & student.submit_finalscore_ls1english_part8 !== null){
+      setDisableButton(true)
+    }else{
+      setDisableButton(false)
     }
 
     
@@ -99,13 +120,14 @@ export default function ALSComEnglish(){
 
   const handleSubmitScore = async(e) =>{
     e.preventDefault()
-    console.log(addScoreNumber7)
+    console.log(addScoreNumber8)
 
     const numericAddScoreNumber6 = Number(addScoreNumber6);
     const numericAddScoreNumber7 = Number(addScoreNumber7);
+    const numericAddScoreNumber8 = Number(addScoreNumber8)
     const numericScore = Number(score);
 
-    const totalScore = numericAddScoreNumber6 + numericAddScoreNumber7 + numericScore; 
+    const totalScore = numericAddScoreNumber6 + numericAddScoreNumber7 + numericScore + numericAddScoreNumber8; 
 
     const sendScore = {
       student_id: getStudentID,
@@ -116,7 +138,8 @@ export default function ALSComEnglish(){
     students_id: getStudentID,
     teacher_id: getTeacherID,
     addScoreNumber6: parseInt(addScoreNumber6),
-    addScoreNumber7: parseInt(addScoreNumber7)
+    addScoreNumber7: parseInt(addScoreNumber7),
+    addScoreNumber8: parseInt(addScoreNumber8)
     
   }
 
@@ -144,7 +167,7 @@ export default function ALSComEnglish(){
   return (
     <>
         {/* Header Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 mb-6">
       <div className="bg-green-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active ALS Student</h2>
         <h3 className="text-2xl">{getActiveStudents} Active</h3> {/* {getActiveStudents} */}
@@ -155,7 +178,7 @@ export default function ALSComEnglish(){
         <h3 className="text-2xl">S.Y. 2022-2023</h3>
         <p className="text-sm">Date: July 24, 2023</p>
       </div>
-      <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
+      {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
         <h3 className="text-2xl">Pre-test</h3>
         <button className="mt-2 px-4 py-2 bg-white text-blue-500 rounded-md">Start Post-test</button>
@@ -164,7 +187,7 @@ export default function ALSComEnglish(){
         <h2 className="text-lg font-semibold">Test Status</h2>
         <h3 className="text-2xl">Closed</h3>
         <button className="mt-2 px-4 py-2 bg-white text-red-500 rounded-md">Start Accepting Test Response</button>
-      </div>
+      </div> */}
     </div>
     <div className="flex flex-col md:flex-row p-6 bg-gray-100">
       {/* Left Container */}
@@ -287,19 +310,45 @@ export default function ALSComEnglish(){
                         <source src={audioURL} type="audio/webm" />
                         Your browser does not support the audio tag.
                     </audio>
-                    <a href={audioURL} download="audio_recording.webm">Download Audio</a>
+                    {/* <a href={audioURL} download="audio_recording.webm">Download Audio</a> */}
                 </div>
             ) : (
-                <p>Loading audio...</p>
+                <p>Student is not answering number 7</p>
             )}
             <div className='flex justify-end'>
               <Radio name='7' label="1 point" value={1} checked={addScoreNumber7 == "1"} disabled={disableScoreNumber7} onChange={(e) =>setaddScoreNumber7(e.target.value)} />
               <Radio name='7' label="0 point" value={0} checked={addScoreNumber7 == "0"} disabled={disableScoreNumber7} onChange={(e) =>setaddScoreNumber7(e.target.value)} />
             </div>
           </div>
+
+          <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+            <p>8. I will read an article. Listen carefully and try to understand what it means. Then explain what you understand, using at least (1) complete sentence. (Read the article slowly, and then use the Audio to save your voice). (1 point)</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <audio controls src={question8}></audio>
+            </div>
+            <div className='w-full mt-2'>
+              <Textarea label='Student Answer' disabled value={answer8 == null ? "" : answer8} />
+            </div>
+            {audioURL2 ? (
+                <div>
+                    <h2>Audio Recording:</h2>
+                    <audio controls>
+                        <source src={audioURL2} type="audio/webm" />
+                        Your browser does not support the audio tag.
+                    </audio>
+                    {/* <a href={audioURL2} download="audio_recording.webm">Download Audio</a> */}
+                </div>
+            ) : (
+                <p>Student is not answering number 8</p>
+            )}
+            <div className='flex justify-end'>
+              <Radio name='8' label="1 point" value={1} checked={addScoreNumber8 == "1"} disabled={disableScoreNumber8} onChange={(e) =>setaddScoreNumber8(e.target.value)} />
+              <Radio name='8' label="0 point" value={0} checked={addScoreNumber8 == "0"} disabled={disableScoreNumber8} onChange={(e) =>setaddScoreNumber8(e.target.value)} />
+            </div>
+          </div>
           
           <div className='flex justify-center'>
-            <Button type='submit'>Submit</Button>
+            <Button type='submit' disabled={disableButton}>Submit</Button>
           </div>
         </form>
 
