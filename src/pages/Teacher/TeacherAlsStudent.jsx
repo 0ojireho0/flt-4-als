@@ -22,12 +22,28 @@ export default function TeacherAlsStudent () {
   const [ls6, setls6] = useState(0)
   const [pis, setpis] = useState(0)
 
+  const [getAllStudentsPostTest, setGetAllStudentsPostTest] = useState([])
+  const [showPostTestModal, setShowPostTestModal] = useState(false)
+  const [post_test_getAllScores, post_test_setGetAllScores] = useState(0)
+  const [post_test_ls1Filipino, post_test_setls1Filipino] = useState(0)
+  const [post_test_ls1english, post_test_setls1english] = useState(0)
+  const [post_test_ls2, post_test_setls2] = useState(0)
+  const [post_test_ls3, post_test_setls3] = useState(0)
+  const [post_test_ls4, post_test_setls4] = useState(0)
+  const [post_test_ls5, post_test_setls5] = useState(0)
+  const [post_test_ls6, post_test_setls6] = useState(0)
+  const [post_test_getFullNameStudent, post_test_setGetFullNameStudent] = useState("")
+
   const getSpecificStudents = async() =>{
 
     const user = JSON.parse(localStorage.getItem('user'))
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students', { params: { teacherId: user.id } });
-      console.log(response.data)
+      const res = await axios.get('http://127.0.0.1:8000/api/get-specific-students-posttest', { params: { teacherId: user.id } });
+      // console.log(res.data)
+      // console.log(response.data)
+      setGetAllStudentsPostTest(res.data)
+      
       setgetAllStudents(response?.data)
       setGetActiveStudents(response.data.length)
   } catch (error) {
@@ -71,6 +87,20 @@ export default function TeacherAlsStudent () {
     setls6(student.score_ls6_digital)
     setpis(student.pis)
  
+  }
+
+  const handleShowPostTestModal = (students) =>{
+    // console.log(students)
+    setShowPostTestModal(!showPostTestModal)
+    post_test_setGetFullNameStudent(students.fullname)
+    post_test_setGetAllScores(students.post_test_score_ls1_filipino + students.post_test_score_ls1_english + students.post_test_score_ls2_scientific + students.post_test_score_ls3_math + students.post_test_score_ls4_life + students.post_test_score_ls5_uts + students.post_test_score_ls6_digital)
+    post_test_setls1Filipino(students.post_test_score_ls1_filipino)
+    post_test_setls1english(students.post_test_score_ls1_english)
+    post_test_setls2(students.post_test_score_ls2_scientific)
+    post_test_setls3(students.post_test_score_ls3_math)
+    post_test_setls4(students.post_test_score_ls4_life)
+    post_test_setls5(students.post_test_score_ls5_uts)
+    post_test_setls6(students.post_test_score_ls6_digital)
   }
 
   const handleGetAllScores = (score) => {
@@ -217,12 +247,16 @@ export default function TeacherAlsStudent () {
         </div> */}
       </div>
 
+      <div>
+        <h1 className="text-center text-2xl font-bold">Pre-Test</h1>
+      </div>
       {/* Student Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {getAllStudents.map((student, index)=>{
-            {/* console.log(student) */}
+            console.log(student)
             return(
-                <div
+              <>
+                  <div
                     key={index}
                     className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500"
                 >
@@ -243,18 +277,59 @@ export default function TeacherAlsStudent () {
                     <button className="bg-green-500 text-white rounded-lg px-4 py-2" onClick={() => handleShowPreTestModal(student)}>
                         Pre-Test Score Sheet
                     </button>
-                    <button className="bg-green-500 text-white rounded-lg px-4 py-2">
-                         Post-Test Score Sheet
-                    </button>
+               
                     </div>
                     <button className="bg-blue-500 text-white rounded-lg px-4 py-2">
                         View P.I.S
                     </button>
                 </div>
+              </>
+            )
+        })}
+      </div>
+
+      <div className="mt-3">
+        <h1 className="text-center text-2xl font-bold">Post-Test</h1>
+      </div>
+      {/* Student Cards Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {getAllStudentsPostTest.map((student, index)=>{
+            console.log(student)
+            return(
+              <>
+                  <div
+                    key={index}
+                    className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500"
+                >
+                    <div className="flex items-center mb-4">
+
+                    <div>
+                        <h4 className="text-lg font-bold">{student.fullname}</h4>
+                    </div>
+                    </div>
+                    <p className="text-gray-700">
+                    {/* Pre-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span> */}
+                    </p>
+                    <p className="text-gray-700">
+                    {/* Post-test: <span className="font-bold">{handlePreTest(student.ls1_english, student.ls1_filipino, student.ls2, student.ls3, student.ls4, student.ls5, student.ls6)}</span> */}
+                    </p>
+                    <p className="text-gray-500">LRN: {student.lrn}</p>
+                    <div className="grid grid-cols-2 gap-2 mb-3 justify-between mt-4">
+                    <button className="bg-green-500 text-white rounded-lg px-4 py-2" onClick={() => handleShowPostTestModal(student)}>
+                        Post-Test Score Sheet
+                    </button>
+               
+                    </div>
+                    <button className="bg-blue-500 text-white rounded-lg px-4 py-2">
+                        View P.I.S
+                    </button>
+                </div>
+              </>
             )
         })}
       </div>
     </div>
+
 
     {showPreTestModal && (
         <> 
@@ -330,6 +405,92 @@ export default function TeacherAlsStudent () {
                         <td className="border border-gray-300 px-4 py-2">Overall Score</td>
                         <td className="border border-gray-300 px-4 py-2">{getAllScores}</td>
                         <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(getAllScores)}</td>
+                    </tr>
+                </tbody>
+                </table>
+                
+                <div className="mt-6">
+                <p>Name ALS Teacher</p>
+                <p><strong>{getTeacherName}</strong></p>
+                </div>
+            </div>
+            </div>
+        
+        
+        
+        
+        </>
+    )}
+
+    {showPostTestModal && (
+        <> 
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 p-3 overflow-auto">
+            <div className="bg-white rounded-lg shadow-lg w-full p-6  mt-[50rem] md:mt-0 ">
+                {/* Close Button */}
+                <button
+                onClick={()=>setShowPostTestModal(!showPostTestModal)}
+                className=" text-gray-600 hover:text-gray-900"
+                >
+                &#x2715;
+                </button>
+                
+                <h2 className="text-2xl font-bold text-center mb-4">FLT Learning Score Sheet</h2>
+                
+                <div className="mb-6">
+                <p><strong>Name:</strong> {post_test_getFullNameStudent} </p>
+                <p><strong>Overall Score:</strong> {post_test_getAllScores} / 54 </p>
+                <p><strong>ALS Level:</strong> {handleGetAllScores(post_test_getAllScores)} </p>
+                {/* <p><strong>Date:</strong></p> */}
+                </div>
+                
+                <table className="min-w-full table-auto border-collapse border border-gray-300">
+                <thead>
+                    <tr>
+                    <th className="border border-gray-300 px-4 py-2">Strands</th>
+                    <th className="border border-gray-300 px-4 py-2">Score</th>
+                    <th className="border border-gray-300 px-4 py-2">Level of Learning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS1 Communication Skills - English</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls1english}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetEnglishScore(post_test_ls1english)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS1 Communication Skills - Filipino</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls1Filipino}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetFilipinoScore(post_test_ls1Filipino)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS2 Scientific and Critical Thinking Skills</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls2}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetScientificScore(post_test_ls2)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS3 Mathematical and Problem-solving Skills</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls3}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetMathScore(post_test_ls3)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS4 Life and Career</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls4}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetLifeScore(post_test_ls4)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS5 Understanding the Self and the Society</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls5}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetUTSScore(post_test_ls5)}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-300 px-4 py-2">LS6 Digital Citizenship</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_ls6}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetDigitalScore(post_test_ls6)}</td>
+                    </tr>
+                    <tr className="bg-black/30">
+                        <td className="border border-gray-300 px-4 py-2">Overall Score</td>
+                        <td className="border border-gray-300 px-4 py-2">{post_test_getAllScores}</td>
+                        <td className="border border-gray-300 px-4 py-2">{handleGetAllScores(post_test_getAllScores)}</td>
                     </tr>
                 </tbody>
                 </table>

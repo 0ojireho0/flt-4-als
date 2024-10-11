@@ -194,8 +194,8 @@ export default function ALSStudents() {
               teacher_id: parseInt(teachers)
             }
             try {
-              const res = await axios.post('http://127.0.0.1:8000/api/new-student-teacher', preTestStudent)
               const response = await axios.post('http://127.0.0.1:8000/api/new-student-teacher-posttest', preTestStudent)
+              const res = await axios.post('http://127.0.0.1:8000/api/new-student-teacher', preTestStudent)
               console.log(res)
               console.log(response)
 
