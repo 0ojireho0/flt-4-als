@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 
-export default function TeachersAdmin() {
+export default function RegularTeacherAdmin() {
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
   const [getEmployeesData, setGetEmployeesData] = useState([]);
@@ -51,16 +51,10 @@ export default function TeachersAdmin() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/employee");
-      // console.log(res?.data?.employees)
-      setGetEmployeesData(res?.data?.employees);
-      console.log(res?.data?.employees)
+      const res = await axios.get("http://127.0.0.1:8000/api/regular-teacher");
+      console.log(res?.data.teachers)
+      setGetEmployeesData(res?.data.teachers)
 
-      const adminCount = res?.data?.employees.filter(employee => employee.user_type === 'Admin').length;
-      setGetActiveAdmin(adminCount)
-
-      const teacherCount = res?.data?.employees.filter(employee => employee.user_type === 'ALS Teacher').length;
-      setgetActiveTeacher(teacherCount)
       
     } catch (error) {
       console.log(error);
@@ -130,7 +124,7 @@ const handleChange = (index, name, value) => {
   setGetAllStudent(updatedStudents);
 };
 
-const handleCreateStudent = async(e) =>{
+const handleCreateTeacher = async(e) =>{
   e.preventDefault(); // Prevent the default form submission
 
   const emplyeeData = {
@@ -144,16 +138,15 @@ const handleCreateStudent = async(e) =>{
     city: addCity,
     province: addProvince,
     contact_number: addContactNumber,
-    user_type: "ALS Teacher",
+    // user_type: "ALS Teacher",
 
 
   };
 
   try {
-    const res = await axios.post('http://127.0.0.1:8000/api/teacher/', emplyeeData); // Update the URL as needed'
-    const response = await axios.post('http://127.0.0.1:8000/api/employee/', emplyeeData); // Update the URL as needed'
-    console.log(res.data, response.data)
-    if(response.status == 201 || res.status == 201){
+    const res = await axios.post('http://127.0.0.1:8000/api/create-regular-teacher', emplyeeData); // Update the URL as needed'
+    console.log(res.data)
+    if(res.status == 200){
       setShowAddEmployeeModal(false);
       toast.success('Updated Successfully')
     }
@@ -167,11 +160,10 @@ const handleCreateStudent = async(e) =>{
 
 const handleDelete = async (employeeId) => {
   try {
-    const response = await axios.delete(`http://127.0.0.1:8000/api/teacher/${employeeId}`); 
-    const res = await axios.delete(`http://127.0.0.1:8000/api/employee/${employeeId}`); // Update the URL as needed
-
-    console.log(response)
+   
+    const res = await axios.delete(`http://127.0.0.1:8000/api/regular-teacher/${employeeId}`); 
     // console.log('Student deleted successfully:', studentId);
+    console.log(res.data)
     if(res.status == 200){
       toast.success('Deleted Successfully')
     }
@@ -198,7 +190,7 @@ const handleLogout = () =>{
         <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
       </div>
       <div className='mt-3'>
-        <h1 className='text-2xl font-bold'>Teacher for ALS</h1>
+        <h1 className='text-2xl font-bold'>Teacher</h1>
       </div>
 
       <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3 '>
@@ -483,7 +475,7 @@ const handleLogout = () =>{
             </p>
 
             {/* Form */}
-            <form onSubmit={handleCreateStudent} className="">
+            <form onSubmit={handleCreateTeacher} className="">
             <div className="grid grid-cols-1 md:grid-cols-3 xl:md-grid-cols-4 gap-4">
             <div>
                         <label className="block mb-1 font-medium">

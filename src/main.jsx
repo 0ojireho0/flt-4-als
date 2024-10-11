@@ -73,6 +73,17 @@ import LS3PostTestMathematical from './pages/ALS Student/Assessments/LS3PostTest
 import LS4PostTestLife from './pages/ALS Student/Assessments/LS4PostTestLife'
 import LS5PostTestUnderstanding from './pages/ALS Student/Assessments/LS5PostTestUnderstanding'
 import LS6PostTestDigital from './pages/ALS Student/Assessments/LS6PostTestDigital'
+import RegularStudentAdmin from './pages/Admin/RegularStudentAdmin'
+import RegularTeacherAdmin from './pages/Admin/RegularTeacherAdmin'
+import RegularStudentSignIn from './pages/Regular Student/RegularStudentSignIn'
+import NavbarRegularStudent from './components/NavbarRegularStudent'
+import RegularStudentDashboard from './pages/Regular Student/RegularStudentDashboard'
+import RegularStudentAssessments from './pages/Regular Student/RegularStudentAssessments'
+import RegularStudentGrade7 from './pages/Regular Student/Exams/RegularStudentGrade7'
+import EnglishGrade7 from './pages/Regular Student/Exams/Grade7/EnglishGrade7'
+import FilipinoGrade7 from './pages/Regular Student/Exams/Grade7/FilipinoGrade7'
+import ScienceGrade7 from './pages/Regular Student/Exams/Grade7/ScienceGrade7'
+
 
 // Layout component that includes the Navbar
 function Layout() {
@@ -122,6 +133,17 @@ function LayoutStudent(){
   )
 }
 
+function LayoutRegularStudent(){
+  return(
+    <>
+    <NavbarRegularStudent>
+      <Outlet />
+    </NavbarRegularStudent>
+
+    </>
+  )
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -159,6 +181,10 @@ const router = createBrowserRouter([
         path: "/teacher/sign-in",
         element: <TeacherLoginForm />
       },
+      {
+        path: "/regular-student/sign-in",
+        element: <RegularStudentSignIn />
+      }
     ]
   },
   {
@@ -176,6 +202,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/teachers-admins",
         element: <TeachersAdmin />
+      },
+      {
+        path: "/admin/regular-students",
+        element: <RegularStudentAdmin />
+      },
+      {
+        path: "/admin/regular-teachers",
+        element: <RegularTeacherAdmin />
       }
     ]
   },
@@ -429,6 +463,38 @@ const router = createBrowserRouter([
         path: "/student/posttest-ls6-citizenship",
         element: <LS6PostTestDigital />
       }
+    ]
+  },
+  {
+    path: "/regular-student",
+    element: <LayoutRegularStudent />,
+    children: [
+      {
+        path:"/regular-student/dashboard",
+        element: <RegularStudentDashboard />
+      },
+      {
+        path: "/regular-student/assessments",
+        element: <RegularStudentAssessments />
+      },
+      {
+        path: "/regular-student/exam-for-grade7",
+        element: <RegularStudentGrade7 />
+      },
+      {
+        path: "/regular-student/grade7-english",
+        element: <EnglishGrade7 />
+      },
+      {
+        path: '/regular-student/grade7-filipino',
+        element: <FilipinoGrade7 />
+      },
+      {
+        path: '/regular-student/grade7-scientific',
+        element: <ScienceGrade7 />
+      }
+  
+
     ]
   }
 ])

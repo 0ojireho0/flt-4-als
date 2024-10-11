@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
-export default function LoginForm() {
+export default function RegularStudentSignIn() {
 
     const [textPassword, setTextPassword] = useState("password")
     const [showPassword, setShowPassword] = useState(false)
@@ -29,11 +29,11 @@ export default function LoginForm() {
         e.preventDefault();
         
         try {
-          const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
+          const response = await axios.post('http://127.0.0.1:8000/api/login-regular-student', { email, password });
             localStorage.setItem('user', JSON.stringify(response.data.user))
             if(response?.status == 200){
               
-              navigate('/student/answerPIS')
+              navigate('/regular-student/dashboard')
             }
             console.log(response)
         } catch (err) {
@@ -45,7 +45,7 @@ export default function LoginForm() {
     <div className="p-3 flex items-center justify-center min-h-screen bg-gray-200 lg:mt-[-5rem] ">
       <div className="w-96 p-8 bg-white rounded-lg shadow-lg relative">
         {/* Title */}
-        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">MHSLEARN</h2>
+        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">MHS Regular Student Login</h2>
 
         <form onSubmit={handleSubmit}>
         {/* Email Input */}
@@ -90,7 +90,7 @@ export default function LoginForm() {
         </div>
         <div className="flex justify-start mb-6 md:gap-2">
           <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Employee</Link>
-          <Link to="/regular-student/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Student</Link>
+          {/* <Link to="/regular-student/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Student</Link> */}
         </div>
 
         {/* Sign In Button */}

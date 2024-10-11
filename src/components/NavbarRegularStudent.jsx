@@ -1,61 +1,62 @@
-// Sidebar.js
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react'
 
 
 import logo from "../assets/MHS_LOGO.png"
-import { useState } from 'react';
 
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+
+
+
+// Icons
 import { CiMenuBurger } from "react-icons/ci";
 import { FaXmark } from "react-icons/fa6";
-import { MdDashboard } from "react-icons/md";
-import { PiStudent } from "react-icons/pi";
-import { FaChalkboardTeacher } from "react-icons/fa";
+
+
+// Components
+
+import { Button } from '@material-tailwind/react';
 
 
 
+export default function NavbarRegularStudent({children}) {
 
-export default function NavbarAdmin({ children }) {
+    const [showSidebar, setShowSidebar] = useState(false)
+    const navigate = useNavigate()
 
-  const [showSidebar, setShowSidebar] = useState(false)
+    const navItems = [
+        {
+            id: 1,
+            title: "Dashboard",
+            path: '/regular-student/dashboard'
+        },
+        // {
+        //     id: 2,
+        //     title: "Answer my PIS",
+        //     path: "/regular-student/answerPIS"
+        // }, 
+        // {
+        //     id: 3,
+        //     title: "Learnings",
+        //     path: "/regular-student/learnings"
+        // },
+        {
+            id: 4, 
+            title: "Assessments",
+            path: "/regular-student/assessments"
+        }
+    ]
 
-  const navItems = [
-    {
-      id: 1,
-      title: 'Dashboard',
-      path: '/admin/dashboard',
-      icon: <MdDashboard />
-    },
-    {
-      id: 2,
-      title: 'Students for ALS',
-      path: '/admin/students-als',
-      icon: <PiStudent />
-    },
-    {
-      id: 3,
-      title: 'Teachers for ALS',
-      path: '/admin/teachers-admins',
-      icon: <FaChalkboardTeacher />
-    },
-    {
-      id: 5,
-      title: 'Teachers',
-      path: '/admin/regular-teachers',
-      icon: <FaChalkboardTeacher />
-    },
-    {
-      id: 6,
-      title: 'Students',
-      path: '/admin/regular-students',
-      icon: <PiStudent />
-    }
-  ]
-
+    const handleLogout = () =>{
+        localStorage.removeItem('user'); 
+        // console.log('Item removed from localStorage');
+        navigate('/sign-in')
+      
+      }
 
   return (
-    <>
-    {showSidebar ? (
+    <>  
+
+{showSidebar ? (
       <> 
 
 
@@ -78,7 +79,7 @@ export default function NavbarAdmin({ children }) {
               {navItems.map((item, i)=>{
                 return(
                   <>
-                    <li key={i} className='mt-10'>
+                    <li key={i} className='mt-10' onClick={() =>setShowSidebar(!showSidebar)}>
                       <NavLink to={item.path} className="flex items-center gap-2 "><span>{item.icon}</span>{item.title}</NavLink>
                     </li>
 
@@ -141,6 +142,10 @@ export default function NavbarAdmin({ children }) {
 
 
 
+        
+
+
+
     </>
-  );
-};
+  )
+}
