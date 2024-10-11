@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
-export default function TeacherLoginForm() {
+export default function RegularTeacherSignIn() {
 
     const [textPassword, setTextPassword] = useState("password")
     const [showPassword, setShowPassword] = useState(false)
@@ -28,10 +28,10 @@ export default function TeacherLoginForm() {
         e.preventDefault();
         
         try {
-          const response = await axios.post('http://127.0.0.1:8000/api/teacher-login', { email, password });
+          const response = await axios.post('http://127.0.0.1:8000/api/regular-teacher-login', { email, password });
             localStorage.setItem('user', JSON.stringify(response.data.user))
             if(response?.status == 200){
-              navigate('/teacher/dashboard')
+              navigate('/regular-teacher/dashboard')
             }
             console.log(response)
         } catch (err) {
@@ -44,7 +44,7 @@ export default function TeacherLoginForm() {
       <div className="w-96 p-8 bg-white rounded-lg shadow-lg relative">
         {/* Title */}
         
-        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">TEACHER</h2>
+        <h2 className="text-center text-2xl font-bold text-blue-700 mb-6">REGULAR TEACHER</h2>
 
         <form onSubmit={handleSubmit}>
         {/* Email Input */}
@@ -91,7 +91,7 @@ export default function TeacherLoginForm() {
           <Link to="/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Student</Link>
           <div className='flex flex-row gap-3'>
           <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Admin</Link>
-          <Link to="/regular-teacher/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Teacher</Link>
+          <Link to="/regularTeacher/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Teacher</Link>
           </div>
         </div>
 

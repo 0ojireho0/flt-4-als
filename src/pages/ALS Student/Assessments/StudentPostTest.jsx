@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import image1 from "../../../assets/LS1 IMG.jpg"
+import image2 from "../../../assets/LS2 IMG.jpg"
+import image3 from "../../../assets/LS3 IMG.png"
+import image4 from "../../../assets/LS4 IMG.jpg"
+import image5 from "../../../assets/LS5 IMG.png"
 
 export default function StudentPostTest() {
 
@@ -83,12 +88,14 @@ export default function StudentPostTest() {
         {
           id: 'LS1',
           title: 'Communication Skills (English)',
+          image: image1,
           score: `${getScoreLS1English}/8`,
           link: '/student/posttest-ls1-english'
         },
         {
           id: 'LS1',
           title: 'Communication Skills (Filipino)',
+          image: image1,
           score: `${getScoreLS1Filipino}/6`,
           link: '/student/posttest-ls1-filipino'
 
@@ -96,30 +103,35 @@ export default function StudentPostTest() {
         {
           id: 'LS2',
           title: 'Scientific Literacy And Critical Thinking Skills',
+          image: image2,
           score: `${getScoreLS2}/5`,
           link: '/student/posttest-ls2-scientific'
         },
         {
           id: 'LS3',
           title: 'Mathematical And Problem-Solving Skills',
+          image: image3,
           score: `${getScoreLS3}/8`,
           link: '/student/posttest-ls3-math'
         },
         {
           id: 'LS4',
           title: 'Life And Career Skills',
+          image: image4,
           score: `${getScoreLS4}/6`,
           link: '/student/posttest-ls4-life'
         },
         {
           id: 'LS5',
           title: 'Understanding The Self And Society',
+          image: image5,
           score: `${getScoreLS5}/5`,
           link: '/student/posttest-ls5-understanding'
         },
         {
           id: 'LS6',
           title: 'Digital Citizenship',
+          image: image5,
           score: `${getScoreLS6}/6`,
           link: '/student/posttest-ls6-citizenship'
         },
@@ -160,9 +172,12 @@ export default function StudentPostTest() {
           <div key={index} className="bg-white shadow-md rounded-lg p-6">
             <div className="text-center mb-4">
               {/* Circular Progress Placeholder */}
+              <div className='flex justify-center items-center'>
+              <img src={test.image} alt="" className='w-52' />
+              </div>
               <div className="relative w-24 h-24 mx-auto mb-4">
                 {/* Background Circle */}
-        
+            
                 {/* Score */}
                 <div className="absolute inset-0 flex items-center justify-center text-lg font-bold">
                   {test.score}

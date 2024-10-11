@@ -83,6 +83,11 @@ import RegularStudentGrade7 from './pages/Regular Student/Exams/RegularStudentGr
 import EnglishGrade7 from './pages/Regular Student/Exams/Grade7/EnglishGrade7'
 import FilipinoGrade7 from './pages/Regular Student/Exams/Grade7/FilipinoGrade7'
 import ScienceGrade7 from './pages/Regular Student/Exams/Grade7/ScienceGrade7'
+import MathGrade7 from './pages/Regular Student/Exams/Grade7/MathGrade7'
+import NavbarRegularTeacher from './components/NavbarRegularTeacher'
+import RegularTeacherDashboard from './pages/Regular Teacher/RegularTeacherDashboard'
+import RegularTeacherSignIn from './pages/Regular Teacher/RegularTeacherSignIn'
+import RegularTeacherAssessment from './pages/Regular Teacher/RegularTeacherAssessment'
 
 
 // Layout component that includes the Navbar
@@ -144,6 +149,14 @@ function LayoutRegularStudent(){
   )
 }
 
+function LayoutRegularTeacher(){
+  return(
+    <NavbarRegularTeacher>
+      <Outlet />
+    </NavbarRegularTeacher>
+  )
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -184,6 +197,10 @@ const router = createBrowserRouter([
       {
         path: "/regular-student/sign-in",
         element: <RegularStudentSignIn />
+      },
+      {
+        path: "/regular-teacher/sign-in",
+        element: <RegularTeacherSignIn />
       }
     ]
   },
@@ -492,9 +509,27 @@ const router = createBrowserRouter([
       {
         path: '/regular-student/grade7-scientific',
         element: <ScienceGrade7 />
+      },
+      {
+        path: '/regular-student/grade7-math',
+        element: <MathGrade7 />
       }
   
 
+    ]
+  },
+  {
+    path:'/regular-teacher' ,
+    element: <LayoutRegularTeacher />,
+    children: [
+      {
+        path: "/regular-teacher/dashboard",
+        element: <RegularTeacherDashboard />
+      },
+      {
+        path: "/regular-teacher/assessments",
+        element: <RegularTeacherAssessment />
+      }
     ]
   }
 ])

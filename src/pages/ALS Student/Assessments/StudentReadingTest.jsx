@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import question7 from "../../../assets/ls1-english-assessments/question7.png"
+import { Textarea } from '@material-tailwind/react'
+import {Button} from '@material-tailwind/react'
 
 const StudentReadingTest = () => {
   const [listening, setListening] = useState(false);
@@ -69,24 +72,53 @@ const StudentReadingTest = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Real-Time Speech Recognition (Auto Stop)</h2>
-      <button onClick={listening ? stopListening : startListening}>
-        {listening ? "Stop Listening" : "Start Listening"}
-      </button>
-      <button className="ml-10" onClick={resetTranscript}>reset</button>
-      <button className="ml-10" onClick={submitTranscript}>Submit</button>
+    // <div style={{ padding: "20px" }}>
+    //   <h2>Real-Time Speech Recognition (Auto Stop)</h2>
+    //   <button onClick={listening ? stopListening : startListening}>
+    //     {listening ? "Stop Listening" : "Start Listening"}
+    //   </button>
+    //   <button className="ml-10" onClick={resetTranscript}>reset</button>
+    //   <button className="ml-10" onClick={submitTranscript}>Submit</button>
 
-      <div style={{ marginTop: "20px" }}>
-        <strong>Live Transcript:</strong>
-        <p style={{ color: "gray" }}>
-          {finalTranscript}
-          <span style={{ color: "blue" }}>{interimTranscript}</span>
-        </p>
-      </div>
+    //   <div style={{ marginTop: "20px" }}>
+    //     <strong>Live Transcript:</strong>
+    //     <p style={{ color: "gray" }}>
+    //       {finalTranscript}
+    //       <span style={{ color: "blue" }}>{interimTranscript}</span>
+    //     </p>
+    //   </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    //   {error && <p style={{ color: "red" }}>{error}</p>}
+    // </div>
+
+    <div className='mt-3'>
+               <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
+    <h1>Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
+    <div className='border-2 p-2 flex justify-center items-center'>
+        <img src={question7} alt="" />
     </div>
+    <div className='w-full mt-2'>
+        <Textarea label='Answer' 
+        value={finalTranscript} 
+        disabled
+        required 
+        />
+        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+        {interimTranscript && <p>{interimTranscript}</p>}
+    </div>
+    {/* {audioURL && (
+        <div>
+            <h2>Recorded Audio:</h2>
+            <audio controls src={audioURL}></audio>
+            <a href={audioURL} download="recording.wav">Download Audio</a>
+        </div>
+    )} */}
+    <div className='flex justify-end gap-2'>
+        <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
+        </Button>
+        <Button size='sm' className='bg-black/30' onClick={resetTranscript}>Reset</Button>
+    </div>
+</div>
   );
 };
 
