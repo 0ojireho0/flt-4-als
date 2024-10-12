@@ -149,11 +149,11 @@ export default function MathGrade7() {
                 <h1>Math</h1>
             </div>
             <div>
-                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for English</h1>
+                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Math</h1>
             </div>
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>
-                    <h1>1. What is the value of 5^2 + 3^2</h1>
+                    <h1>1. What is the value of 5<sup>2</sup> + 3<sup>2</sup></h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='1' label="A. 25" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
                         <Radio name='1' label="B. 34" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />

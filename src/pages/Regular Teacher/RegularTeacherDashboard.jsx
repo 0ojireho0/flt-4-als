@@ -54,7 +54,7 @@ useEffect(()=>{
 
   const getSpecificStudents = async() =>{
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/get-specific-students', { params: { teacherId: user.id } });
+        const response = await axios.get('http://127.0.0.1:8000/api/get-teacher-teachernames', { params: { teacherId: parseInt(user.id) } });
 
 
 

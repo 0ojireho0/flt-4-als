@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-export default function RegularStudentGrade7() {
+export default function RegularStudentGrade9() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -68,23 +68,23 @@ export default function RegularStudentGrade7() {
         {
           title: 'English',
           score: `${getScoreEnglish}/3`,
-          link: '/regular-student/grade7-english'
+          link: '/regular-student/grade9-english'
         },
         {
           title: 'Filipino',
           score: `${getScoreFilipino}/3`,
-          link: '/regular-student/grade7-filipino'
+          link: '/regular-student/grade9-filipino'
 
         },
         {
           title: 'Science',
           score: `${getScoreScience}/3`,
-          link: '/regular-student/grade7-scientific'
+          link: '/regular-student/grade9-scientific'
         },
         {
           title: 'Math',
           score: `${getScoreMath}/3`,
-          link: '/regular-student/grade7-math'
+          link: '/regular-student/grade9-math'
         },
 
       ];
@@ -115,7 +115,7 @@ export default function RegularStudentGrade7() {
         <div className="bg-gray-100  p-8">
       {/* Title */}
       <div className="text-center mb-12">
-        <h1 className="text-2xl font-bold mb-4">Periodical Exam for Grade 7</h1>
+        <h1 className="text-2xl font-bold mb-4">Periodical Exam for Grade 9</h1>
       </div>
 
       {/* Test Cards Grid */}

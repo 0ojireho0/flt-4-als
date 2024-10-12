@@ -25,67 +25,32 @@ export default function NavbarRegularTeacher({ children }) {
     },
     {
       id: 2,
-      title: 'Assessments',
-      path: '/regular-teacher/assessments',
+      title: 'English',
+      path: '/regular-teacher/english',
       icon: <PiStudent />
     },
-    // {
-    //   id: 3,
-    //   title: 'FLT Result',
-    //   path: '/regular-teacher/flt-result',
-    //   icon: <LuFileOutput />
-    // },
-    // {
-    //     id: 4,
-    //     title: 'Learning Modules',
-    //     path: '/regular-teacher/learning-modules',
-    //     icon: <GoFileSubmodule />
-    //   },
+    {
+      id: 3,
+      title: 'Filipino',
+      path: '/regular-teacher/filipino',
+      icon: <PiStudent />
+    },
+    {
+      id: 4,
+      title: 'Math',
+      path: '/regular-teacher/math',
+      icon: <PiStudent />
+    },
+    {
+      id: 5,
+      title: 'Science',
+      path: '/regular-teacher/science',
+      icon: <PiStudent />
+    },
+  
 
   ]
 
-//   const navItemsFLTresponse = [
-//     {
-//       id: 1,
-//       title: 'ALS Student P.I.S',
-//       path: '/teacher/als-student-pis'
-//     },
-//     {
-//       id: 2,
-//       title: 'LS1 Com. Skills (English)',
-//       path: '/teacher/com-english'
-//     },
-//     {
-//       id: 3,
-//       title: 'LS1 Com. Skills (filipino)',
-//       path: '/teacher/com-filipino'
-//     },
-//     {
-//         id: 4,
-//         title: 'LS2 Scientific Literacy',
-//         path: '/teacher/scientific'
-//       },
-//       {
-//         id: 5,
-//         title: 'LS3 Mathematics',
-//         path: '/teacher/math'
-//       },
-//       {
-//         id: 6,
-//         title: 'LS4 Life & Career',
-//         path: '/teacher/life-career'
-//       },
-//       {
-//         id: 7,
-//         title: 'LS5 Understanding the Self',
-//         path: '/teacher/uts'
-//       },
-//       {
-//         id: 8,
-//         title: 'LS6 Digital Citizenship',
-//         path: '/teacher/digital-citizenship'
-//       },
-//   ]
 
 
   return (

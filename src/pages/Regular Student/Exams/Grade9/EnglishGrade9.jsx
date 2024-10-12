@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 
-export default function ScienceGrade7() {
+export default function EnglishGrade9() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -42,8 +42,8 @@ export default function ScienceGrade7() {
         // Calculate score based on the selected answers
         let score = 0;
 
-        if (answer1 === "C") score += 1;
-        if (answer2 === "C") score += 1;
+        if (answer1 === "B") score += 1;
+        if (answer2 === "B") score += 1;
         if (answer3 === "B") score += 1;
 
         setTotalScore(score);
@@ -56,22 +56,22 @@ export default function ScienceGrade7() {
         const user = JSON.parse(localStorage.getItem('user'))
         try {
           const response = await axios.get('http://127.0.0.1:8000/api/get-teacher-teachername', { params: { regular_student_id: parseInt(user.id), regular_teacher_id: parseInt(user.regular_teacher_id) } });
+          
           console.log(response.data.details[0])
 
-        if(response.data.details[0].science_1 !== null){
-            setAnswer1(response.data.details[0].science_1)
+        if(response.data.details[0].english_1 !== null){
+            setAnswer1(response.data.details[0].english_1)
             setDisableAnswer1(true)
         }
-        if(response.data.details[0].science_2 !== null){
-            setAnswer2(response.data.details[0].science_2)
+        if(response.data.details[0].english_2 !== null){
+            setAnswer2(response.data.details[0].english_2)
             setDisableAnswer2(true)
         }
-        if(response.data.details[0].science_3 !== null){
-            setAnswer3(response.data.details[0].science_3)
+        if(response.data.details[0].english_3 !== null){
+            setAnswer3(response.data.details[0].english_3)
             setDisableAnswer3(true)
         }
 
-  
   
   
       } catch (error) {
@@ -101,7 +101,7 @@ export default function ScienceGrade7() {
 
     
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/getStudentsAnswersScience', sendAnswer, {
+            const response = await axios.post('http://127.0.0.1:8000/api/getRegularStudetAnswerEnglish', sendAnswer, {
             });
             console.log(response);
         } catch (error) {
@@ -128,7 +128,7 @@ export default function ScienceGrade7() {
             </div>
             <div className='text-center my-3'>
                 <h1>Periodic Exam Part</h1>
-                <h1 className='font-bold'> Science </h1>
+                <h1 className='font-bold'> English </h1>
             </div>
             <div>
             <div className="flex space-x-4">
@@ -146,37 +146,37 @@ export default function ScienceGrade7() {
     <div className='p-4 bg-gray-100 mt-3 '>
         <div className='bg-white p-4 rounded-lg shadow-md  mb-6'>
             <div className='text-center'>
-                <h1>Science</h1>
+                <h1>English</h1>
             </div>
             <div>
-                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Science</h1>
+                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for English</h1>
             </div>
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>
-                    <h1>1. Which part of the plant is responsible for photosynthesis?</h1>
+                    <h1>1. What literary device is used in the phrase "the wind howled through the night"?</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='1' label="A. Roots" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="B. Stem" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
-                        <Radio name='1' label="C. Leaves" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="D. Flowers" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="A. Simile" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="B. Personification" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="C. Alliteration" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="D. Hyperbole" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>2. What is the most abundant gas in Earth's atmosphere? </h1>
+                    <h1>2. In a story, the turning point or most intense moment is called: </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='2' label="A. Oxygen" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="B. Carbon Dioxide" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
-                        <Radio name='2' label="C. Nitrogen"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="D. Hydrogen" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="A. Exposition" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="B. Climax" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="C. Resolution"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="D. Rising Action" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>3. Which type of rock is formed by the cooling and solidification of magma or lava? </h1>
+                    <h1>3. Which of the following is a key characteristic of a narrative essay? </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='3' label="A. Sedimentary" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
-                        <Radio name='3' label="B. Igneous" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
-                        <Radio name='3' label="C. Metamorphic" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
-                        <Radio name='3' label="D. Fossilized" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="A. It presents facts and figures." value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
+                        <Radio name='3' label="B. It tells a story with a clear sequence of events." value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
+                        <Radio name='3' label="C. It analyzes a piece of literature." value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="D. It discusses a specific topic in depth." value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
                     </div>
                 </div>
        

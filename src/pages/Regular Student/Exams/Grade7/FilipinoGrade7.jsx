@@ -42,7 +42,7 @@ export default function FilipinoGrade7() {
         // Calculate score based on the selected answers
         let score = 0;
 
-        if (answer1 === "C") score += 1;
+        if (answer1 === "A") score += 1;
         if (answer2 === "D") score += 1;
         if (answer3 === "B") score += 1;
 
@@ -156,7 +156,7 @@ export default function FilipinoGrade7() {
                 <h1>English</h1>
             </div>
             <div>
-                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Filipino</h1>
+                <h1 className='font-bold text-black/50 text-[0.8rem]'>Panuto: Basahin ang bawat aytem. Bilugan ang tamang sagot sa sagutang papel para sa Filipino</h1>
             </div>
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>

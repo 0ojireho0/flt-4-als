@@ -47,10 +47,7 @@ export default function RegularStudentAdmin() {
   const [addCity, setaddCity] = useState("")
   const [addProvince, setaddProvince] = useState("")
   const [addReligion, setaddReligion] = useState("")
-  const [addGrade, setAddGrade] = useState(1)
-  const [addCivilStatus, setaddCivilStatus] = useState("")
-  const [addOccupation, setaddOccupation] = useState("")
-  const [addEducation, setaddEducation] = useState("")
+  const [addGrade, setAddGrade] = useState(7)
   const [addBirthday, setaddBirthday] = useState("")
 
   const [teachers, setTeachers] = useState(0)

@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 
-export default function ScienceGrade7() {
+export default function FilipinoGrade8() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -43,8 +43,8 @@ export default function ScienceGrade7() {
         let score = 0;
 
         if (answer1 === "C") score += 1;
-        if (answer2 === "C") score += 1;
-        if (answer3 === "B") score += 1;
+        if (answer2 === "B") score += 1;
+        if (answer3 === "D") score += 1;
 
         setTotalScore(score);
         console.log(score)
@@ -58,19 +58,26 @@ export default function ScienceGrade7() {
           const response = await axios.get('http://127.0.0.1:8000/api/get-teacher-teachername', { params: { regular_student_id: parseInt(user.id), regular_teacher_id: parseInt(user.regular_teacher_id) } });
           console.log(response.data.details[0])
 
-        if(response.data.details[0].science_1 !== null){
-            setAnswer1(response.data.details[0].science_1)
+        if(response.data.details[0].filipino_1 !== null){
+            setAnswer1(response.data.details[0].filipino_1)
             setDisableAnswer1(true)
         }
-        if(response.data.details[0].science_2 !== null){
-            setAnswer2(response.data.details[0].science_2)
+        if(response.data.details[0].filipino_2 !== null){
+            setAnswer2(response.data.details[0].filipino_2)
             setDisableAnswer2(true)
         }
-        if(response.data.details[0].science_3 !== null){
-            setAnswer3(response.data.details[0].science_3)
+        if(response.data.details[0].filipino_3 !== null){
+            setAnswer3(response.data.details[0].filipino_3)
             setDisableAnswer3(true)
         }
-
+        // if(response.data[0].post_test_ls1_english_part1_2 !== null){
+        //     setAnswer2(response.data[0].post_test_ls1_english_part1_2)
+        //     setDisableAnswer2(true)
+        // }
+        // if(response.data[0].post_test_ls1_english_part1_3 !== null){
+        //     setAnswer3(response.data[0].post_test_ls1_english_part1_3)
+        //     setDisableAnswer3(true)
+        // }
   
   
   
@@ -101,7 +108,7 @@ export default function ScienceGrade7() {
 
     
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/getStudentsAnswersScience', sendAnswer, {
+            const response = await axios.post('http://127.0.0.1:8000/api/getStudentsAnswersFilipino', sendAnswer, {
             });
             console.log(response);
         } catch (error) {
@@ -128,7 +135,7 @@ export default function ScienceGrade7() {
             </div>
             <div className='text-center my-3'>
                 <h1>Periodic Exam Part</h1>
-                <h1 className='font-bold'> Science </h1>
+                <h1 className='font-bold'> Filipino </h1>
             </div>
             <div>
             <div className="flex space-x-4">
@@ -146,37 +153,37 @@ export default function ScienceGrade7() {
     <div className='p-4 bg-gray-100 mt-3 '>
         <div className='bg-white p-4 rounded-lg shadow-md  mb-6'>
             <div className='text-center'>
-                <h1>Science</h1>
+                <h1>Filipino</h1>
             </div>
             <div>
-                <h1 className='font-bold text-black/50 text-[0.8rem]'>Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Science</h1>
+                <h1 className='font-bold text-black/50 text-[0.8rem]'>Panuto: Basahin ang bawat aytem. Bilugan ang tamang sagot sa sagutang papel para sa Filipino</h1>
             </div>
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>
-                    <h1>1. Which part of the plant is responsible for photosynthesis?</h1>
+                    <h1>1. Ano ang tawag sa isang kwentong bayan na naglalaman ng mga alamat o kwento tungkol sa mga diyos at diyosa?</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='1' label="A. Roots" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="B. Stem" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
-                        <Radio name='1' label="C. Leaves" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="D. Flowers" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="A. Kuwentong Makabayan" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="B. Epiko" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="C. Alamat" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="D. Pabula" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>2. What is the most abundant gas in Earth's atmosphere? </h1>
+                    <h1>2. Anong uri ng panitikan ang naglalarawan ng mga karanasan ng isang tao sa buhay? </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='2' label="A. Oxygen" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="B. Carbon Dioxide" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
-                        <Radio name='2' label="C. Nitrogen"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="D. Hydrogen" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="A. Sanaysay" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="B. Talambuhay" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="C. Kwento"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="D. Dula" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>3. Which type of rock is formed by the cooling and solidification of magma or lava? </h1>
+                    <h1>3. Sa aling tula makikita ang mga salitang may masining na anyo at malalim na kahulugan? </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='3' label="A. Sedimentary" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
-                        <Radio name='3' label="B. Igneous" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
-                        <Radio name='3' label="C. Metamorphic" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
-                        <Radio name='3' label="D. Fossilized" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="A. Tula ng Pag-ibig" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
+                        <Radio name='3' label="B. Tula ng Kasaysayan" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
+                        <Radio name='3' label="C. Tula ng Kalikasan" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="D. Liriko" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
                     </div>
                 </div>
        

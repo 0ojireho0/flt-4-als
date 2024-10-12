@@ -28,8 +28,10 @@ export default function RegularStudentAssessments(){
         console.log("navigate to exam 10")
     }else if(getGrade == 9){
         console.log("navigate to 9")
+        navigate('/regular-student/exam-for-grade9')
     }else if(getGrade == 8){
         console.log("navigate to 8")
+        navigate('/regular-student/exam-for-grade8')
     }else if(getGrade == 7){
         // console.log("navigate to 7")
         navigate('/regular-student/exam-for-grade7')

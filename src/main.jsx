@@ -87,7 +87,20 @@ import MathGrade7 from './pages/Regular Student/Exams/Grade7/MathGrade7'
 import NavbarRegularTeacher from './components/NavbarRegularTeacher'
 import RegularTeacherDashboard from './pages/Regular Teacher/RegularTeacherDashboard'
 import RegularTeacherSignIn from './pages/Regular Teacher/RegularTeacherSignIn'
-import RegularTeacherAssessment from './pages/Regular Teacher/RegularTeacherAssessment'
+import RegularTeacherEnglish from './pages/Regular Teacher/Exam/RegularTeacherEnglish'
+import RegularTeacherFilipino from './pages/Regular Teacher/Exam/RegularTeacherFilipino'
+import RegularTeacherMath from './pages/Regular Teacher/Exam/RegularTeacherMath'
+import RegularTeacherScience from './pages/Regular Teacher/Exam/RegularTeacherScience'
+import RegularStudentGrade8 from './pages/Regular Student/Exams/RegularStudentGrade8'
+import EnglishGrade8 from './pages/Regular Student/Exams/Grade8/EnglishGrade8'
+import FilipinoGrade8 from './pages/Regular Student/Exams/Grade8/FilipinoGrade8'
+import MathGrade8 from './pages/Regular Student/Exams/Grade8/MathGrade8'
+import ScienceGrade8 from './pages/Regular Student/Exams/Grade8/ScienceGrade8'
+import RegularStudentGrade9 from './pages/Regular Student/Exams/RegularStudentGrade9'
+import EnglishGrade9 from './pages/Regular Student/Exams/Grade9/EnglishGrade9'
+import FilipinoGrade9 from './pages/Regular Student/Exams/Grade9/FilipinoGrade9'
+import MathGrade9 from './pages/Regular Student/Exams/Grade9/MathGrade9'
+import ScienceGrade9 from './pages/Regular Student/Exams/Grade9/ScienceGrade9'
 
 
 // Layout component that includes the Navbar
@@ -499,6 +512,10 @@ const router = createBrowserRouter([
         element: <RegularStudentGrade7 />
       },
       {
+        path: "/regular-student/exam-for-grade8",
+        element: <RegularStudentGrade8 />
+      },
+      {
         path: "/regular-student/grade7-english",
         element: <EnglishGrade7 />
       },
@@ -513,6 +530,42 @@ const router = createBrowserRouter([
       {
         path: '/regular-student/grade7-math',
         element: <MathGrade7 />
+      },
+      {
+        path: '/regular-student/grade8-english',
+        element: <EnglishGrade8 />
+      },
+      {
+        path: '/regular-student/grade8-filipino',
+        element: <FilipinoGrade8 />
+      },
+      {
+        path: '/regular-student/grade8-math',
+        element: <MathGrade8 />
+      },
+      {
+        path: '/regular-student/grade8-scientific',
+        element: <ScienceGrade8 />
+      },
+      {
+        path: '/regular-student/exam-for-grade9',
+        element: <RegularStudentGrade9 />
+      },
+      {
+        path: '/regular-student/grade9-english',
+        element: <EnglishGrade9 />
+      },
+      {
+        path: '/regular-student/grade9-filipino',
+        element: <FilipinoGrade9 />
+      },
+      {
+        path: '/regular-student/grade9-math',
+        element: <MathGrade9 />
+      },
+      {
+        path: '/regular-student/grade9-scientific',
+        element: <ScienceGrade9 />
       }
   
 
@@ -527,8 +580,20 @@ const router = createBrowserRouter([
         element: <RegularTeacherDashboard />
       },
       {
-        path: "/regular-teacher/assessments",
-        element: <RegularTeacherAssessment />
+        path: "/regular-teacher/english",
+        element: <RegularTeacherEnglish />
+      },
+      {
+        path: "/regular-teacher/filipino",
+        element: <RegularTeacherFilipino />
+      },
+      {
+        path: "/regular-teacher/math",
+        element: <RegularTeacherMath />
+      },
+      {
+        path: "/regular-teacher/science",
+        element: <RegularTeacherScience />
       }
     ]
   }

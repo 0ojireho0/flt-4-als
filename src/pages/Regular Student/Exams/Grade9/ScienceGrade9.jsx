@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 
-export default function ScienceGrade7() {
+export default function ScienceGrade9() {
 
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -70,7 +70,14 @@ export default function ScienceGrade7() {
             setAnswer3(response.data.details[0].science_3)
             setDisableAnswer3(true)
         }
-
+        // if(response.data[0].post_test_ls1_english_part1_2 !== null){
+        //     setAnswer2(response.data[0].post_test_ls1_english_part1_2)
+        //     setDisableAnswer2(true)
+        // }
+        // if(response.data[0].post_test_ls1_english_part1_3 !== null){
+        //     setAnswer3(response.data[0].post_test_ls1_english_part1_3)
+        //     setDisableAnswer3(true)
+        // }
   
   
   
@@ -153,30 +160,30 @@ export default function ScienceGrade7() {
             </div>
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>
-                    <h1>1. Which part of the plant is responsible for photosynthesis?</h1>
+                    <h1>1. What is the powerhouse of the cell?</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='1' label="A. Roots" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="B. Stem" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
-                        <Radio name='1' label="C. Leaves" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
-                        <Radio name='1' label="D. Flowers" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="A. Nucleus" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="B. Ribosome" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
+                        <Radio name='1' label="C. Mitochondria" value="C" checked={answer1 == "C"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
+                        <Radio name='1' label="D. Endoplasmic Reticulum" value="D" checked={answer1 == "D"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>2. What is the most abundant gas in Earth's atmosphere? </h1>
+                    <h1>2. Which of the following is a renewable source of energy? </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='2' label="A. Oxygen" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="B. Carbon Dioxide" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
-                        <Radio name='2' label="C. Nitrogen"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
-                        <Radio name='2' label="D. Hydrogen" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="A. Coal" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="B. Natural Gas" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
+                        <Radio name='2' label="C. Solar Power"  value="C" checked={answer2 == "C"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
+                        <Radio name='2' label="D. Nuclear Energy" value="D" checked={answer2 == "D"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required/>
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>3. Which type of rock is formed by the cooling and solidification of magma or lava? </h1>
+                    <h1>3. What is the pH level of pure water at 25°C? </h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                        <Radio name='3' label="A. Sedimentary" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
-                        <Radio name='3' label="B. Igneous" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
-                        <Radio name='3' label="C. Metamorphic" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
-                        <Radio name='3' label="D. Fossilized" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="A. 0" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
+                        <Radio name='3' label="B. 7" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required/>
+                        <Radio name='3' label="C. 14" value="C" checked={answer3 == "C"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
+                        <Radio name='3' label="D. 10" value="D" checked={answer3 == "D"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)} required/>
                     </div>
                 </div>
        
