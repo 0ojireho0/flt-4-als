@@ -295,7 +295,59 @@ export default function RegularTeacherMath(){
               </>
             ) : ShowGrade10 ? (
               <>
-                this is grade 10
+              <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
+                <div className="text-center mb-6">
+                <h1 className="text-sm font-bold lg:text-2xl">Math</h1>
+                <p className="text-green-600 font-semibold">{fullname} - {score}/3</p>
+                <p className="text-green-600 font-semibold">Grade: {getGrade} </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-gray-600 text-sm">Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Math.</p>
+              </div>
+
+
+                <form>
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>1. What is the value of x in the equation 2𝑥 − 4 = 10? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-math-1' label="A. 3" disabled  />
+                    <Radio name='grade10-math-1' label={<Typography className='text-green-500'>B. 7</Typography>} checked disabled  />
+                    <Radio name='grade10-math-1' label="C. 5" disabled />
+                    <Radio name='grade10-math-1' label="D. 8" disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer1}</span></p>
+                  </div>
+                </div>
+
+                
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>2. If the area of a circle is 50𝜋 square units, what is the radius of the circle? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-math-2' label={<Typography className='text-green-500'>A. 5 units</Typography>} checked disabled />
+                    <Radio name='grade10-math-2' label="B. 10 units" disabled  />
+                    <Radio name='grade10-math-2' label="C. 7 units" disabled />
+                    <Radio name='grade10-math-2' label="D. 25 units"  disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer2}</span></p>
+                  </div>
+                </div>
+
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>3. What is the slope of the line represented by the equation y = 3x + 2?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-math-3' label="A. 2" disabled />
+                    <Radio name='grade10-math-3' label={<Typography className='text-green-500'>B. 3</Typography>} checked  disabled />
+                    <Radio name='grade10-math-3' label="C. -3" disabled />
+                    <Radio name='grade10-math-3' label="D. 1" disabled  />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer3}</span></p>
+                  </div>
+                </div> 
+              </form>
+              </div>
               </>
             ) : (
               null

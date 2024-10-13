@@ -25,6 +25,7 @@ export default function RegularStudentAssessments(){
   const handleGoToExams = () =>{
 
     if(getGrade == 10){
+        navigate('/regular-student/exam-for-grade10')
         console.log("navigate to exam 10")
     }else if(getGrade == 9){
         console.log("navigate to 9")

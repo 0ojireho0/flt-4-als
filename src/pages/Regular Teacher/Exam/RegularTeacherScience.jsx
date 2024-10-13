@@ -254,10 +254,10 @@ export default function RegularTeacherScience(){
                 <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
                   <p>1. What is the powerhouse of the cell?</p>
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    <Radio name='grade8-science-1' label="A. Nucleus" disabled  />
-                    <Radio name='grade8-science-1' label="B. Ribosome" disabled  />
-                    <Radio name='grade8-science-1' label={<Typography className='text-green-500'>C. Mitochondria</Typography>} checked disabled />
-                    <Radio name='grade8-science-1' label="D. Endoplasmic Reticulum" disabled />
+                    <Radio name='grade9-science-1' label="A. Nucleus" disabled  />
+                    <Radio name='grade9-science-1' label="B. Ribosome" disabled  />
+                    <Radio name='grade9-science-1' label={<Typography className='text-green-500'>C. Mitochondria</Typography>} checked disabled />
+                    <Radio name='grade9-science-1' label="D. Endoplasmic Reticulum" disabled />
                   </div>
                   <div>
                     <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer1}</span></p>
@@ -268,10 +268,10 @@ export default function RegularTeacherScience(){
                 <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
                   <p>2. Which of the following is a renewable source of energy? </p>
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    <Radio name='grade8-science-2' label="A. Coal" disabled />
-                    <Radio name='grade8-science-2' label="B. Natural Gas" disabled  />
-                    <Radio name='grade8-science-2' label={<Typography className='text-green-500'>C. Solar Power</Typography>} checked disabled />
-                    <Radio name='grade8-science-2' label="D. Nuclear Energy"  disabled />
+                    <Radio name='grade9-science-2' label="A. Coal" disabled />
+                    <Radio name='grade9-science-2' label="B. Natural Gas" disabled  />
+                    <Radio name='grade9-science-2' label={<Typography className='text-green-500'>C. Solar Power</Typography>} checked disabled />
+                    <Radio name='grade9-science-2' label="D. Nuclear Energy"  disabled />
                   </div>
                   <div>
                     <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer2}</span></p>
@@ -281,10 +281,10 @@ export default function RegularTeacherScience(){
                 <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
                   <p>3. What is the pH level of pure water at 25°C? </p>
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    <Radio name='grade8-science-3' label="A. 0" disabled />
-                    <Radio name='grade8-science-3' label={<Typography className='text-green-500'>B. 7</Typography>} checked disabled />
-                    <Radio name='grade8-science-3' label="C. 14" disabled />
-                    <Radio name='grade8-science-3' label="D. 10" disabled  />
+                    <Radio name='grade9-science-3' label="A. 0" disabled />
+                    <Radio name='grade9-science-3' label={<Typography className='text-green-500'>B. 7</Typography>} checked disabled />
+                    <Radio name='grade9-science-3' label="C. 14" disabled />
+                    <Radio name='grade9-science-3' label="D. 10" disabled  />
                   </div>
                   <div>
                     <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer3}</span></p>
@@ -295,7 +295,59 @@ export default function RegularTeacherScience(){
               </>
             ) : ShowGrade10 ? (
               <>
-                this is grade 10
+              <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
+                <div className="text-center mb-6">
+                <h1 className="text-sm font-bold lg:text-2xl">Science</h1>
+                <p className="text-green-600 font-semibold">{fullname} - {score}/3</p>
+                <p className="text-green-600 font-semibold">Grade: {getGrade} </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-gray-600 text-sm">Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for Science.</p>
+              </div>
+
+
+                <form>
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>1. What type of bond involves the sharing of electron pairs between atoms?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-science-1' label="A. Ionic bond" disabled  />
+                    <Radio name='grade10-science-1' label={<Typography className='text-green-500'>B. Covalent bond</Typography>} checked disabled  />
+                    <Radio name='grade10-science-1' label="C. Metallic bon" disabled />
+                    <Radio name='grade10-science-1' label="D. Hydrogen bond" disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer1}</span></p>
+                  </div>
+                </div>
+
+                
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>2. Which of the following is NOT a renewable source of energy? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-science-2' label="A. Solar energy" disabled />
+                    <Radio name='grade10-science-2' label="B. Wind energy" disabled  />
+                    <Radio name='grade10-science-2' label={<Typography className='text-green-500'>C. Natural gasr</Typography>} checked disabled />
+                    <Radio name='grade10-science-2' label="D. Hydropower"  disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer2}</span></p>
+                  </div>
+                </div>
+
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>3. In the process of photosynthesis, plants convert carbon dioxide and water into which of the following? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-science-3' label={<Typography className='text-green-500'>A. Oxygen and glucose</Typography>} checked disabled />
+                    <Radio name='grade10-science-3' label="B. Oxygen and carbon monoxide" disabled />
+                    <Radio name='grade10-science-3' label="C. Glucose and nitrogen" disabled />
+                    <Radio name='grade10-science-3' label="D. Carbon dioxide and oxygen" disabled  />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer3}</span></p>
+                  </div>
+                </div> 
+              </form>
+              </div>
               </>
             ) : (
               null

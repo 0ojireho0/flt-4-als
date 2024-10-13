@@ -295,7 +295,59 @@ export default function RegularTeacherFilipino(){
               </>
             ) : ShowGrade10 ? (
               <>
-                this is grade 10
+              <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
+                <div className="text-center mb-6">
+                <h1 className="text-sm font-bold lg:text-2xl">Filipino</h1>
+                <p className="text-green-600 font-semibold">{fullname} - {score}/3</p>
+                <p className="text-green-600 font-semibold">Grade: {getGrade} </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-gray-600 text-sm">Panuto: Basahin ang bawat aytem. Bilugan ang tamang sagot sa sagutang papel para sa Filipino</p>
+              </div>
+
+
+                <form>
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>1. Ano ang ibig sabihin ng salitang "katutubong"?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-filipino-1' label="A. Bago at moderno"  disabled  />
+                    <Radio name='grade10-filipino-1' label={<Typography className='text-green-500'>B. Tradisyonal at lokal</Typography>}  checked disabled  />
+                    <Radio name='grade10-filipino-1' label="C. Imported o banyaga" disabled />
+                    <Radio name='grade10-filipino-1' label="D. Urban o lunsod" disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer1}</span></p>
+                  </div>
+                </div>
+
+                
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>2. Sino ang kilalang manunulat na naglathala ng "Noli Me Tangere"?? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-filipino-2' label={<Typography className='text-green-500'>A. Jose Rizal</Typography>} checked disabled />
+                    <Radio name='grade10-filipino-2' label="B. Andres Bonifacio" disabled  />
+                    <Radio name='grade10-filipino-2' label="C. Emilio Jacinto" disabled />
+                    <Radio name='grade10-filipino-2' label="D. Apolinario Mabini" disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer2}</span></p>
+                  </div>
+                </div>
+
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>3. Ano ang layunin ng talumpati?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-filipino-3' label={<Typography className='text-green-500'>A. Magpahayag ng opinyon</Typography>} checked disabled />
+                    <Radio name='grade10-filipino-3' label="B. Magkwento ng kwento"  disabled />
+                    <Radio name='grade10-filipino-3' label="C. Maglaro ng drama" disabled />
+                    <Radio name='grade10-filipino-3' label="D. Magpinta ng larawan" disabled  />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer3}</span></p>
+                  </div>
+                </div> 
+              </form>
+              </div>
               </>
             ) : (
               null

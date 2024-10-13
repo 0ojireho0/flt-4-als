@@ -101,6 +101,11 @@ import EnglishGrade9 from './pages/Regular Student/Exams/Grade9/EnglishGrade9'
 import FilipinoGrade9 from './pages/Regular Student/Exams/Grade9/FilipinoGrade9'
 import MathGrade9 from './pages/Regular Student/Exams/Grade9/MathGrade9'
 import ScienceGrade9 from './pages/Regular Student/Exams/Grade9/ScienceGrade9'
+import RegularStudentGrade10 from './pages/Regular Student/Exams/RegularStudentGrade10'
+import EnglishGrade10 from './pages/Regular Student/Exams/Grade10/EnglishGrade10'
+import FilipinoGrade10 from './pages/Regular Student/Exams/Grade10/FilipinoGrade10'
+import MathGrade10 from './pages/Regular Student/Exams/Grade10/MathGrade10'
+import ScienceGrade10 from './pages/Regular Student/Exams/Grade10/ScienceGrade10'
 
 
 // Layout component that includes the Navbar
@@ -566,6 +571,26 @@ const router = createBrowserRouter([
       {
         path: '/regular-student/grade9-scientific',
         element: <ScienceGrade9 />
+      },
+      {
+        path: '/regular-student/exam-for-grade10',
+        element: <RegularStudentGrade10 />
+      },
+      {
+        path: '/regular-student/grade10-english',
+        element: <EnglishGrade10 />
+      },
+      {
+        path: '/regular-student/grade10-filipino',
+        element: <FilipinoGrade10 />
+      },
+      {
+        path: '/regular-student/grade10-math',
+        element: <MathGrade10 />
+      },
+      {
+        path: '/regular-student/grade10-scientific',
+        element: <ScienceGrade10 />
       }
   
 

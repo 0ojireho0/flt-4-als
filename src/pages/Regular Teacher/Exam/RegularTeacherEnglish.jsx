@@ -295,7 +295,59 @@ export default function RegularTeacherEnglish(){
               </>
             ) : ShowGrade10 ? (
               <>
-                this is grade 10
+              <div className="w-full lg:w-8/12 bg-white p-6 rounded-lg shadow-md">
+                <div className="text-center mb-6">
+                <h1 className="text-sm font-bold lg:text-2xl">English</h1>
+                <p className="text-green-600 font-semibold">{fullname} - {score}/3</p>
+                <p className="text-green-600 font-semibold">Grade: {getGrade} </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-gray-600 text-sm">Directions: Read each item. Select the letter of the correct answer on the answer sheet provided for English.</p>
+              </div>
+
+
+                <form>
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>1. What is the primary purpose of a persuasive essay?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-english-1' label="A. To entertain the reader"  disabled  />
+                    <Radio name='grade10-english-1' label="B. To inform the reader" disabled  />
+                    <Radio name='grade10-english-1' label={<Typography className='text-green-500'>C. To convince the reader of a specific viewpoint</Typography>} checked disabled />
+                    <Radio name='grade10-english-1' label="D. To narrate a personal experience" disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer1}</span></p>
+                  </div>
+                </div>
+
+                
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>2. Which of the following is an example of an oxymoron? </p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-english-2' label="A. Bitter sweet" disabled />
+                    <Radio name='grade10-english-2' label="B. Loud whisper" disabled />
+                    <Radio name='grade10-english-2' label="C. Open secret" disabled />
+                    <Radio name='grade10-english-2' label={<Typography className='text-green-500'>D. All of the above</Typography>} checked disabled />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer2}</span></p>
+                  </div>
+                </div>
+
+                <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
+                  <p>3. Which of the following is a key characteristic of a narrative essay?</p>
+                  <div className='grid grid-cols-1 lg:grid-cols-2'>
+                    <Radio name='grade10-english-3' label="A. A character's internal conflict" disabled />
+                    <Radio name='grade10-english-3' label={<Typography className='text-green-500'>B. A hint about what will happen later in the story</Typography>} checked  disabled />
+                    <Radio name='grade10-english-3' label="C. A comparison between two unlike things" disabled />
+                    <Radio name='grade10-english-3' label="D. The central message of the work" disabled  />
+                  </div>
+                  <div>
+                    <p className='text-sm text-green-600'>Student Answer: <span className='font-semibold'>{answer3}</span></p>
+                  </div>
+                </div> 
+              </form>
+              </div>
               </>
             ) : (
               null
