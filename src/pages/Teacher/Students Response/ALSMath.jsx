@@ -2,8 +2,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
-import question1 from '../../../assets/ls3-assessments/question1.png'
-import question2 from '../../../assets/ls3-assessments/question2.png'
+import question1 from '../../../assets/ls3-assessments/LS3 Q1.png'
+import question2 from '../../../assets/ls3-assessments/LS3 Q2.png'
+import question3 from '../../../assets/ls3-assessments/LS3 Q3.png'
+import question4 from '../../../assets/ls3-assessments/LS3 Q4.png'
+import question5 from '../../../assets/ls3-assessments/LS3 Q5.png'
+import question6 from '../../../assets/ls3-assessments/LS3 Q6.png'
+import question7 from '../../../assets/ls3-assessments/LS3 Q7.png'
+import question8 from '../../../assets/ls3-assessments/LS3 Q8.png'
 import ALSMathPostTest from './ALSMathPostTest';
 
 export default function ALSMath(){
@@ -118,8 +124,8 @@ export default function ALSMath(){
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. What is the difference between the numbers of hearts inside the boxes?</p>
             <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question1} alt="" />
-            </div>
+                    <img src={question1} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. 17" disabled  />
               <Radio label="B. 13" checked disabled />
@@ -135,8 +141,8 @@ export default function ALSMath(){
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Which of the following symbols must be placed in the box? </p>
             <div className='border-2 p-2 flex justify-center items-center'>
-                <img src={question2} alt="" />
-            </div>
+                    <img src={question2} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. {'>'}</Typography>} checked disabled />
               <Radio label="B. <" disabled  />
@@ -150,6 +156,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. The residents of Barangay San Pedro planted 1,655 mahogany trees and 2,340 mango trees in their barangay. How many trees did they plant altogether?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question3} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. 2,795" disabled />
               <Radio label={<Typography className='text-green-500'>C. 3,995</Typography>} disabled checked />
@@ -163,6 +172,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. (250 x 40) ÷ (50 x 8) = </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question4} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. 15" disabled  />
               <Radio label={<Typography className='text-green-500'>B. 25</Typography>} checked disabled/>
@@ -176,6 +188,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. Of the twelve classes of DRT High School, each class donated 45 boxes of toothpaste to an orphanage. How many boxes of toothpaste were donated in all?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question5} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>D. 540</Typography>} checked disabled/>
               <Radio label="B. 541" disabled/>
@@ -189,6 +204,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>6. Jack is planning to treat his 6 friends on his birthday. He decided to buy 3 boxes of pizza with 8 slices per box. How many slices of pizza can each of his friends have?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question6} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>D. 4</Typography>} checked disabled/>
               <Radio label="B. 5" disabled/>
@@ -202,6 +220,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>7. Marco bought four items from a sari-sari store. He bought the following: cooking oil at ₱35.75, canned tune at ₱28.15, tomato sauce at ₱19.50 and powdered milk at ₱123.65. How much did he pay for all the items?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question7} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. ₱237.75" disabled/>
               <Radio label="B. ₱227.50" disabled/>
@@ -215,6 +236,9 @@ export default function ALSMath(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>8. In a fruit stand, t he ratio of mangoes to oranges in 4:3. How many oranges are there if there are 16 mangoes? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question8} className='w-1/2' alt="" />
+                </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>D. 16</Typography>}  disabled/>
               <Radio label="B. 14" disabled/>

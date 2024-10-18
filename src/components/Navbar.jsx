@@ -28,16 +28,6 @@ export default function Navbar({children}) {
             path: '/'
         },
         {
-            id: 2,
-            title: "Learning",
-            path: "/learning"
-        }, 
-        {
-            id: 3,
-            title: "Assessments",
-            path: "/assessments"
-        },
-        {
             id: 4, 
             title: "About",
             path: "/about"

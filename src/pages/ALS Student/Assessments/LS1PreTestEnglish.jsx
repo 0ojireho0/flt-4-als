@@ -7,6 +7,10 @@ import axios from 'axios'
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
 import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 
+import q1 from "../../../assets/ls1-english-assessments/LS1 Q1.png"
+import q2 from "../../../assets/ls1-english-assessments/LS1 Q2.png"
+import q4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
+import q5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
 
 export default function LS1PreTestEnglish() {
 
@@ -353,6 +357,9 @@ export default function LS1PreTestEnglish() {
             <form onSubmit={handleSubmitAnswers}>
                 <div className='mt-3'>
                     <h1>1. <span className='underline'>GREEN</span> light in the traffic sign means.</h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <img src={q1} className='w-1/2' alt="" />
+                    </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='1' label="A. Go" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
                         <Radio name='1' label="B. Ready" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
@@ -362,8 +369,8 @@ export default function LS1PreTestEnglish() {
                 </div>
                 <div className='mt-3'>
                     <h1>2. Identify the type of sentence according to use. </h1>
-                    <div className='border-2 p-2 text-center'>
-                        <h1>I won the lottery!</h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <img src={q2} className='w-1/2' alt="" />
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='2' label="A. Imperative" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
@@ -386,8 +393,11 @@ export default function LS1PreTestEnglish() {
                 </div>
                 <div className='mt-3'>
                     <h1>4. Fill in the blank with the correct word from the options below that will make the statement <strong>POSITIVE</strong>. Choose the letter of the correct answer.</h1>
-                    <div className=' p-2 text-center'>
+                    <div className=' p-2 text-center mt-3'>
                         <h1 className=''>I will __________ eat that vegetable. It's delicious!</h1>
+                        <div className='border-2 p-2 flex justify-center items-center'>
+                            <img src={q4} className='w-1/2' alt="" />
+                        </div>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='4' label="A. definitely" value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required  />
@@ -400,6 +410,9 @@ export default function LS1PreTestEnglish() {
                     <h1>5. What is the main idea of the given paragraph?</h1>
                     <div className='border-2 p-2'>
                         <h1 className='text-justify'>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
+                        <div className='border-2 p-2 flex justify-center items-center'>
+                            <img src={q5} className='w-1/2' alt="" />
+                        </div>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='5' label="A. Cells are building blocks of our bodies." value="A" checked={answer5 == "A"} disabled={disableAnswer5} onChange={(e) => setAnswer5(e.target.value)} required  />

@@ -7,7 +7,7 @@ import image2 from "../../../assets/LS2 IMG.jpg"
 import image3 from "../../../assets/LS3 IMG.png"
 import image4 from "../../../assets/LS4 IMG.jpg"
 import image5 from "../../../assets/LS5 IMG.png"
-
+import image6 from "../../../assets/LS6 IMG.png"
 
 export default function StudentPreTest() {
 
@@ -132,7 +132,7 @@ export default function StudentPreTest() {
         {
           id: 'LS6',
           title: 'Digital Citizenship',
-          image: image5,
+          image: image6,
           score: `${getScoreLS6}/6`,
           link: '/student/pretest-ls6-citizenship'
         },

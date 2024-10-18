@@ -5,7 +5,9 @@ import axios from 'axios'
 import {Button} from '@material-tailwind/react'
 
 import question5 from "../../../assets/ls1-filipino-assessments/habang-ikaw.mp3"
-
+import q1 from "../../../assets/ls1-filipino-assessments/LS1 Q1 F.png"
+import q2 from "../../../assets/ls1-filipino-assessments/LS1 Q2 F.png"
+import q3 from "../../../assets/ls1-filipino-assessments/LS1 Q3 F.png"
 
 
 export default function LS1PreTestFilipino() {
@@ -264,6 +266,9 @@ export default function LS1PreTestFilipino() {
                     <h1>1. Basahin ang sitwasyon at piliin ang tamang sagot na nagpapakita ng magalang na pananalita</h1>
                     <div className='border-2 p-2'>
                         <h1 className='text-justify'>Nais mong pumasok sa learning center ngunit ang iyong guro at ang kanyang kausap ay nasa pintuan. Ano ang iyong sasabihin sa kanila?</h1>
+                        <div className='border-2 p-2 flex justify-center items-center'>
+                            <img src={q1} className='w-1/2' alt="" />
+                        </div>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='1' label="A. Tumabi po kayo." value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required   />
@@ -274,6 +279,9 @@ export default function LS1PreTestFilipino() {
                 </div>
                 <div className='mt-3'>
                     <h1>2. Alin sa mga sumusunod na pangungusap ang may tamang bantas?</h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                            <img src={q2} className='w-1/2' alt="" />
+                        </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='2' label="A. Ang araw ng kalayaan ay ipinagdiriwawng tuwing Hunyo 12?" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required  />
                         <Radio name='2' label="B. Dadalo ka ba sa pagpupulong ngayong Huwebes." value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required  />
@@ -285,6 +293,9 @@ export default function LS1PreTestFilipino() {
                     <h1>3. Basahin ang pangungusap at piliin ang pares ng mga salitang magkasalunugat ang kahulugan.</h1>
                     <div className='border-2 p-2'>
                         <h1 className='text-justify'>Nalulungkot isipin na sa mata ng batas, nakalalamang ang mayamang may pantustos sa mga tagapagtanggol kaysa sa maralitang kahit pangkain ay wala.</h1>
+                        <div className='border-2 p-2 flex justify-center items-center'>
+                            <img src={q3} className='w-1/2' alt="" />
+                        </div>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='3' label="A. Nakalalamang - Nakalulungkot" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required  />
