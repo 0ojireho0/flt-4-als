@@ -107,6 +107,10 @@ import FilipinoGrade10 from './pages/Regular Student/Exams/Grade10/FilipinoGrade
 import MathGrade10 from './pages/Regular Student/Exams/Grade10/MathGrade10'
 import ScienceGrade10 from './pages/Regular Student/Exams/Grade10/ScienceGrade10'
 import StudentReadingTestFilipino from './pages/ALS Student/Assessments/StudentReadingTestFilipino'
+import StudentReadingTestMath from './pages/ALS Student/Assessments/StudentReadingTestMath'
+import StudentReadingDigitalLiteracy from './pages/ALS Student/Assessments/StudentReadingTestDigitalLiteracy'
+import StudentReadingEnglish from './pages/ALS Student/Assessments/StudentReadingTestEnglish'
+import StudentReadingTestUTS from './pages/ALS Student/Assessments/StudentReadingTestUTS'
 
 
 // Layout component that includes the Navbar
@@ -502,6 +506,22 @@ const router = createBrowserRouter([
       {
         path: "/student/reading-test-filipino",
         element: <StudentReadingTestFilipino />
+      },
+      {
+        path: "/student/reading-test-math",
+        element: <StudentReadingTestMath />
+      },
+      {
+        path: "/student/reading-test-digital",
+        element: <StudentReadingDigitalLiteracy />
+      },
+      {
+        path: "/student/reading-test-english",
+        element: <StudentReadingEnglish />
+      },
+      {
+        path: "/student/reading-test-uts",
+        element: <StudentReadingTestUTS />
       }
     ]
   },

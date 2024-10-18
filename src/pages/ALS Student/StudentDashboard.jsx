@@ -23,7 +23,7 @@ export default function StudentDashboard(){
     const birthDate = new Date(birthday);
     const today = new Date();
 
-    return((today.getFullYear() - birthDate.getFullYear()) - 1)
+    return((today.getFullYear() - birthDate.getFullYear()))
   }
 
   useEffect(()=>{

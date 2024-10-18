@@ -6,13 +6,16 @@ import {Radio} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 
-const StudentReadingTest = () => {
+const StudentReadingEnglish = () => {
 
   const [error, setError] = useState(null);
   const [answer1, setAnswer] = useState("")
   const [answer2, setAnswer2] = useState("")
   const [answer3, setAnswer3] = useState("")
-  const [correctGrammar, setCorrectGrammar] = useState('the sun is a big bright star in the sky it gives us light and heat everyday plants need sunlight to grow without the sun it would be very cold and we wouldn’t be able to see during the day the sun is also important for animals and people it helps keep our planet warm so we can live here that’s why the sun is so special')
+
+  const [correctGrammar, setCorrectGrammar] = useState(`a sentence is a group of words that makes sense it starts with a capital letter and ends with a period question mark or exclamation point for example the cat is sleeping is a sentence because it makes sense and has the right punctuation every sentence must have a subject which is the person or thing doing the action and a verb which is the action being done`)
+
+  
 
   const [totalWrongScore, setTotalWrongScore] = useState(0)
   const [wrongWord, setwrongWord] = useState([])
@@ -27,8 +30,8 @@ const StudentReadingTest = () => {
 
     if (answer1 === "A") score += 1;
     if (answer2 === "B") score += 1;
-    if (answer3 === "C") score += 1;
-    console.log(score)
+    if (answer3 === "C  ") score += 1;
+    // console.log(score)
     setTotalScore(score);
 }, [answer1, answer2, answer3])
 
@@ -66,19 +69,8 @@ const StudentReadingTest = () => {
     setInterimTranscript(interimText); // Update interim transcript in real-time
     };
 
-
-
-    // Handle errors
-    recognition1.onerror = (event) => {
-      setError("Error occurred in speech recognition: " + event.error);
-      setListening(false);
-      };
-
-
-
-    // Stop recognition when the user stops speaking
+          // Stop recognition when the user stops speaking
     recognition1.onspeechend = () => stopListening();
-
 
     // Start/Stop speech recognition
     const startListening = () => {
@@ -120,7 +112,6 @@ const StudentReadingTest = () => {
     setInterimTranscript("");
     };
 
-
   const handleCloseModal = () =>{
     setShowScoreModal(!showScoreModal)
     setAnswer("")
@@ -130,7 +121,6 @@ const StudentReadingTest = () => {
     setFilipino_setAnswer("")
     setFilipino_Answer3("")
   }
-  
 
 
   return (
@@ -143,7 +133,7 @@ const StudentReadingTest = () => {
       <h1 className='font-bold text-black/50 text-lg mt-3'>English</h1>
     </div>
     <div className='border-2 p-2 flex justify-center items-center '>
-        <h1 className="text-lg">The sun is a big, bright star in the sky. It gives us light and heat every day. Plants need sunlight to grow. Without the sun, it would be very cold, and we wouldn’t be able to see during the day. The sun is also important for animals and people. It helps keep our planet warm so we can live here. That’s why the sun is so special!</h1>
+        <h1 className="text-lg">A sentence is a group of words that makes sense. It starts with a capital letter and ends with a period, question mark, or exclamation point. For example, "The cat is sleeping." is a sentence because it makes sense and has the right punctuation. Every sentence must have a subject, which is the person or thing doing the action, and a verb, which is the action being done.</h1>
     </div>
     <div className='w-full mt-2'>
         <Textarea label='Answer' 
@@ -153,6 +143,7 @@ const StudentReadingTest = () => {
         />
         {interimTranscript && <p>{interimTranscript}</p>}
     </div>
+
     <div className='flex justify-end gap-2'>
         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
         </Button>
@@ -172,7 +163,7 @@ const StudentReadingTest = () => {
                     <Radio name='question_1' label="A. A capital letter" value="A" checked={answer1 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="B. A question mark " value="B" checked={answer1 == "B"} 
+                    <Radio name='question_1' label="B. A question mark" value="B" checked={answer1 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
                     <Radio name='question_1' label="C. A comma" value="C" checked={answer1 == "C"} 
@@ -189,7 +180,7 @@ const StudentReadingTest = () => {
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="B. A The action being done " value="B" 
+                    <Radio name='question_2' label="B. The action being done" value="B" 
                     checked={answer2 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
@@ -215,7 +206,7 @@ const StudentReadingTest = () => {
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="C. The cat is sleeping" value="C" 
+                    <Radio name='question_3' label="C. The cat is sleepingfe" value="C" 
                     checked={answer3 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
@@ -227,7 +218,7 @@ const StudentReadingTest = () => {
         <Button onClick={() => setShowScoreModal(!showScoreModal)}>Submit</Button>
       </div>
       <div className="flex justify-end items-center mt-5 pb-5">
-        <Link to="/student/reading-test-filipino"><Button>Next</Button></Link>
+        <Link to="/student/reading-test-uts"><Button>Next</Button></Link>
       </div>
 
 
@@ -261,4 +252,4 @@ const StudentReadingTest = () => {
   );
 };
 
-export default StudentReadingTest;
+export default StudentReadingEnglish;

@@ -6,13 +6,16 @@ import {Radio} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 
-const StudentReadingTest = () => {
+const StudentReadingDigitalLiteracy = () => {
 
   const [error, setError] = useState(null);
   const [answer1, setAnswer] = useState("")
   const [answer2, setAnswer2] = useState("")
   const [answer3, setAnswer3] = useState("")
-  const [correctGrammar, setCorrectGrammar] = useState('the sun is a big bright star in the sky it gives us light and heat everyday plants need sunlight to grow without the sun it would be very cold and we wouldn’t be able to see during the day the sun is also important for animals and people it helps keep our planet warm so we can live here that’s why the sun is so special')
+
+  const [correctGrammar, setCorrectGrammar] = useState(`digital literacy means knowing how to use computers smartphones and other technology when you use a computer you can type send emails and search the internet for information the internet is a big network that connects computers all over the world it helps people talk to each other and find things quickly it is important to use technology safely by keeping your passwords private and only visiting websites that you trust being good at using technology helps you learn and communicate better in today’s world`)
+
+  
 
   const [totalWrongScore, setTotalWrongScore] = useState(0)
   const [wrongWord, setwrongWord] = useState([])
@@ -25,10 +28,10 @@ const StudentReadingTest = () => {
     // Calculate score based on the selected answers
     let score = 0;
 
-    if (answer1 === "A") score += 1;
+    if (answer1 === "B") score += 1;
     if (answer2 === "B") score += 1;
-    if (answer3 === "C") score += 1;
-    console.log(score)
+    if (answer3 === "B  ") score += 1;
+    // console.log(score)
     setTotalScore(score);
 }, [answer1, answer2, answer3])
 
@@ -66,19 +69,8 @@ const StudentReadingTest = () => {
     setInterimTranscript(interimText); // Update interim transcript in real-time
     };
 
-
-
-    // Handle errors
-    recognition1.onerror = (event) => {
-      setError("Error occurred in speech recognition: " + event.error);
-      setListening(false);
-      };
-
-
-
-    // Stop recognition when the user stops speaking
+          // Stop recognition when the user stops speaking
     recognition1.onspeechend = () => stopListening();
-
 
     // Start/Stop speech recognition
     const startListening = () => {
@@ -120,7 +112,6 @@ const StudentReadingTest = () => {
     setInterimTranscript("");
     };
 
-
   const handleCloseModal = () =>{
     setShowScoreModal(!showScoreModal)
     setAnswer("")
@@ -130,7 +121,6 @@ const StudentReadingTest = () => {
     setFilipino_setAnswer("")
     setFilipino_Answer3("")
   }
-  
 
 
   return (
@@ -140,10 +130,10 @@ const StudentReadingTest = () => {
       <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
     <h1>Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
     <div>
-      <h1 className='font-bold text-black/50 text-lg mt-3'>English</h1>
+      <h1 className='font-bold text-black/50 text-lg mt-3'>Digital Literacy</h1>
     </div>
     <div className='border-2 p-2 flex justify-center items-center '>
-        <h1 className="text-lg">The sun is a big, bright star in the sky. It gives us light and heat every day. Plants need sunlight to grow. Without the sun, it would be very cold, and we wouldn’t be able to see during the day. The sun is also important for animals and people. It helps keep our planet warm so we can live here. That’s why the sun is so special!</h1>
+        <h1 className="text-lg">Digital literacy means knowing how to use computers, smartphones, and other technology. When you use a computer, you can type, send emails, and search the internet for information. The internet is a big network that connects computers all over the world. It helps people talk to each other and find things quickly. It is important to use technology safely by keeping your passwords private and only visiting websites that you trust. Being good at using technology helps you learn and communicate better in today’s world.</h1>
     </div>
     <div className='w-full mt-2'>
         <Textarea label='Answer' 
@@ -153,6 +143,7 @@ const StudentReadingTest = () => {
         />
         {interimTranscript && <p>{interimTranscript}</p>}
     </div>
+
     <div className='flex justify-end gap-2'>
         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
         </Button>
@@ -167,34 +158,34 @@ const StudentReadingTest = () => {
       })}</h1>
     </div>
     <div className='mt-3'>
-                <h1>1. What does a sentence start with?</h1>
+                <h1>1. What does digital literacy mean?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_1' label="A. A capital letter" value="A" checked={answer1 == "A"} 
+                    <Radio name='question_1' label="A. Knowing how to read books" value="A" checked={answer1 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="B. A question mark " value="B" checked={answer1 == "B"} 
+                    <Radio name='question_1' label="B. Knowing how to use computers and technology" value="B" checked={answer1 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="C. A comma" value="C" checked={answer1 == "C"} 
+                    <Radio name='question_1' label="C. Knowing how to paint pictures" value="C" checked={answer1 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required />
 
         </div>
       </div>
       <div className='mt-3'>
-                <h1>2. What is a verb?</h1>
+                <h1>2. What is the internet?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_2' label="A. The person doing the action" value="A" 
+                    <Radio name='question_2' label="A. A place to play games" value="A" 
                     checked={answer2 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="B. A The action being done " value="B" 
+                    <Radio name='question_2' label="B. A network that connects computers all over the world" value="B" 
                     checked={answer2 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="C. The punctuation" value="C" 
+                    <Radio name='question_2' label="C. A way to send letters by mail" value="C" 
                     checked={answer2 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
@@ -203,19 +194,19 @@ const StudentReadingTest = () => {
         </div>
       </div>
       <div className='mt-3'>
-                <h1>3. Which of the following is an example of a sentence?</h1>
+                <h1>3. What should you do to stay safe when using technology?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_3' label="A. The cat" value="A" 
+                    <Radio name='question_3' label="A. Share your passwords with friends" value="A" 
                     checked={answer3 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="B. Sleeping" value="B" 
+                    <Radio name='question_3' label="B. Keep your passwords private" value="B" 
                     checked={answer3 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="C. The cat is sleeping" value="C" 
+                    <Radio name='question_3' label="C. Visit all websites without checking if they are safe" value="C" 
                     checked={answer3 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
@@ -227,7 +218,7 @@ const StudentReadingTest = () => {
         <Button onClick={() => setShowScoreModal(!showScoreModal)}>Submit</Button>
       </div>
       <div className="flex justify-end items-center mt-5 pb-5">
-        <Link to="/student/reading-test-filipino"><Button>Next</Button></Link>
+        <Link to="/student/reading-test-english"><Button>Next</Button></Link>
       </div>
 
 
@@ -261,4 +252,4 @@ const StudentReadingTest = () => {
   );
 };
 
-export default StudentReadingTest;
+export default StudentReadingDigitalLiteracy;

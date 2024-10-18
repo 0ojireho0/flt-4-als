@@ -13,6 +13,13 @@ const StudentReadingTestFilipino = () => {
   const [answer2, setAnswer2] = useState("")
   const [answer3, setAnswer3] = useState("")
 
+  const [correctGrammar, setCorrectGrammar] = useState(`ang pilipinas ay isang bansang nasa timog silangang asya binubuo ito ng higit sa pitong libo mga pulo ang opisyal na wika sa pilipinas ay filipino at ingles ang pambansang kasuotan ng mga pilipino ay tinatawag na barong tagalog para sa mga lalaki at baro’t saya para sa mga babae ang pilipinas ay mayaman sa kultura at tradisyon at ipinagdiriwang ng mga pilipino ang iba't ibang pista tulad ng pista ng panagbenga at pahiyas`)
+
+  
+
+  const [totalWrongScore, setTotalWrongScore] = useState(0)
+  const [wrongWord, setwrongWord] = useState([])
+
 
   const [totalScore, setTotalScore] = useState(0)
   const [showScoreModal, setShowScoreModal] = useState(false)
@@ -36,9 +43,8 @@ const StudentReadingTestFilipino = () => {
   const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition1 = new SpeechRecognition();
-  const recognition2 = new SpeechRecognition();
 
-  [recognition1, recognition2].forEach((recognition) => {
+  [recognition1].forEach((recognition) => {
     recognition.continuous = true; // Continue listening until explicitly stopped
     recognition.interimResults = true; // Enable interim results for real-time transcription
     recognition.lang = "en-US"; // Set the language (you can change this as needed)
@@ -63,39 +69,8 @@ const StudentReadingTestFilipino = () => {
     setInterimTranscript(interimText); // Update interim transcript in real-time
     };
 
-    // Capture speech results for second listener
-    recognition2.onresult = (event) => {
-      let interimText = "";
-      let finalText = "";
-  
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-  
-          if (event.results[i].isFinal) {
-          finalText += transcript + " ";
-          } else {
-          interimText += transcript;
-          }
-      }
-  
-      setFinalTranscript2((prev) => prev + finalText); // Append to final transcript
-      setInterimTranscript2(interimText); // Update interim transcript in real-time
-      };
-
-    // Handle errors
-    recognition1.onerror = (event) => {
-      setError("Error occurred in speech recognition: " + event.error);
-      setListening(false);
-      };
-
-      recognition2.onerror = (event) => {
-        setError2("Error occurred in speech recognition: " + event.error);
-        setListening2(false);
-        };
-
           // Stop recognition when the user stops speaking
     recognition1.onspeechend = () => stopListening();
-    recognition2.onspeechend = () => stopListening2();
 
     // Start/Stop speech recognition
     const startListening = () => {
@@ -108,29 +83,33 @@ const StudentReadingTestFilipino = () => {
 
   const stopListening = () => {
     recognition1.stop();
-    // stopRecording(mediaRecorder);
+
+    const finalWords = finalTranscript.split(' ');
+    const grammarWords = correctGrammar.split(' ');
+    let score = 0
+    let wrong = []
+  
+    console.log("Length of final words:", finalWords.length);
+    console.log("Length of correct grammar words:", grammarWords.length);
+  
+    for (let i = 0; i < grammarWords.length; i++) {
+      if (finalWords[i] !== grammarWords[i]) {
+        console.log("Wrong word:", finalWords[i] || "(no word)");
+        score += 1
+        wrong.push(finalWords[i])
+      }
+    }
+    console.log(wrong)
+    setTotalWrongScore(score)
+    setwrongWord(wrong)
+
+
     setListening(false);
     setInterimTranscript(""); // Clear interim transcript when stopping
     };
   const resetTranscript = () => {
     setFinalTranscript("");
     setInterimTranscript("");
-    };
-  const startListening2 = () => {
-    recognition2.start();
-    // startRecording(setMediaRecorder2, setAudioChunks2);
-    setListening2(true);
-    setError2(null);
-    };    
-  const stopListening2 = () => {
-    recognition2.stop();
-    // stopRecording(mediaRecorder2);
-    setListening2(false);
-    setInterimTranscript2(""); // Clear interim transcript when stopping
-    };
-  const resetTranscript2 = () => {
-    setFinalTranscript2("");
-    setInterimTranscript2("");
     };
 
   const handleCloseModal = () =>{
@@ -169,6 +148,14 @@ const StudentReadingTestFilipino = () => {
         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
         </Button>
         <Button size='sm' className='bg-black/30' onClick={resetTranscript}>Reset</Button>
+    </div>
+    <div>
+      <h1>Score for Wrong word: {totalWrongScore}</h1>
+      <h1>Wrong Words: {wrongWord.map((wrong)=>{
+        return(
+          <h1 className="">{wrong}</h1>
+        )
+      })}</h1>
     </div>
     <div className='mt-3'>
                 <h1>1. Ilan ang mga pulo sa Pilipinas?</h1>
@@ -231,7 +218,7 @@ const StudentReadingTestFilipino = () => {
         <Button onClick={() => setShowScoreModal(!showScoreModal)}>Submit</Button>
       </div>
       <div className="flex justify-end items-center mt-5 pb-5">
-        <Link to="/student/reading-test-filipino"><Button>Next</Button></Link>
+        <Link to="/student/reading-test-math"><Button>Next</Button></Link>
       </div>
 
 

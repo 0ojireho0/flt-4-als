@@ -6,13 +6,16 @@ import {Radio} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 
-const StudentReadingTest = () => {
+const StudentReadingTestMath = () => {
 
   const [error, setError] = useState(null);
   const [answer1, setAnswer] = useState("")
   const [answer2, setAnswer2] = useState("")
   const [answer3, setAnswer3] = useState("")
-  const [correctGrammar, setCorrectGrammar] = useState('the sun is a big bright star in the sky it gives us light and heat everyday plants need sunlight to grow without the sun it would be very cold and we wouldn’t be able to see during the day the sun is also important for animals and people it helps keep our planet warm so we can live here that’s why the sun is so special')
+
+  const [correctGrammar, setCorrectGrammar] = useState(`counting is important in math when you count you start from one and keep going 1 2 3 4 5 and so on numbers can also be added together for example if you have two apples and get three more apples you now have five apples this is called addition you can also subtract which means taking away if you have five apples and eat two you will have three apples left this is called subtraction`)
+
+  
 
   const [totalWrongScore, setTotalWrongScore] = useState(0)
   const [wrongWord, setwrongWord] = useState([])
@@ -25,10 +28,10 @@ const StudentReadingTest = () => {
     // Calculate score based on the selected answers
     let score = 0;
 
-    if (answer1 === "A") score += 1;
+    if (answer1 === "B") score += 1;
     if (answer2 === "B") score += 1;
-    if (answer3 === "C") score += 1;
-    console.log(score)
+    if (answer3 === "A  ") score += 1;
+    // console.log(score)
     setTotalScore(score);
 }, [answer1, answer2, answer3])
 
@@ -66,19 +69,8 @@ const StudentReadingTest = () => {
     setInterimTranscript(interimText); // Update interim transcript in real-time
     };
 
-
-
-    // Handle errors
-    recognition1.onerror = (event) => {
-      setError("Error occurred in speech recognition: " + event.error);
-      setListening(false);
-      };
-
-
-
-    // Stop recognition when the user stops speaking
+          // Stop recognition when the user stops speaking
     recognition1.onspeechend = () => stopListening();
-
 
     // Start/Stop speech recognition
     const startListening = () => {
@@ -120,7 +112,6 @@ const StudentReadingTest = () => {
     setInterimTranscript("");
     };
 
-
   const handleCloseModal = () =>{
     setShowScoreModal(!showScoreModal)
     setAnswer("")
@@ -130,7 +121,6 @@ const StudentReadingTest = () => {
     setFilipino_setAnswer("")
     setFilipino_Answer3("")
   }
-  
 
 
   return (
@@ -140,10 +130,10 @@ const StudentReadingTest = () => {
       <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
     <h1>Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
     <div>
-      <h1 className='font-bold text-black/50 text-lg mt-3'>English</h1>
+      <h1 className='font-bold text-black/50 text-lg mt-3'>Math</h1>
     </div>
     <div className='border-2 p-2 flex justify-center items-center '>
-        <h1 className="text-lg">The sun is a big, bright star in the sky. It gives us light and heat every day. Plants need sunlight to grow. Without the sun, it would be very cold, and we wouldn’t be able to see during the day. The sun is also important for animals and people. It helps keep our planet warm so we can live here. That’s why the sun is so special!</h1>
+        <h1 className="text-lg">Counting is important in math. When you count, you start from 1 and keep going: 1, 2, 3, 4, 5, and so on. Numbers can also be added together. For example, if you have 2 apples and get 3 more apples, you now have 5 apples. This is called addition. You can also subtract, which means taking away. If you have 5 apples and eat 2, you will have 3 apples left. This is called subtraction</h1>
     </div>
     <div className='w-full mt-2'>
         <Textarea label='Answer' 
@@ -153,6 +143,7 @@ const StudentReadingTest = () => {
         />
         {interimTranscript && <p>{interimTranscript}</p>}
     </div>
+
     <div className='flex justify-end gap-2'>
         <Button size='sm' className='bg-black/30' onClick={listening ? stopListening : startListening}>{listening ? "Stop Recording" : "Record your answer"}
         </Button>
@@ -167,34 +158,34 @@ const StudentReadingTest = () => {
       })}</h1>
     </div>
     <div className='mt-3'>
-                <h1>1. What does a sentence start with?</h1>
+                <h1>1. What number comes after 3 when you count?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_1' label="A. A capital letter" value="A" checked={answer1 == "A"} 
+                    <Radio name='question_1' label="A. 2" value="A" checked={answer1 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="B. A question mark " value="B" checked={answer1 == "B"} 
+                    <Radio name='question_1' label="B. 4" value="B" checked={answer1 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="C. A comma" value="C" checked={answer1 == "C"} 
+                    <Radio name='question_1' label="C. 5" value="C" checked={answer1 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required />
 
         </div>
       </div>
       <div className='mt-3'>
-                <h1>2. What is a verb?</h1>
+                <h1>2. If you have 2 apples and get 3 more, how many apples do you have in total?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_2' label="A. The person doing the action" value="A" 
+                    <Radio name='question_2' label="A. 4" value="A" 
                     checked={answer2 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="B. A The action being done " value="B" 
+                    <Radio name='question_2' label="B. 5" value="B" 
                     checked={answer2 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="C. The punctuation" value="C" 
+                    <Radio name='question_2' label="C. 6" value="C" 
                     checked={answer2 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
@@ -203,19 +194,19 @@ const StudentReadingTest = () => {
         </div>
       </div>
       <div className='mt-3'>
-                <h1>3. Which of the following is an example of a sentence?</h1>
+                <h1>3. If you have 5 apples and eat 2, how many apples are left?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_3' label="A. The cat" value="A" 
+                    <Radio name='question_3' label="A. 3" value="A" 
                     checked={answer3 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="B. Sleeping" value="B" 
+                    <Radio name='question_3' label="B. 2" value="B" 
                     checked={answer3 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="C. The cat is sleeping" value="C" 
+                    <Radio name='question_3' label="C. 1" value="C" 
                     checked={answer3 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
@@ -227,7 +218,7 @@ const StudentReadingTest = () => {
         <Button onClick={() => setShowScoreModal(!showScoreModal)}>Submit</Button>
       </div>
       <div className="flex justify-end items-center mt-5 pb-5">
-        <Link to="/student/reading-test-filipino"><Button>Next</Button></Link>
+        <Link to="/student/reading-test-digital"><Button>Next</Button></Link>
       </div>
 
 
@@ -261,4 +252,4 @@ const StudentReadingTest = () => {
   );
 };
 
-export default StudentReadingTest;
+export default StudentReadingTestMath;
