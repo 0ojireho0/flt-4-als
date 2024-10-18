@@ -2,6 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography } from '@material-tailwind/react';
 
+import question1 from "../../../assets/ls4-assessments/LS4 Q1.png"
+import question2 from "../../../assets/ls4-assessments/LS4 Q2.png"
+import question3 from "../../../assets/ls4-assessments/LS4 Q3.png"
+import question4 from "../../../assets/ls4-assessments/LS4 Q4.png"
+import question5 from "../../../assets/ls4-assessments/LS4 Q5.png"
+import question6 from "../../../assets/ls4-assessments/LS4 Q6.png"
+
 export default function ALSLifeCareerPostTest() {
 
     const [getActiveStudents, setGetActiveStudents] = useState(0)
@@ -66,6 +73,9 @@ export default function ALSLifeCareerPostTest() {
         <form>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. Gusto ni Nelia na madagdagan pa ang kanyan kaalaman at kasanayan sa pagluluto. Ano ang pinakamainam niyang gawin?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Magsanay sa pagluuluto nang mag-isa" disabled  />
               <Radio label="B. Magpaturo ng pagluluto sa kaibigan"  disabled />
@@ -80,6 +90,9 @@ export default function ALSLifeCareerPostTest() {
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Si Dexter ay marunong gumawa ng iba't ibang home-made na tinapay. nong trabaho ang maaari niyang pagkakitaan? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question2} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. Panadero</Typography>} checked disabled />
               <Radio label="B. Sorbetero" disabled  />
@@ -93,6 +106,9 @@ export default function ALSLifeCareerPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. Maagang binubuksan ni Mang Roldan ang pinapasukang Auto Repair Shop. Tumatanggap siya ng mga mamimili kahit lampas na sa oras at sinisigurado niyang maayos ang kanyang trabaho. Ano ang magandang katangiang ipinakita niya bilang isang empleyado?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question3} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Masayahin" disabled />
               <Radio label={<Typography className='text-green-500'>B. Masipag</Typography>} disabled checked />
@@ -106,6 +122,9 @@ export default function ALSLifeCareerPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. Ano ang dapat gamitin ng mga mananahi sa ASAS Dress Shop sa paglilinis ng mga makina sa pagtatahi? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question4} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Basang tisyu" disabled  />
               <Radio label="B. Mamasa-masang tela"  disabled/>
@@ -119,6 +138,9 @@ export default function ALSLifeCareerPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. Si Junjun ay isang construction worker sa White Forth Company. Alin sa mga sumusunod ang dapat ihanda at suotin ni Junjun bago pumasok?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question5} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. leather shoes at barong tagalog"  disabled/>
               <Radio label="B. sombrero, salamin at panyo" disabled/>
@@ -132,6 +154,9 @@ export default function ALSLifeCareerPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>6. Alin sa mga sumusunod ang nagpapakita na ang may-ari ng negosyo ay nagbibigay ng maayos na serbisyo sa kaniyang mamimili?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question6} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. Pinapalitan ang mga depektibong gamit.</Typography>} checked disabled/>
               <Radio label="B. Walang pakialam ang security guard sa mga mamimili." disabled/>

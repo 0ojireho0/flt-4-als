@@ -4,6 +4,13 @@ import { Radio } from '@material-tailwind/react'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import question1 from "../../../assets/ls6-assessments/LS6 Q1.png"
+import question2 from "../../../assets/ls6-assessments/LS6 Q2.png"
+import question3 from "../../../assets/ls6-assessments/LS6 Q3.png"
+import question4 from "../../../assets/ls6-assessments/LS6 Q4.png"
+import question5 from "../../../assets/ls6-assessments/LS6 Q5.png"
+import question6 from "../../../assets/ls6-assessments/LS6 Q6.png"
+
 import Typography from '@material-tailwind/react'
 
 export default function LS6PoostTestDigital() {
@@ -138,11 +145,11 @@ export default function LS6PoostTestDigital() {
             <div className="flex space-x-4">
                 <div>
                 <p className="text-sm text-gray-500">Current School Year</p>
-                <p className="font-semibold">S.Y. 2022-2023</p>
+                <p className="font-semibold">S.Y. 2024-2025</p>
                 </div>
                 <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
             </div>
-            <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+            {/* <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div> */}
             </div>
         </div>
     </div>
@@ -158,6 +165,9 @@ export default function LS6PoostTestDigital() {
             <form onSubmit={handleSubmitAnswers}>
             <div className='mt-3'>
                 <h1>1. Which of the following describes a computer? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question1} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='1' label="A. It produces many errors." value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
                     <Radio name='1' label="B. It takes a long time to operate." value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
@@ -167,6 +177,9 @@ export default function LS6PoostTestDigital() {
             </div>
             <div className='mt-3'>
                 <h1>2. Which is the correct order of steps in turning off a computer? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question2} alt="" />
+                </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Click the start button.</h1>
                     <h1>2. Save and Close all the Applications</h1>
@@ -181,6 +194,9 @@ export default function LS6PoostTestDigital() {
             </div>
             <div className='mt-3'>
                 <h1>3. Which of the following statements about microcomputer is correct? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question3} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='3' label="A. Calculator captures images." value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
                     <Radio name='3' label="B. Tablet PC is bigger than laptop" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
@@ -190,6 +206,9 @@ export default function LS6PoostTestDigital() {
             </div>
             <div className='mt-3'>
                 <h1>4. Which of the following computer device is used to make copies of reports, photographs and other documents? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question4} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='4' label="A. Mouse" value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
                     <Radio name='4' label="B. Microphone" value="B" checked={answer4 == "B"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
@@ -199,6 +218,9 @@ export default function LS6PoostTestDigital() {
             </div>
             <div className='mt-3'>
                 <h1>5. Jaf needs to scan his ID picture. What is the correct order of steps that he should follow? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question5} alt="" />
+                </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Connect the scanner to the computer.</h1>
                     <h1>2. Place the picture to the scanner.</h1>
@@ -214,6 +236,9 @@ export default function LS6PoostTestDigital() {
             </div>
             <div className='mt-3'>
                 <h1>6. Jaime wants to save his project into a USB flash drive. What is the correct order of steps to save it? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question6} alt="" />
+                </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Click File</h1>
                     <h1>2. Choose Save As</h1>

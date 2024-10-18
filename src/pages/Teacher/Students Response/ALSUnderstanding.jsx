@@ -2,8 +2,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography } from '@material-tailwind/react';
-import question2 from "../../../assets/ls5-assessments/question2.png"
+
 import ALSUnderstandingPostTest from './ALSUnderstandingPostTest';
+
+import question1 from "../../../assets/ls5-assessments/LS5 Q1.png"
+import question2 from "../../../assets/ls5-assessments/LS5 Q2.png"
+import question3 from "../../../assets/ls5-assessments/LS5 Q3.png"
+import question4 from "../../../assets/ls5-assessments/LS5 Q4.png"
+import question5 from "../../../assets/ls5-assessments/LS5 Q5.png"
 
 
 export default function ALSUnderstanding(){
@@ -81,8 +87,8 @@ export default function ALSUnderstanding(){
       </div>
       <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
+        <h3 className="text-2xl">S.Y. 2024-2025</h3>
+        {/* <p className="text-sm">Date: July 24, 2023</p> */}
       </div>
       {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
@@ -120,6 +126,9 @@ export default function ALSUnderstanding(){
         <form>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. Ano ang pinakatamang gawin kapag inabutan ka ng lindol sa learning center?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Ligpitin ang mahahalagang bagay." disabled  />
               <Radio label="B. Tumakbo nang mabilis palabas."  disabled />
@@ -135,7 +144,7 @@ export default function ALSUnderstanding(){
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Batay sa larawan, alin ang tamang pagkakasunod-sunod ng mga kaganapan sa buhay ng isang tao? </p>
             <div className='border-2 p-2 flex justify-center items-center'>
-                  <img src={question2} alt="" />
+              <img src={question2} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. 3-2-4-1</Typography>} checked disabled />
@@ -150,6 +159,9 @@ export default function ALSUnderstanding(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. Napansin mong alas dose na ng gabi ngunit malakas pa rin ang tugtog at boses ng iyong kapitbahay. Hindi makatulong ang pamilya mo. Ano ang dapat mong gawin?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question3} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. Kausapin siya nang mahinahon.</Typography>} disabled checked />
               <Radio label="B. Igalang ang karapatan niya." disabled />
@@ -163,6 +175,9 @@ export default function ALSUnderstanding(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. Maagang nag-asawa sina Celso at Jade. Nagkaanak agad sila ngunit naging iresponsable si Celso. Humantong ito sa kanilang paghihiwalay. May karapatan bang humingi si Jade ng suportang pinansyal kay Celso para sa kanilang anak? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question4} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Hindi, dahil hiwalay na sila." disabled  />
               <Radio label="B. Hindi, dahil sandali lang naman silang nagsama."  disabled/>
@@ -176,6 +191,9 @@ export default function ALSUnderstanding(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. Nakita ni Luis ang isang matandang babae na balak tumawid sa "pedestrian lane." Nilapitan niya ang matanda at inalalayan sa pagtawid. Ano ang katangiang taglay niya?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question5} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Matiyaga"  disabled/>
               <Radio label={<Typography className='text-green-500'>B. Matulungin</Typography>} checked disabled/>

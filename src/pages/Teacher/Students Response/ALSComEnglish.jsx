@@ -6,6 +6,12 @@ import question7 from "../../../assets/ls1-english-assessments/question7.png"
 import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 import ALSComEnglishPostTest from './ALSComEnglishPostTest';
 
+import question1 from "../../../assets/ls1-english-assessments/LS1 Q1.png"
+import question2 from "../../../assets/ls1-english-assessments/LS1 Q2.png"
+import question4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
+import question5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
+
+
 export default function ALSComEnglish(){
 
 
@@ -178,8 +184,8 @@ export default function ALSComEnglish(){
       </div>
       <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
+        <h3 className="text-2xl">S.Y. 2024-2025</h3>
+        {/* <p className="text-sm">Date: July 24, 2023</p> */}
       </div>
       {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
@@ -220,6 +226,9 @@ export default function ALSComEnglish(){
           <form onSubmit={handleSubmitScore}>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. <span className='underline'>Green</span> light in the traffic means _______.</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. Go</Typography>} disabled checked />
               <Radio label="B. Ready" disabled />
@@ -234,8 +243,8 @@ export default function ALSComEnglish(){
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Identify the type of sentence according to use.</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>I won the lottery!</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question2} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Imperative" disabled />
@@ -266,8 +275,8 @@ export default function ALSComEnglish(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. Fill in the blank with the correct word from the options below that will make the statement <strong>POSITIVE</strong>. Choose the letter of the correct answer.</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>I will __________ eat that vegetable. It's delicious!</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question4} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. definitely</Typography>} disabled checked />
@@ -282,6 +291,9 @@ export default function ALSComEnglish(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. What is the main idea of the given paragraph?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question5} className='w-1/2' alt="" />
+            </div>
             <div className='border-2 p-2 text-center'>
                 <h1>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
             </div>

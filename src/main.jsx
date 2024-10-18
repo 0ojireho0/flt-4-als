@@ -106,6 +106,7 @@ import EnglishGrade10 from './pages/Regular Student/Exams/Grade10/EnglishGrade10
 import FilipinoGrade10 from './pages/Regular Student/Exams/Grade10/FilipinoGrade10'
 import MathGrade10 from './pages/Regular Student/Exams/Grade10/MathGrade10'
 import ScienceGrade10 from './pages/Regular Student/Exams/Grade10/ScienceGrade10'
+import StudentReadingTestFilipino from './pages/ALS Student/Assessments/StudentReadingTestFilipino'
 
 
 // Layout component that includes the Navbar
@@ -497,6 +498,10 @@ const router = createBrowserRouter([
       {
         path: "/student/posttest-ls6-citizenship",
         element: <LS6PostTestDigital />
+      },
+      {
+        path: "/student/reading-test-filipino",
+        element: <StudentReadingTestFilipino />
       }
     ]
   },

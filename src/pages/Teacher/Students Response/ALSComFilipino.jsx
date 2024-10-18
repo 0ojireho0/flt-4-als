@@ -5,6 +5,9 @@ import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 import question5 from "../../../assets/ls1-filipino-assessments/habang-ikaw.mp3"
 import ALSComFilipinoPostTest from './ALSComFilipinoPostTest';
 
+import question1 from "../../../assets/ls1-filipino-assessments/LS1 Q1 F.png"
+import question2 from "../../../assets/ls1-filipino-assessments/LS1 Q2 F.png"
+import question3 from "../../../assets/ls1-filipino-assessments/LS1 Q3 F.png"
 
 export default function ALSComFilipino(){
 
@@ -146,8 +149,8 @@ export default function ALSComFilipino(){
       </div>
       <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
+        <h3 className="text-2xl">S.Y. 2024-2025</h3>
+        {/* <p className="text-sm">Date: July 24, 2023</p> */}
       </div>
       {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
@@ -190,8 +193,8 @@ export default function ALSComFilipino(){
         <form onSubmit={handleSubmitScore}>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. Basahin ang sitwasyon at piliin ang tamang sagot na nagpapakita ng magalang na pananalita</p>
-            <div className='border-2 p-2'>
-                <h1 className='text-justify'>Nais mong pumasok sa learning center ngunit ang iyong guro at ang kanyang kausap ay nasa pintuan. Ano ang iyong sasabihin sa kanila?</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question1} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Tumabi po kayo." disabled  />
@@ -207,6 +210,9 @@ export default function ALSComFilipino(){
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Alin sa mga sumusunod na pangungusap ang may tamang bantas?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question2} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Ang araw ng kalayaan ay ipinagdiriwawng tuwing Hunyo 12?" disabled />
               <Radio label="B. Dadalo ka ba sa pagpupulong ngayong Huwebes." disabled  />
@@ -220,8 +226,8 @@ export default function ALSComFilipino(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. Basahin ang pangungusap at piliin ang pares ng mga salitang magkasalunugat ang kahulugan.</p>
-            <div className='border-2 p-2'>
-                <h1 className='text-justify'>Nalulungkot isipin na sa mata ng batas, nakalalamang ang mayamang may pantustos sa mga tagapagtanggol kaysa sa maralitang kahit pangkain ay wala.</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question3} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Nakalalamang - Nakalulungkot" disabled />

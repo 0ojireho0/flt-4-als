@@ -228,8 +228,8 @@ export default function TeacherAlsStudent () {
         </div>
         <div className="bg-blue-100 p-4 rounded-lg shadow">
           <h3 className="text-xl font-bold">Current School Year</h3>
-          <p className="text-blue-600 text-2xl">S.Y. 2022-2023</p>
-          <p>Date: July 24, 2023</p>
+          <p className="text-blue-600 text-2xl">S.Y. 2024-2025</p>
+          {/* <p>Date: July 24, 2023</p> */}
         </div>
         {/* <div className="bg-blue-100 p-4 rounded-lg shadow">
           <h3 className="text-xl font-bold">Active Test Period</h3>

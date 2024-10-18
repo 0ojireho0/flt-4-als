@@ -3,6 +3,13 @@ import { Radio } from '@material-tailwind/react'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import question1 from "../../../assets/ls4-assessments/LS4 Q1.png"
+import question2 from "../../../assets/ls4-assessments/LS4 Q2.png"
+import question3 from "../../../assets/ls4-assessments/LS4 Q3.png"
+import question4 from "../../../assets/ls4-assessments/LS4 Q4.png"
+import question5 from "../../../assets/ls4-assessments/LS4 Q5.png"
+import question6 from "../../../assets/ls4-assessments/LS4 Q6.png"
+
 
 
 export default function LS4PreTestLife() {
@@ -136,11 +143,11 @@ export default function LS4PreTestLife() {
             <div className="flex space-x-4">
                 <div>
                 <p className="text-sm text-gray-500">Current School Year</p>
-                <p className="font-semibold">S.Y. 2022-2023</p>
+                <p className="font-semibold">S.Y. 2024-2025</p>
                 </div>
                 <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
             </div>
-            <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+            {/* <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div> */}
             </div>
         </div>
     </div>
@@ -156,6 +163,9 @@ export default function LS4PreTestLife() {
             <form onSubmit={handleSubmitAnswers}>
             <div className='mt-3'>
                 <h1>1. Gusto ni Nelia na madagdagan pa ang kanyan kaalaman at kasanayan sa pagluluto. Ano ang pinakamainam niyang gawin? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question1} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='1' label="A. Magsanay sa pagluuluto nang mag-isa" value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
                     <Radio name='1' label="B. Magpaturo ng pagluluto sa kaibigan" value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
@@ -165,6 +175,9 @@ export default function LS4PreTestLife() {
             </div>
             <div className='mt-3'>
                 <h1>2. Si Dexter ay marunong gumawa ng iba't ibang home-made na tinapay. nong trabaho ang maaari niyang pagkakitaan? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question2} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='2' label="A. Panadero" value="A" checked={answer2 == "A"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required />
                     <Radio name='2' label="B. Sorbetero" value="B" checked={answer2 == "B"} disabled={disableAnswer2} onChange={(e) => setAnswer2(e.target.value)} required  />
@@ -174,6 +187,9 @@ export default function LS4PreTestLife() {
             </div>
             <div className='mt-3'>
                 <h1>3. Maagang binubuksan ni Mang Roldan ang pinapasukang Auto Repair Shop. Tumatanggap siya ng mga mamimili kahit lampas na sa oras at sinisigurado niyang maayos ang kanyang trabaho. Ano ang magandang katangiang ipinakita niya bilang isang empleyado? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question3} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='3' label="A. Masayahin" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
                     <Radio name='3' label="B. Masipag" value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required  />
@@ -183,6 +199,9 @@ export default function LS4PreTestLife() {
             </div>
             <div className='mt-3'>
                 <h1>4. Ano ang dapat gamitin ng mga mananahi sa ASAS Dress Shop sa paglilinis ng mga makina sa pagtatahi? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question4} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='4' label="A. Basang tisyu" value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
                     <Radio name='4' label="B. Mamasa-masang tela" value="B" checked={answer4 == "B"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
@@ -192,6 +211,9 @@ export default function LS4PreTestLife() {
             </div>
             <div className='mt-3'>
                 <h1>5. Si Junjun ay isang construction worker sa White Forth Company. Alin sa mga sumusunod ang dapat ihanda at suotin ni Junjun bago pumasok? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question5} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='5' label="A. leather shoes at barong tagalog" value="A" checked={answer5 == "A"} disabled={disableAnswer5} onChange={(e) => setAnswer5(e.target.value)} required  />
                     <Radio name='5' label="B. sombrero, salamin at panyo" value="B" checked={answer5 == "B"} disabled={disableAnswer5}  onChange={(e) => setAnswer5(e.target.value)}  required />
@@ -201,6 +223,9 @@ export default function LS4PreTestLife() {
             </div>
             <div className='mt-3'>
                 <h1>6. Alin sa mga sumusunod ang nagpapakita na ang may-ari ng negosyo ay nagbibigay ng maayos na serbisyo sa kaniyang mamimili?  </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question6} className='w-1/2' alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='6' label="A. Pinapalitan ang mga depektibong gamit." value="A" checked={answer6 == "A"} disabled={disableAnswer6}  onChange={(e) => setAnswer6(e.target.value)} required />
                     <Radio name='6' label="B. Walang pakialam ang security guard sa mga mamimili." value="B" checked={answer6 == "B"} disabled={disableAnswer6}  onChange={(e) => setAnswer6(e.target.value)} required  />

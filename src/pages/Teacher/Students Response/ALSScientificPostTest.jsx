@@ -2,6 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 
+import question1 from "../../../assets/ls2-assessments/LS2 Q1.png"
+import question2 from "../../../assets/ls2-assessments/LS2 Q2.png"
+import question3 from "../../../assets/ls2-assessments/LS2 Q3.png"
+import question4 from "../../../assets/ls2-assessments/LS2 Q4.png"
+import question5 from "../../../assets/ls2-assessments/LS2 Q5.png"
+
 
 
 export default function ALSScientificPostTest() {
@@ -66,6 +72,9 @@ export default function ALSScientificPostTest() {
         <form>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. Which solid waste management process is invloved in collection materials and converting it into new items?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Recovering" disabled  />
               <Radio label={<Typography className='text-green-500'>B. Recycling</Typography>} checked disabled />
@@ -80,6 +89,9 @@ export default function ALSScientificPostTest() {
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. The following are some of the activities that can be done during summer <strong>EXCEPT</strong></p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question2} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Playing at the park" disabled />
               <Radio label="B. Swimming at the beach" disabled  />
@@ -93,6 +105,9 @@ export default function ALSScientificPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. Which of the following shows the correct way of handling flammable materials at home?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question3} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Leaving the stove unattended when cooking." disabled />
               <Radio label="B. Flammable liquid not properly labelled and stored." disabled />
@@ -106,6 +121,9 @@ export default function ALSScientificPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. What electrical energy can be transformed when we switch to the electric bulb?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question4} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Sound energy" disabled  />
               <Radio label={<Typography className='text-green-500'>B. Light and heat energy</Typography>} checked disabled/>
@@ -119,6 +137,9 @@ export default function ALSScientificPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. Which of the following <strong>DOES NOT</strong> contribute to the greenhouse effect that causes climate change?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question5} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Combustion of fuel" disabled/>
               <Radio label="B. Use of aesrosol sprays" disabled/>

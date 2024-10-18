@@ -4,6 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { Radio, Typography } from '@material-tailwind/react';
 import ALSDigitalCitizenshipPostTest from './ALSDigitalCitizenshipPostTest';
 
+import question1 from "../../../assets/ls6-assessments/LS6 Q1.png"
+import question2 from "../../../assets/ls6-assessments/LS6 Q2.png"
+import question3 from "../../../assets/ls6-assessments/LS6 Q3.png"
+import question4 from "../../../assets/ls6-assessments/LS6 Q4.png"
+import question5 from "../../../assets/ls6-assessments/LS6 Q5.png"
+import question6 from "../../../assets/ls6-assessments/LS6 Q6.png"
 
 
 export default function ALSDigitalCitizenship(){
@@ -82,8 +88,8 @@ export default function ALSDigitalCitizenship(){
       </div>
       <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
+        <h3 className="text-2xl">S.Y. 2024-2025</h3>
+        {/* <p className="text-sm">Date: July 24, 2023</p> */}
       </div>
       {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>
@@ -120,6 +126,9 @@ export default function ALSDigitalCitizenship(){
         <form>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. Which of the following describes a computer?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. It produces many errors." disabled  />
               <Radio label="B. It takes a long time to operate."  disabled />
@@ -134,6 +143,9 @@ export default function ALSDigitalCitizenship(){
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Which is the correct order of steps in turning off a computer? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question2} className='w-1/2' alt="" />
+            </div>
             <div className='border-2 p-2 text-center'>
                     <h1>1. Click the start button.</h1>
                     <h1>2. Save and Close all the Applications</h1>
@@ -152,6 +164,9 @@ export default function ALSDigitalCitizenship(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. Which of the following statements about microcomputer is correct?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question3} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Calculator captures images" disabled  />
               <Radio label="B. Tablet PC is bigger than laptop." disabled />
@@ -165,6 +180,9 @@ export default function ALSDigitalCitizenship(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. Which of the following computer device is used to make copies of reports, photographs and other documents? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question4} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Mouse" disabled  />
               <Radio label="B. Microphone"  disabled/>
@@ -178,6 +196,9 @@ export default function ALSDigitalCitizenship(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. Jaf needs to scan his ID picture. What is the correct order of steps that he should follow?</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question5} className='w-1/2' alt="" />
+            </div>
             <div className='border-2 p-2 text-center'>
                     <h1>1. Connect the scanner to the computer.</h1>
                     <h1>2. Place the picture to the scanner.</h1>
@@ -197,6 +218,9 @@ export default function ALSDigitalCitizenship(){
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>6. Jaime wants to save his project into a USB flash drive. What is the correct order of steps to save it? </p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+              <img src={question6} className='w-1/2' alt="" />
+            </div>
             <div className='border-2 p-2 text-center'>
                     <h1>1. Click File</h1>
                     <h1>2. Choose Save As</h1>

@@ -4,6 +4,11 @@ import { Radio, Typography, Textarea, Button } from '@material-tailwind/react';
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
 import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 
+import question1 from "../../../assets/ls1-english-assessments/LS1 Q1.png"
+import question2 from "../../../assets/ls1-english-assessments/LS1 Q2.png"
+import question4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
+import question5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
+
 export default function ALSComEnglishPostTest() {
 
     const [getActiveStudents, setGetActiveStudents] = useState(0)
@@ -167,6 +172,9 @@ export default function ALSComEnglishPostTest() {
           <form onSubmit={handleSubmitScore}>
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>1. <span className='underline'>Green</span> light in the traffic means _______.</p>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question1} className='w-1/2' alt="" />
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. Go</Typography>} disabled checked />
               <Radio label="B. Ready" disabled />
@@ -181,8 +189,8 @@ export default function ALSComEnglishPostTest() {
           
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>2. Identify the type of sentence according to use.</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>I won the lottery!</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question2} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Imperative" disabled />
@@ -213,8 +221,8 @@ export default function ALSComEnglishPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>4. Fill in the blank with the correct word from the options below that will make the statement <strong>POSITIVE</strong>. Choose the letter of the correct answer.</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>I will __________ eat that vegetable. It's delicious!</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question4} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label={<Typography className='text-green-500'>A. definitely</Typography>} disabled checked />
@@ -229,8 +237,8 @@ export default function ALSComEnglishPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>5. What is the main idea of the given paragraph?</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>All living things are made up of cells. Since humans are alive, we are also made of cells. Our body tissues are made up of cells. Tissue makes our body organs. Organs make our body systems. Cells are the building blocks of our bodies.</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question5} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Cells are building blocks of our bodies." disabled/>

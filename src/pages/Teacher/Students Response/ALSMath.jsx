@@ -83,8 +83,8 @@ export default function ALSMath(){
       </div>
       <div className="bg-orange-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Current School Year</h2>
-        <h3 className="text-2xl">S.Y. 2022-2023</h3>
-        <p className="text-sm">Date: July 24, 2023</p>
+        <h3 className="text-2xl">S.Y. 2024-2025</h3>
+        {/* <p className="text-sm">Date: July 24, 2023</p> */}
       </div>
       {/* <div className="bg-blue-500 text-white p-4 rounded-lg text-center shadow-md">
         <h2 className="text-lg font-semibold">Active Test Period</h2>

@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import fltpreposttest from "../../assets/FLT PREPOST.png"
+import practicereading from "../../assets/PRACTICE READING.png"
+
 
 export default function StudentAssessments(){
 
@@ -44,11 +47,11 @@ export default function StudentAssessments(){
           <div className="flex space-x-4">
             <div>
               <p className="text-sm text-gray-500">Current School Year</p>
-              <p className="font-semibold">S.Y. 2022-2023</p>
+              <p className="font-semibold">S.Y. 2024-2025</p>
             </div>
             <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
           </div>
-          <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+          {/* <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div> */}
         </div>
       </div>
 
@@ -73,9 +76,9 @@ export default function StudentAssessments(){
         <div className="bg-white shadow-md rounded-lg p-6">
           <div className="text-center mb-4">
             <img 
-              src="https://via.placeholder.com/50" 
+              src={fltpreposttest}
               alt="FLT Pre-Test Logo" 
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 xl:w-[10rem]"
             />
             <h3 className="text-xl font-bold mb-2">FLT Pre-Test</h3>
             <p className="text-gray-600">
@@ -91,9 +94,9 @@ export default function StudentAssessments(){
         <div className="bg-white shadow-md rounded-lg p-6">
           <div className="text-center mb-4">
             <img 
-              src="https://via.placeholder.com/50" 
+              src={fltpreposttest}
               alt="FLT Post-Test Logo" 
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 xl:w-[10rem]"
             />
             <h3 className="text-xl font-bold mb-2">FLT Post-Test</h3>
             <p className="text-gray-600">
@@ -109,9 +112,9 @@ export default function StudentAssessments(){
         <div className="bg-white shadow-md rounded-lg p-6">
           <div className="text-center mb-4">
             <img 
-              src="https://via.placeholder.com/50" 
+              src={practicereading} 
               alt="Reading and Comprehension Test Logo" 
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 xl:w-[10rem]"
             />
             <h3 className="text-xl font-bold mb-2">Practice Reading and Comprehension</h3>
             <p className="text-gray-600">

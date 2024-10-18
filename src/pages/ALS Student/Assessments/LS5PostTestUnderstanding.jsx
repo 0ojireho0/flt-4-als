@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Radio } from '@material-tailwind/react'
 import question2 from '../../../assets/ls5-assessments/question2.png'
+import question1 from '../../../assets/ls5-assessments/LS5 Q1.png'
+import question3 from '../../../assets/ls5-assessments/LS5 Q3.png'
+import question4 from '../../../assets/ls5-assessments/LS5 Q4.png'
+import question5 from '../../../assets/ls5-assessments/LS5 Q5.png'
 
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
@@ -130,11 +134,11 @@ export default function LS5PostTestUnderstanding() {
             <div className="flex space-x-4">
                 <div>
                 <p className="text-sm text-gray-500">Current School Year</p>
-                <p className="font-semibold">S.Y. 2022-2023</p>
+                <p className="font-semibold">S.Y. 2024-2025</p>
                 </div>
                 <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
             </div>
-            <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+            {/* <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div> */}
             </div>
         </div>
     </div>
@@ -150,6 +154,9 @@ export default function LS5PostTestUnderstanding() {
         <form onSubmit={handleSubmitAnswers}>
         <div className='mt-3'>
                 <h1>1. Ano ang pinakatamang gawin kapag inabutan ka ng lindol sa learning center? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question1} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='1' label="A. Ligpitin ang mahahalagang bagay." value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
                     <Radio name='1' label="B. Tumakbo nang mabilis palabas." value="B" checked={answer1 == "B"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required />
@@ -171,6 +178,9 @@ export default function LS5PostTestUnderstanding() {
             </div>
             <div className='mt-3'>
                 <h1>3. Napansin mong alas dose na ng gabi ngunit malakas pa rin ang tugtog at boses ng iyong kapitbahay. Hindi makatulong ang pamilya mo. Ano ang dapat mong gawin? </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question3} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='3' label="A. Kausapin siya nang mahinahon." value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required  />
                     <Radio name='3' label="B. Igalang ang karapatan niya." value="B" checked={answer3 == "B"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
@@ -180,6 +190,9 @@ export default function LS5PostTestUnderstanding() {
             </div>
             <div className='mt-3'>
                 <h1>4. Maagang nag-asawa sina Celso at Jade. Nagkaanak agad sila ngunit naging iresponsable si Celso. Humantong ito sa kanilang paghihiwalay. May karapatan bang humingi si Jade ng suportang pinansyal kay Celso para sa kanilang anak?  </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question4} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='4' label="A. Hindi, dahil hiwalay na sila." value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
                     <Radio name='4' label="B. Hindi, dahil sandali lang naman silang nagsama." value="B" checked={answer4 == "B"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
@@ -189,6 +202,9 @@ export default function LS5PostTestUnderstanding() {
             </div>
             <div className='mt-3'>
                 <h1>5. Nakita ni Luis ang isang matandang babae na balak tumawid sa "pedestrian lane." Nilapitan niya ang matanda at inalalayan sa pagtawid. Ano ang katangiang taglay niya?  </h1>
+                <div className='border-2 p-2 flex justify-center items-center'>
+                    <img src={question5} alt="" />
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='5' label="A. Matiyaga" value="A" checked={answer5 == "A"} disabled={disableAnswer5} onChange={(e) => setAnswer5(e.target.value)} required />
                     <Radio name='5' label="B. Matulungin" value="B" checked={answer5 == "B"} disabled={disableAnswer5}  onChange={(e) => setAnswer5(e.target.value)}  required />
