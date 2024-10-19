@@ -25,24 +25,31 @@ export default function NavbarRegularTeacher({ children }) {
     },
     {
       id: 2,
+      title: 'Modules',
+      path: '/regular-teacher/modules',
+      icon: <MdDashboard />
+
+    },
+    {
+      id: 3,
       title: 'English',
       path: '/regular-teacher/english',
       icon: <PiStudent />
     },
     {
-      id: 3,
+      id: 4,
       title: 'Filipino',
       path: '/regular-teacher/filipino',
       icon: <PiStudent />
     },
     {
-      id: 4,
+      id: 5,
       title: 'Math',
       path: '/regular-teacher/math',
       icon: <PiStudent />
     },
     {
-      id: 5,
+      id: 6,
       title: 'Science',
       path: '/regular-teacher/science',
       icon: <PiStudent />

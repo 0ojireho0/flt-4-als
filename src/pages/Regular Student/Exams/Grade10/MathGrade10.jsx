@@ -141,11 +141,11 @@ export default function MathGrade10() {
             <div className="flex space-x-4">
                 <div>
                 <p className="text-sm text-gray-500">Current School Year</p>
-                <p className="font-semibold">S.Y. 2022-2023</p>
+                <p className="font-semibold">S.Y. 2024-2025</p>
                 </div>
                 <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center text-white">📄</div>
             </div>
-            <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div>
+            {/* <div className="text-sm text-gray-500 mt-1">Current Test Period: Post-test</div> */}
             </div>
         </div>
     </div>

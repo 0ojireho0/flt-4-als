@@ -34,11 +34,11 @@ export default function NavbarRegularStudent({children}) {
         //     title: "Answer my PIS",
         //     path: "/regular-student/answerPIS"
         // }, 
-        // {
-        //     id: 3,
-        //     title: "Learnings",
-        //     path: "/regular-student/learnings"
-        // },
+        {
+            id: 3,
+            title: "Learnings",
+            path: "/regular-student/learnings"
+        },
         {
             id: 4, 
             title: "Assessments",
