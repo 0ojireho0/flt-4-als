@@ -111,6 +111,16 @@ import StudentReadingTestMath from './pages/ALS Student/Assessments/StudentReadi
 import StudentReadingDigitalLiteracy from './pages/ALS Student/Assessments/StudentReadingTestDigitalLiteracy'
 import StudentReadingEnglish from './pages/ALS Student/Assessments/StudentReadingTestEnglish'
 import StudentReadingTestUTS from './pages/ALS Student/Assessments/StudentReadingTestUTS'
+import RegularTeacherModules from './pages/Regular Teacher/RegularTeacherModules'
+import RegularTeacherEnglishModule from './pages/Regular Teacher/Modules/RegularTeacherEnglishModule'
+import RegularTeacherFilipinoModule from './pages/Regular Teacher/Modules/RegularTeacherFilipinoModule'
+import RegularTeacherScienceModule from './pages/Regular Teacher/Modules/RegularTeacherScienceModule'
+import RegularTeacherMathModule from './pages/Regular Teacher/Modules/RegularTeacherMathModule'
+import RegularStudentModules from './pages/Regular Student/RegularStudentModules'
+import RegularStudentEnglishModule from './pages/Regular Student/Modules/RegularStudentEnglishModule'
+import RegularStudentFilipinoModule from './pages/Regular Student/Modules/RegularStudentFilipinoModule'
+import RegularStudentMathModule from './pages/Regular Student/Modules/RegularStudentMathModule'
+import RegularStudentScienceModule from './pages/Regular Student/Modules/RegularStudentScienceModule'
 
 
 // Layout component that includes the Navbar
@@ -224,7 +234,8 @@ const router = createBrowserRouter([
       {
         path: "/regular-teacher/sign-in",
         element: <RegularTeacherSignIn />
-      }
+      },
+
     ]
   },
   {
@@ -616,6 +627,26 @@ const router = createBrowserRouter([
       {
         path: '/regular-student/grade10-scientific',
         element: <ScienceGrade10 />
+      },
+      {
+        path: '/regular-student/learnings',
+        element: <RegularStudentModules />
+      },
+      {
+        path: '/regular-student/english-modules',
+        element: <RegularStudentEnglishModule />
+      },  
+      {
+        path: '/regular-student/filipino-modules',
+        element: <RegularStudentFilipinoModule />
+      },
+      {
+        path: '/regular-student/math-modules',
+        element: <RegularStudentMathModule />
+      },
+      {
+        path: '/regular-student/science-modules',
+        element: <RegularStudentScienceModule />
       }
   
 
@@ -644,6 +675,26 @@ const router = createBrowserRouter([
       {
         path: "/regular-teacher/science",
         element: <RegularTeacherScience />
+      },
+      {
+        path: "/regular-teacher/modules",
+        element: <RegularTeacherModules />
+      },
+      {
+        path: "/regular-teacher/english-modules",
+        element: <RegularTeacherEnglishModule />
+      },
+      {
+        path: "/regular-teacher/filipino-modules",
+        element: <RegularTeacherFilipinoModule />
+      },
+      {
+        path: "/regular-teacher/science-modules",
+        element: <RegularTeacherScienceModule />
+      },
+      {
+        path: "/regular-teacher/math-modules",
+        element: <RegularTeacherMathModule />
       }
     ]
   }

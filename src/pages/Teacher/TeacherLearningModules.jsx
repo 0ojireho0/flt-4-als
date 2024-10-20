@@ -39,29 +39,6 @@ export default function TeacherLearningModules(){
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
-        <div className="bg-white p-4 rounded shadow flex flex-col items-center">
-          <span className="text-green-600 text-xl font-bold">10 Active</span>
-          <p className="text-gray-500">Active ALS Student</p>
-          <p className="text-red-500">13 Registered ALS Student/s</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow flex flex-col items-center">
-          <span className="text-orange-500 text-xl font-bold">S.Y. 2024-2025</span>
-          <p className="text-gray-500">Current School Year</p>
-          <p className="text-gray-500">Date: July 24, 2023</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow flex flex-col items-center">
-          <span className="text-blue-600 text-xl font-bold">Pre-test</span>
-          <p className="text-gray-500">Active Test Period</p>
-          <button className="bg-blue-500 text-white py-1 px-3 mt-2 rounded">Start Post-Test</button>
-        </div>
-        <div className="bg-white p-4 rounded shadow flex flex-col items-center">
-          <span className="text-red-500 text-xl font-bold">Closed</span>
-          <p className="text-gray-500">Test Status</p>
-          <button className="bg-green-500 text-white py-1 px-3 mt-2 rounded">Start Accepting Test Response</button>
-        </div>
-      </div> */}
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {sections.map((section, index) => (
           <div key={index} className="bg-white rounded shadow p-4">

@@ -110,7 +110,7 @@ export default function RegularStudentDashboard(){
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
         {/* Student ALS Level */}
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        {/* <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-4">STUDENT ALS LEVEL</h3>
           <div className="relative">
             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto flex items-center justify-center">
@@ -118,10 +118,10 @@ export default function RegularStudentDashboard(){
             </div>
             <p className="text-center mt-4 text-red-500">FLT is not yet Completed</p>
           </div>
-        </div>
+        </div> */}
 
         {/* Student Information */}
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="bg-white p-4 rounded-lg shadow-md flex justify-center items-center flex-col">
           <h3 className="text-xl font-semibold mb-4">STUDENT INFORMATION</h3>
           <div>
             <p><strong>Full Name:</strong> {getFirstname}</p>
@@ -139,7 +139,7 @@ export default function RegularStudentDashboard(){
         </div>
 
         {/* FLT Accomplishment */}
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        {/* <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-4">FLT ACCOMPLISHMENT</h3>
           <div className="relative">
             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto flex items-center justify-center">
@@ -150,7 +150,7 @@ export default function RegularStudentDashboard(){
               <strong>Pending:</strong> 7
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
     </>

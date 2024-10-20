@@ -32,6 +32,7 @@ export default function RegularStudentAdmin() {
   const [email, setemail] = useState("")
   const [password, setPassword] = useState("")
   const [getStatus, setgetStatus] = useState("")
+  const [section, setSection] = useState("")
 
   const [getData, setgetData] = useState([])
   const [listOfTeachers, setlistOfTeachers] = useState([])
@@ -49,6 +50,7 @@ export default function RegularStudentAdmin() {
   const [addReligion, setaddReligion] = useState("")
   const [addGrade, setAddGrade] = useState(7)
   const [addBirthday, setaddBirthday] = useState("")
+  const [addSection, setaddSection] = useState("")
 
   const [teachers, setTeachers] = useState(0)
 
@@ -112,6 +114,7 @@ export default function RegularStudentAdmin() {
     setfullname(student.fullname)
     setgetStatus(student.active_status)
     setgetData(student)
+    setSection(student.section)
   }
 
   // const handleChange = (e) => {
@@ -122,11 +125,6 @@ export default function RegularStudentAdmin() {
 
 
 
-  const handleChange = (index, name, value) => {
-    const updatedStudents = [...getAllStudent];
-    updatedStudents[index][name] = value;
-    setGetAllStudent(updatedStudents);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -166,6 +164,7 @@ export default function RegularStudentAdmin() {
       religion: addReligion,
       grade: parseInt(addGrade),
       teacher: parseInt(teachers),
+      section: addSection
 
     };
   
@@ -448,6 +447,16 @@ export default function RegularStudentAdmin() {
                         // onChange={(e) => handleChange(index, "grade", e.target.value)}
                       />
                     </div>
+                    <div>
+                      <label className="block mb-1 font-bold">Section</label>
+                      <input
+                        type="text"
+                        placeholder="Roman Catholic"
+                        className="border p-2 w-full"
+                        value={section}
+                        // onChange={(e) => handleChange(index, "grade", e.target.value)}
+                      />
+                    </div>
                   </div>
                   <div className="flex justify-center items-center">
                     <Button>Submit</Button>
@@ -647,6 +656,21 @@ export default function RegularStudentAdmin() {
                       </>
                     )
                   })}
+                </select>
+              </div>
+
+              <div className=""> 
+                <label className="block mb-1 font-medium">Section</label>
+                <select
+                  name="gender"
+                  value={addSection}
+                  onChange={(e) => setaddSection(e.target.value)}
+                  className="w-full mt-2 p-2 border border-gray-300 rounded"
+                >
+                  <option value="">Select Section</option>
+                  <option value="1">Section 1</option>
+                  <option value="2">Section 2</option>
+                  <option value="3">Section 3</option>
                 </select>
               </div>
               </div>

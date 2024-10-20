@@ -8,7 +8,7 @@ export default function RegularTeacherDashboard() {
   const [getAllStudent, setGetAllStudent] = useState([])
   const [getActiveStudents, setGetActiveStudents] = useState(0)
   const [getFullName, setgetFullName] = useState("")
-  const [getUserType, setgetUserType] = useState("")
+  const [getPosition, setGetPosition] = useState("")
 
 //   useEffect(()=>{
 //     const user = JSON.parse(localStorage.getItem('user'))
@@ -43,7 +43,7 @@ useEffect(()=>{
   // console.log(user.fullname)
 
   setgetFullName(user.fullname)
-
+  setGetPosition(user.position)
 //   if(user == null || user.user_type !== "ALS Teacher"){
 //     navigate('/teacher/sign-in')
 //   }else{
@@ -82,6 +82,7 @@ const handleLogout = () =>{
   return (
     <div className="min-h-screen bg-gray-100 p-6">
     <p>{getFullName} </p>
+    <p>{getPosition}</p>
     <div className='flex justify-end mb-3'>
       <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
     </div>
