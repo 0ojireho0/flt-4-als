@@ -61,7 +61,7 @@ export default function RegularTeacherEnglish(){
 
 
     if(student.grade == 7){
-      console.log("show questions for student 7")
+      // console.log("show questions for student 7")
       setShowGrade7(true)
       setShowGrade8(false)
       setShowGrade9(false)
@@ -71,19 +71,19 @@ export default function RegularTeacherEnglish(){
       setShowGrade8(true)
       setShowGrade9(false)
       setShowGrade10(false)
-      console.log("show questions for student 8")
+      // console.log("show questions for student 8")
     }else if(student.grade == 9){
       setShowGrade7(false)
       setShowGrade8(false)
       setShowGrade9(true)
       setShowGrade10(false)
-      console.log("show questions for student 9")
+      // console.log("show questions for student 9")
     }else if(student.grade == 10){
       setShowGrade7(false)
       setShowGrade8(false)
       setShowGrade9(false)
       setShowGrade10(true)
-      console.log("show questions for student 10")
+      // console.log("show questions for student 10")
     }else{
       console.log("error")
     }

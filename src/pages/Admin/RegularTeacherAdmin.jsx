@@ -31,11 +31,13 @@ export default function RegularTeacherAdmin() {
   const [province, setprovince] = useState("")
   const [userType, setUserType] = useState("")
   const [password, setPassword] = useState("")
+  const [position, setPosition] = useState("")
 
   const [addFullName, setaddFullName] = useState("")
   const [addEmail, setAddEmail] = useState("")
   const [addPassword, setAddPassword] = useState("")
   const [addGender, setAddGender] = useState("")
+  const [addPosition, setAddPosition] = useState("")
   const [addHouseNumber, setaddHouseNumber] = useState("")
   const [addBarangay, setaddBarangay] = useState("")
   const [addCity, setaddCity] = useState("")
@@ -93,6 +95,7 @@ export default function RegularTeacherAdmin() {
     sethouseNumber(data?.house_number)
     setaccountid(data?.id)
     setprovince(data?.province)
+    setPosition(data?.position)
     // setUserType(data?.user_type)
 
   }
@@ -138,6 +141,7 @@ const handleCreateTeacher = async(e) =>{
     city: addCity,
     province: addProvince,
     contact_number: addContactNumber,
+    position: addPosition
     // user_type: "ALS Teacher",
 
 
@@ -324,7 +328,7 @@ const handleLogout = () =>{
                             placeholder="Full Name"
                             className="border p-2 w-full mr-2"
                             value={fullname}
-                            onChange={(e) => handleChange(index, "fullname", e.target.value)}
+         
                           />
                         </div>
                       </div>
@@ -338,14 +342,14 @@ const handleLogout = () =>{
                             placeholder="House Number / Street"
                             className="border p-2 w-1/2 mr-2"
                             value={houseNumber}
-                            onChange={(e) => handleChange(index, "house_number", e.target.value)}
+                
                           />
                           <input
                             type="text"
                             placeholder="Barangay"
                             className="border p-2 w-1/2"
                             value={barangay}
-                            onChange={(e) => handleChange(index, "barangay", e.target.value)}
+       
                           />
                         </div>
                         <div className="flex">
@@ -354,21 +358,21 @@ const handleLogout = () =>{
                             placeholder="City"
                             className="border p-2 w-1/2 mr-2"
                             value={city}
-                            onChange={(e) => handleChange(index, "city", e.target.value)}
+       
                           />
                           <input
                             type="text"
                             placeholder="Province"
                             className="border p-2 w-1/2"
                             value={province}
-                            onChange={(e) => handleChange(index, "province", e.target.value)}
+                
                           />
                         </div>
                       </div>
                       <div>
                         <label className="block mb-1 font-bold">Birthday</label>
                         <div className="flex">
-                          <input type="date" className="border p-2 w-full" value={birthday.split(" ")[0]} onChange={(e) => handleChange(index, "birthday", e.target.value)}  />
+                          <input type="date" className="border p-2 w-full" value={birthday.split(" ")[0]}  />
                         </div>
                       </div>
                       <div className="col-span-2 grid-cols-2 grid">
@@ -380,7 +384,7 @@ const handleLogout = () =>{
                               placeholder="Gender"
                               className="border p-2 w-full mr-2"
                               value={gender}
-                              onChange={(e) => handleChange(index, "gender", e.target.value)}
+                  
                             />
                           </div>
                         </div>
@@ -394,21 +398,35 @@ const handleLogout = () =>{
                               placeholder="Contact Number"
                               className="border p-2 w-full mr-2"
                               value={contactNumber}
-                              onChange={(e) => handleChange(index, "contact_number", e.target.value)}
+                       
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="col-span-2">
-                        <label className="block mb-1 font-bold">Email</label>
-                        <div className="flex mb-2">
-                          <input
-                            type="text"
-                            placeholder="Email"
-                            className="border p-2 w-full mr-2"
-                            value={email}
-                            onChange={(e) => handleChange(index, "email", e.target.value)}
-                          />
+                      <div className="col-span-2 md:grid-cols-2 md:grid">
+                        <div>
+                          <label className="block mb-1 font-bold">Email</label>
+                          <div className="flex mb-2">
+                            <input
+                              type="text"
+                              placeholder="Email"
+                              className="border p-2 w-full mr-2"
+                              value={email}
+          
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block mb-1 font-bold">Position</label>
+                          <div className="flex mb-2">
+                            <input
+                              type="text"
+                              placeholder="Email"
+                              className="border p-2 w-full mr-2"
+                              value={position}
+                            
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -444,6 +462,7 @@ const handleLogout = () =>{
                         >
                           <div className="cursor-pointer" onClick={() => handleGetEmployeesData(data)}>
                             <h3 className="font-bold">{data.fullname}</h3>
+                            <h3 className="text-sm">{data.position}</h3>
                             <p className="text-sm text-gray-500">
                               {data.user_type}
                             </p>
@@ -490,6 +509,32 @@ const handleLogout = () =>{
                         />
                       </div>
 
+                      {/* Email */}
+                      <div>
+                        <label className="block mb-1 font-medium">Email</label>
+                        <input
+                          type="email"
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          placeholder="Email"
+                          value={addEmail} 
+                          onChange={(e) => setAddEmail(e.target.value)}
+                        />
+                      </div>
+
+
+                      <div>
+                        <label className="block mb-1 font-medium">
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          placeholder="Password"
+                          value={addPassword} 
+                          onChange={(e) => setAddPassword(e.target.value)}
+                        />
+                      </div>
+
                       <div>
                         <label className="block mb-1 font-medium">
                           House Number / Street
@@ -500,19 +545,6 @@ const handleLogout = () =>{
                           placeholder="House Number / Street"
                           value={addHouseNumber} 
                           onChange={(e) => setaddHouseNumber(e.target.value)}
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block mb-1 font-medium">
-                          Barangay
-                        </label>
-                        <input
-                          type="text"
-                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          placeholder="Barangay"
-                          value={addBarangay} 
-                          onChange={(e) => setaddBarangay(e.target.value)}
                         />
                       </div>
 
@@ -537,6 +569,19 @@ const handleLogout = () =>{
                           placeholder="Province"
                           value={addProvince} 
                           onChange={(e) => setaddProvince(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block mb-1 font-medium">
+                          Barangay
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          placeholder="Barangay"
+                          value={addBarangay} 
+                          onChange={(e) => setaddBarangay(e.target.value)}
                         />
                       </div>
 
@@ -579,32 +624,30 @@ const handleLogout = () =>{
                         />
                       </div>
 
-                      {/* Email */}
                       <div>
-                        <label className="block mb-1 font-medium">Email</label>
-                        <input
-                          type="email"
-                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          placeholder="Email"
-                          value={addEmail} 
-                          onChange={(e) => setAddEmail(e.target.value)}
-                        />
+                        <label className="block mb-1 font-medium">Position</label>
+                        <select className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        value={addPosition} 
+                        onChange={(e) => setAddPosition(e.target.value)}>
+                          <option value="">Select Position</option>
+                          <option value="Teacher I">Teacher I</option>
+                          <option value="Teacher II">Teacher II</option>
+                          <option value="Teacher III">Teacher III</option>
+                          <option value="Master Teacher I">Master Teacher I</option>
+                          <option value="Master Teacher II">Master Teacher II</option>
+                          <option value="Master Teacher III">Master Teacher III</option>
+                          <option value="Master Teacher IV">Master Teacher IV</option>
+                        </select>
                       </div>
+
+
+
+
+
 
                       {/* Employee Account */}
 
-                      <div>
-                        <label className="block mb-1 font-medium">
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          placeholder="Password"
-                          value={addPassword} 
-                          onChange={(e) => setAddPassword(e.target.value)}
-                        />
-                      </div>
+
 
                       <div>
                         {/* <label className="block mb-1 font-medium">
