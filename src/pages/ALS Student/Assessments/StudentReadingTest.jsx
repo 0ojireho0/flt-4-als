@@ -25,9 +25,9 @@ const StudentReadingTest = () => {
     // Calculate score based on the selected answers
     let score = 0;
 
-    if (answer1 === "A") score += 1;
+    if (answer1 === "B") score += 1;
     if (answer2 === "B") score += 1;
-    if (answer3 === "C") score += 1;
+    if (answer3 === "A") score += 1;
     console.log(score)
     setTotalScore(score);
 }, [answer1, answer2, answer3])
@@ -140,7 +140,7 @@ const StudentReadingTest = () => {
       <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
     <h1>Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
     <div>
-      <h1 className='font-bold text-black/50 text-lg mt-3'>English</h1>
+      <h1 className='font-bold text-black/50 text-lg mt-3'>Science</h1>
     </div>
     <div className='border-2 p-2 flex justify-center items-center '>
         <h1 className="text-lg">The sun is a big, bright star in the sky. It gives us light and heat every day. Plants need sunlight to grow. Without the sun, it would be very cold, and we wouldn’t be able to see during the day. The sun is also important for animals and people. It helps keep our planet warm so we can live here. That’s why the sun is so special!</h1>
@@ -167,34 +167,34 @@ const StudentReadingTest = () => {
       })}</h1>
     </div>
     <div className='mt-3'>
-                <h1>1. What does a sentence start with?</h1>
+                <h1>1. What does the sun give us?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_1' label="A. A capital letter" value="A" checked={answer1 == "A"} 
+                    <Radio name='question_1' label="A. Food and water" value="A" checked={answer1 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="B. A question mark " value="B" checked={answer1 == "B"} 
+                    <Radio name='question_1' label="B. Light and heat" value="B" checked={answer1 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required  />
-                    <Radio name='question_1' label="C. A comma" value="C" checked={answer1 == "C"} 
+                    <Radio name='question_1' label="C. Rain and snow" value="C" checked={answer1 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer(e.target.value)} required />
 
         </div>
       </div>
       <div className='mt-3'>
-                <h1>2. What is a verb?</h1>
+                <h1>2. Why do plants need the sun?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_2' label="A. The person doing the action" value="A" 
+                    <Radio name='question_2' label="A. To play with it" value="A" 
                     checked={answer2 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="B. A The action being done " value="B" 
+                    <Radio name='question_2' label="B. To grow" value="B" 
                     checked={answer2 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
                     required  />
-                    <Radio name='question_2' label="C. The punctuation" value="C" 
+                    <Radio name='question_2' label="C. To make sounds" value="C" 
                     checked={answer2 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer2(e.target.value)} 
@@ -203,19 +203,19 @@ const StudentReadingTest = () => {
         </div>
       </div>
       <div className='mt-3'>
-                <h1>3. Which of the following is an example of a sentence?</h1>
+                <h1>3. What would happen without the sun?</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <Radio name='question_3' label="A. The cat" value="A" 
+                    <Radio name='question_3' label="A. It would be very cold" value="A" 
                     checked={answer3 == "A"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="B. Sleeping" value="B" 
+                    <Radio name='question_3' label="B. There would be more stars" value="B" 
                     checked={answer3 == "B"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
                     required  />
-                    <Radio name='question_3' label="C. The cat is sleeping" value="C" 
+                    <Radio name='question_3' label="C. We would have two moons" value="C" 
                     checked={answer3 == "C"} 
                     // disabled={disableAnswer1} 
                     onChange={(e) => setAnswer3(e.target.value)} 
