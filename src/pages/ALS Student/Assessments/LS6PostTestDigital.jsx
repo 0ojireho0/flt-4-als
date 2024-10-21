@@ -166,7 +166,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>1. Which of the following describes a computer? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question1} alt="" />
+                    <img src={question1} className='w-1/2' alt="" />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='1' label="A. It produces many errors." value="A" checked={answer1 == "A"} disabled={disableAnswer1} onChange={(e) => setAnswer1(e.target.value)} required  />
@@ -178,7 +178,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>2. Which is the correct order of steps in turning off a computer? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question2} alt="" />
+                    <img src={question2} className='w-1/2' alt="" />
                 </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Click the start button.</h1>
@@ -195,7 +195,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>3. Which of the following statements about microcomputer is correct? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question3} alt="" />
+                    <img src={question3} className='w-1/2' alt="" />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='3' label="A. Calculator captures images." value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
@@ -207,7 +207,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>4. Which of the following computer device is used to make copies of reports, photographs and other documents? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question4} alt="" />
+                    <img src={question4} className='w-1/2' alt="" />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                     <Radio name='4' label="A. Mouse" value="A" checked={answer4 == "A"} disabled={disableAnswer4} onChange={(e) => setAnswer4(e.target.value)} required />
@@ -219,7 +219,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>5. Jaf needs to scan his ID picture. What is the correct order of steps that he should follow? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question5} alt="" />
+                    <img src={question5} className='w-1/2' alt="" />
                 </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Connect the scanner to the computer.</h1>
@@ -237,7 +237,7 @@ export default function LS6PoostTestDigital() {
             <div className='mt-3'>
                 <h1>6. Jaime wants to save his project into a USB flash drive. What is the correct order of steps to save it? </h1>
                 <div className='border-2 p-2 flex justify-center items-center'>
-                    <img src={question6} alt="" />
+                    <img src={question6} className='w-1/2' alt="" />
                 </div>
                 <div className='border-2 p-2 text-center'>
                     <h1>1. Click File</h1>

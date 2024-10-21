@@ -6,6 +6,7 @@ import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullyi
 
 import question1 from "../../../assets/ls1-english-assessments/LS1 Q1.png"
 import question2 from "../../../assets/ls1-english-assessments/LS1 Q2.png"
+import question3 from "../../../assets/ls1-english-assessments/LS1 Q3.png"
 import question4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
 import question5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
 
@@ -205,8 +206,8 @@ export default function ALSComEnglishPostTest() {
 
           <div className='mb-6 p-4 border rounded-lg bg-white shadow-sm'>
             <p>3. What is the main idea of the given paragraph?</p>
-            <div className='border-2 p-2 text-center'>
-                <h1>The Sun is very important. Without it, there would be only darkness and our planet would be very cold and be without liquid water. Our planet would also be without people, animals, and plants because these things need sunlight and water to live.</h1>
+            <div className='border-2 p-2 flex justify-center items-center'>
+                <img src={question3} className='w-1/2' alt="" />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               <Radio label="A. Things need sunlight to live" disabled />

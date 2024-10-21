@@ -9,6 +9,7 @@ import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullyi
 
 import q1 from "../../../assets/ls1-english-assessments/LS1 Q1.png"
 import q2 from "../../../assets/ls1-english-assessments/LS1 Q2.png"
+import q3 from "../../../assets/ls1-english-assessments/LS1 Q3.png"
 import q4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
 import q5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
 
@@ -382,8 +383,8 @@ export default function LS1PostTestEnglish() {
                 </div>
                 <div className='mt-3'>
                     <h1>3. What is the main idea of the given paragraph? </h1>
-                    <div className='border-2 p-2'>
-                        <h1 className='text-justify'>The Sun is very important. Without it, there would be only darkness and our planet would be very cold and be without liquid water. Our planet would also be without people, animals, and plants because these things need sunlight and water to live. </h1>
+                    <div className='border-2 p-2 flex justify-center items-center'>
+                        <img src={q3} className='w-1/2' alt="" />
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='3' label="A. Things need sunlight to live" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />

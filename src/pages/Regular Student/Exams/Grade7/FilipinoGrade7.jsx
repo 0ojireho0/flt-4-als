@@ -153,7 +153,7 @@ export default function FilipinoGrade7() {
     <div className='p-4 bg-gray-100 mt-3 '>
         <div className='bg-white p-4 rounded-lg shadow-md  mb-6'>
             <div className='text-center'>
-                <h1>English</h1>
+                <h1>Filipino</h1>
             </div>
             <div>
                 <h1 className='font-bold text-black/50 text-[0.8rem]'>Panuto: Basahin ang bawat aytem. Bilugan ang tamang sagot sa sagutang papel para sa Filipino</h1>

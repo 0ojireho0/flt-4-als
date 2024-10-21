@@ -164,7 +164,7 @@ export default function StudentPreTest() {
         <div className="bg-gray-100 min-h-screen p-8">
       {/* Title */}
       <div className="text-center mb-12">
-        <h1 className="text-2xl font-bold mb-4">Pre-Test (School Year 2022-2023)</h1>
+        <h1 className="text-2xl font-bold mb-4">Pre-Test (School Year 2024-2025)</h1>
       </div>
 
       {/* Test Cards Grid */}
