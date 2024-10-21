@@ -10,7 +10,7 @@ import question4 from "../../../assets/ls4-assessments/LS4 Q4.png"
 import question5 from "../../../assets/ls4-assessments/LS4 Q5.png"
 import question6 from "../../../assets/ls4-assessments/LS4 Q6.png"
 
-
+import { useNavigate } from 'react-router-dom'
 
 export default function LS4PreTestLife() {
     const [getFirstname, setgetFirstname] = useState("")
@@ -34,6 +34,7 @@ export default function LS4PreTestLife() {
 
     const [totalScore, setTotalScore] = useState(0)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -119,7 +120,8 @@ export default function LS4PreTestLife() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerLife',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/pretest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

@@ -9,6 +9,8 @@ import question5 from '../../../assets/ls5-assessments/LS5 Q5.png'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function LS5PostTestUnderstanding() {
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -31,6 +33,7 @@ export default function LS5PostTestUnderstanding() {
 
     const [totalScore, setTotalScore] = useState(0)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -110,7 +113,8 @@ export default function LS5PostTestUnderstanding() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerUTSPosttest',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/posttest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

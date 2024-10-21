@@ -9,6 +9,7 @@ import q3 from "../../../assets/ls2-assessments/LS2 Q3.png"
 import q4 from "../../../assets/ls2-assessments/LS2 Q4.png"
 import q5 from "../../../assets/ls2-assessments/LS2 Q5.png"
 
+import { useNavigate } from 'react-router-dom'
 
 export default function LS2PostTestScientific() {
 
@@ -32,6 +33,8 @@ export default function LS2PostTestScientific() {
     const [disableAnswer5, setDisableAnswer5] = useState(false)
 
     const [totalScore, setTotalScore] = useState(0)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -111,7 +114,8 @@ export default function LS2PostTestScientific() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerScientificPosttest',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/posttest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

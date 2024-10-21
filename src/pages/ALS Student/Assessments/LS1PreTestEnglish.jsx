@@ -13,6 +13,8 @@ import q3 from "../../../assets/ls1-english-assessments/LS1 Q3.png"
 import q4 from "../../../assets/ls1-english-assessments/LS1 Q4.png"
 import q5 from "../../../assets/ls1-english-assessments/LS1 Q5.png"
 
+import { useNavigate } from 'react-router-dom'
+
 export default function LS1PreTestEnglish() {
 
     const [getFirstname, setgetFirstname] = useState("")
@@ -36,7 +38,7 @@ export default function LS1PreTestEnglish() {
 
     const [totalScore, setTotalScore] = useState(0)
 
-    
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -140,6 +142,8 @@ export default function LS1PreTestEnglish() {
                 },
             });
             console.log(response.data);
+            alert('Done')
+            navigate('/student/pretest')
         } catch (error) {
             console.error('Error submitting answer:', error);
         }

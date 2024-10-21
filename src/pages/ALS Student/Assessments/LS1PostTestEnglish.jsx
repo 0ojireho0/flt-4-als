@@ -4,6 +4,8 @@ import { Textarea } from '@material-tailwind/react'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import { useNavigate } from 'react-router-dom'
+
 import question7 from "../../../assets/ls1-english-assessments/question7.png"
 import question8 from "../../../assets/ls1-english-assessments/Childhoood_Bullying.mp3"
 
@@ -36,6 +38,8 @@ export default function LS1PostTestEnglish() {
     const [disableAnswer6, setDisableAnswer6] = useState(false)
 
     const [totalScore, setTotalScore] = useState(0)
+
+    const navigate = useNavigate()
 
     
 
@@ -140,7 +144,11 @@ export default function LS1PostTestEnglish() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+
             console.log(response.data);
+            alert('Done')
+            navigate('/student/posttest')
+            
         } catch (error) {
             console.error('Error submitting answer:', error);
         }

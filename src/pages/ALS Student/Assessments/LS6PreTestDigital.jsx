@@ -13,6 +13,8 @@ import question6 from "../../../assets/ls6-assessments/LS6 Q6.png"
 
 import Typography from '@material-tailwind/react'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function LS6PreTestDigital() {
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -36,6 +38,7 @@ export default function LS6PreTestDigital() {
 
     const [totalScore, setTotalScore] = useState(0)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -121,7 +124,8 @@ export default function LS6PreTestDigital() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerDigital',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/pretest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

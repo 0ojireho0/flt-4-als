@@ -9,6 +9,7 @@ import q1 from "../../../assets/ls1-filipino-assessments/LS1 Q1 F.png"
 import q2 from "../../../assets/ls1-filipino-assessments/LS1 Q2 F.png"
 import q3 from "../../../assets/ls1-filipino-assessments/LS1 Q3 F.png"
 
+import { useNavigate } from 'react-router-dom'
 
 export default function LS1PreTestFilipino() {
 
@@ -29,6 +30,8 @@ export default function LS1PreTestFilipino() {
 
 
     const [totalScore, setTotalScore] = useState(0)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -120,7 +123,8 @@ export default function LS1PreTestFilipino() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerFilipino',formData);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/pretest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

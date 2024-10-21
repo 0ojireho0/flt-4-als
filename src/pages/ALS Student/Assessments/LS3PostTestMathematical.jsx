@@ -12,7 +12,7 @@ import question6 from '../../../assets/ls3-assessments/LS3 Q6.png'
 import question7 from '../../../assets/ls3-assessments/LS3 Q7.png'
 import question8 from '../../../assets/ls3-assessments/LS3 Q8.png'
 
-
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -41,6 +41,8 @@ export default function LS3PostTestMathematical() {
     const [disableAnswer8, setDisableAnswer8] = useState(false)
 
     const [totalScore, setTotalScore] = useState(0)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -138,7 +140,8 @@ export default function LS3PostTestMathematical() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerMathPosttest',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/posttest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

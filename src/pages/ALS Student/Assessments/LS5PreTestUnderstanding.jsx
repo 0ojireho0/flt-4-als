@@ -9,6 +9,8 @@ import question5 from '../../../assets/ls5-assessments/LS5 Q5.png'
 import {Button} from '@material-tailwind/react'
 import axios from 'axios'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function LS5PreTestUnderstanding() {
     const [getFirstname, setgetFirstname] = useState("")
     const [getLRN, setgetLRN] = useState("")
@@ -31,6 +33,7 @@ export default function LS5PreTestUnderstanding() {
 
     const [totalScore, setTotalScore] = useState(0)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -110,7 +113,8 @@ export default function LS5PreTestUnderstanding() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerUTS',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/pretest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);

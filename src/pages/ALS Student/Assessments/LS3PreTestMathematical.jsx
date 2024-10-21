@@ -12,7 +12,7 @@ import question6 from '../../../assets/ls3-assessments/LS3 Q6.png'
 import question7 from '../../../assets/ls3-assessments/LS3 Q7.png'
 import question8 from '../../../assets/ls3-assessments/LS3 Q8.png'
 
-
+import { useNavigate } from 'react-router-dom'
 
 export default function LS3PreTestMathematical() {
     const [getFirstname, setgetFirstname] = useState("")
@@ -39,6 +39,8 @@ export default function LS3PreTestMathematical() {
     const [disableAnswer8, setDisableAnswer8] = useState(false)
 
     const [totalScore, setTotalScore] = useState(0)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -136,7 +138,8 @@ export default function LS3PreTestMathematical() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerMath',sendAnswer);
             console.log(response);
-  
+            alert('Done')
+            navigate('/student/pretest')
 
         } catch (error) {
             console.error('Error submitting answer:', error);
