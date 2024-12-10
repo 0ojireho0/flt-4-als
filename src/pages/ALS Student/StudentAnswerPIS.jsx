@@ -34,6 +34,9 @@ export default function StudentAnswerPIS() {
     const [disableCivilStatus, setdisableCivilStatus] = useState(false)
     const [disableOccupation, setdisableOccupation] = useState(false)
     const [disableEducation, setdisableEducation] = useState(false)
+    
+
+    const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
     const navigate = useNavigate() 
 
 
@@ -122,14 +125,19 @@ export default function StudentAnswerPIS() {
     }
 
     const handleLogout = () =>{
-      localStorage.removeItem('user'); 
-      // console.log('Item removed from localStorage');
-      navigate('/sign-in')
+      setShowLogoutConfirmation(true)
     
     }
 
+    const handleConfirmLogout = () => {
+      localStorage.removeItem('user'); 
+      // console.log('Item removed from localStorage');
+      navigate('/sign-in')
+    }
+
   return (
-    <div className="">
+    <>
+   <div className="">
       {/* Header Section */}
       <div className='w-full flex justify-end items-center gap-3 md:w-full'>
         <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mb-3" onClick={handleLogout}>Logout</button>
@@ -177,7 +185,7 @@ export default function StudentAnswerPIS() {
             <div className="flex space-x-4 mt-2">
               <input
                 type="text"
-                placeholder="Buong Pangalan"
+                placeholder="Halimbawa: Juan D. Dela Cruz"
                 className="border rounded p-2 w-full"
                 disabled={disableFullname}
                 value={addFullName} 
@@ -199,9 +207,9 @@ export default function StudentAnswerPIS() {
                   className="w-full mt-2 p-2 border border-gray-300 rounded"
                   required
                 >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="">Mamili ng Kasarian</option>
+                  <option value="Male">Lalaki</option>
+                  <option value="Female">Babae</option>
                 </select>
             </div>
           </div>
@@ -231,7 +239,7 @@ export default function StudentAnswerPIS() {
                 <input
                   type="text"
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="House Number"
+                  placeholder="House Number/Street Name"
                   value={addHouseNumber} 
                   disabled={disableHouseNumber}
                   onChange={(e) => setaddHouseNumber(e.target.value)}
@@ -256,7 +264,7 @@ export default function StudentAnswerPIS() {
                 <input
                   type="text"
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="City"
+                  placeholder="City/Municipality"
                   value={addCity} 
                   disabled={disableCity}
                   onChange={(e) => setaddCity(e.target.value)}
@@ -299,10 +307,10 @@ export default function StudentAnswerPIS() {
                   required
                 >
                   <option value="">Select Status</option>
-                  <option value="May Asawa">May Asawa</option>
-                  <option value="Walang Asawa">Walang Asawa</option>
-                  <option value="Biyudo / Biyuda">Biyudo / Biyuda</option>
-                  <option value="Hiwalay sa asawa">Hiwalay sa Asawa</option>
+                  <option value="May Asawa">Married</option>
+                  <option value="Walang Asawa">Single</option>
+                  <option value="Biyudo / Biyuda">Widowed</option>
+                  <option value="Hiwalay sa asawa">Annulled</option>
                 </select>
               </div>
               <div className="">
@@ -310,7 +318,7 @@ export default function StudentAnswerPIS() {
                 <input
                   type="text"
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="Occupation"
+                  placeholder="Occupation/Trabaho"
                   value={addOccupation} 
                   disabled={disableOccupation}
                   onChange={(e) => setaddOccupation(e.target.value)}
@@ -322,7 +330,7 @@ export default function StudentAnswerPIS() {
                 <input
                   type="text"
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="Education"
+                  placeholder="Highest Educational Attainment/Pinakamataas na Natapos na Antas ng Edukasyon"
                   value={addEducation} 
                   disabled={disableEducation}
                   onChange={(e) => setaddEducation(e.target.value)}
@@ -343,6 +351,23 @@ export default function StudentAnswerPIS() {
         </div>
       </div>
     </div>
+
+    {showLogoutConfirmation && (
+      <div className='fixed inset-0 top-0 left-0 w-full h-full bg-black/30 flex justify-center items-center'> 
+        <div className='bg-white w-full flex justify-center items-center h-32 flex-col'>
+            <h1>Are you sure you want to Logout?</h1>
+            <div className='flex gap-10 mt-3'>
+              <h1 className='p-2 bg-red-500 rounded-lg text-white hover:bg-red-600 cursor-pointer' onClick={handleConfirmLogout}>Confirm</h1>
+              <h1 className='p-2 bg-blue-500 rounded-lg text-white hover:bg-blue-600 cursor-pointer' onClick={() => setShowLogoutConfirmation(false)}>Cancel</h1>
+            </div>
+        </div>
+      </div>
+    )}
+
+
+
+
+    </>
   );
 };
 

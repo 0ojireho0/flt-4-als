@@ -27,11 +27,6 @@ export default function Navbar({children}) {
             title: "Home",
             path: '/'
         },
-        {
-            id: 4, 
-            title: "About",
-            path: "/about"
-        }
     ]
 
 

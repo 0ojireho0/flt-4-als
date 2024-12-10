@@ -146,7 +146,7 @@ export default function LS1PostTestEnglish() {
             });
 
             console.log(response.data);
-            alert('Done')
+            alert('Great job! Your assessment has been submitted. Keep up the good work!')
             navigate('/student/posttest')
             
         } catch (error) {
@@ -391,8 +391,9 @@ export default function LS1PostTestEnglish() {
                 </div>
                 <div className='mt-3'>
                     <h1>3. What is the main idea of the given paragraph? </h1>
-                    <div className='border-2 p-2 flex justify-center items-center'>
+                    <div className='border-2 p-2 flex justify-center items-center flex-col'>
                         <img src={q3} className='w-1/2' alt="" />
+                        <p>The Sun is very important. Without it, there would be only darkness and our planet would be very cold and be without liquid water. Our planet would also be without people, animals, and plants because these things need sunlight and water to live.</p>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                         <Radio name='3' label="A. Things need sunlight to live" value="A" checked={answer3 == "A"} disabled={disableAnswer3} onChange={(e) => setAnswer3(e.target.value)}  required />
@@ -443,7 +444,8 @@ export default function LS1PostTestEnglish() {
                 </div>
                 <p className='mt-3 font-bold'>Take note: You need to stop the record to save your audio</p>
                 <div className='mt-3'>
-                    <h1>7. Look at the picture. What are the people doing in the picture? Give your answer in one complete sentence.</h1>
+                    <h1>7. Look at the picture. What are the people doing in the picture? 
+                    Click "Record Your Answer" when you're ready to answer, and click “Stop Recording” once you are satisfied with your recorded response. You may also click “Reset” to record a new response.</h1>
                     <div className='border-2 p-2 flex justify-center items-center'>
                         <img src={question7} alt="" />
                     </div>
@@ -470,7 +472,8 @@ export default function LS1PostTestEnglish() {
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <h1>8. I will read an article. Listen carefully and try to understand what it means. Then explain what you understand, using at least (1) complete sentence. (Read the article slowly, and then use the Audio to save your voice). (1 point)</h1>
+                    <h1>8. Listen carefully to the audio recording and explain what you understand. 
+                    Click "Record Your Answer" when you're ready to answer, and click “Stop Recording” once you are satisfied with your recorded response. You may also click “Reset” to record a new response.</h1>
                     <div className='border-2 p-2 flex justify-center items-center'>
                         <audio controls src={question8}></audio>
                     </div>

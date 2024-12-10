@@ -86,18 +86,20 @@ export default function LoginForm() {
 
         {/* Forgot Password Link */}
         <div className="flex justify-end ">
-          <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a>
+          {/* <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a> */}
         </div>
-        <div className="flex justify-start mb-6 md:gap-2">
-          <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Employee</Link>
+        <div className="flex justify-start mb-3 md:gap-2">
           <Link to="/regular-student/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Student</Link>
         </div>
 
         {/* Sign In Button */}
-        <button type='submit' className="w-full py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800 transition">
+        <button type='submit' className="w-full py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800 transition mb-3">
           Sign In
         </button>
+        
         </form>
+        {/* <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Employee</Link> */}
+        <h1 className='text-sm text-gray-500'>Sign in as <Link className='hover:text-gray-700' to="/teacher/sign-in">Teacher</Link> or <Link className='hover:text-gray-700' to="/employee/sign-in">Admin</Link>?</h1>
       </div>
     </div>
   );

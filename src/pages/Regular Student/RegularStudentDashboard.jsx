@@ -15,7 +15,7 @@ export default function RegularStudentDashboard(){
   const [getReligion, setgetReligion] = useState("")
   const [getGrade, setGetGrade] = useState(0)
   const [getTeacherFullname, setGetTeacherFullname] = useState("")
-
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
 
   const navigate = useNavigate()
 
@@ -65,10 +65,14 @@ export default function RegularStudentDashboard(){
 
 
   const handleLogout = () =>{
+    setShowLogoutConfirmation(true)
+  
+  }
+
+  const handleConfirmLogout = () => {
     localStorage.removeItem('user'); 
     // console.log('Item removed from localStorage');
     navigate('/sign-in')
-  
   }
 
     
@@ -153,6 +157,18 @@ export default function RegularStudentDashboard(){
         </div> */}
       </div>
     </div>
+
+    {showLogoutConfirmation && (
+      <div className='fixed inset-0 top-0 left-0 w-full h-full bg-black/30 flex justify-center items-center'> 
+        <div className='bg-white w-full flex justify-center items-center h-32 flex-col'>
+            <h1>Are you sure you want to Logout?</h1>
+            <div className='flex gap-10 mt-3'>
+              <h1 className='p-2 bg-red-500 rounded-lg text-white hover:bg-red-600 cursor-pointer' onClick={handleConfirmLogout}>Confirm</h1>
+              <h1 className='p-2 bg-blue-500 rounded-lg text-white hover:bg-blue-600 cursor-pointer' onClick={() => setShowLogoutConfirmation(false)}>Cancel</h1>
+            </div>
+        </div>
+      </div>
+    )}
     </>
   );
 }

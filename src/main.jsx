@@ -196,6 +196,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: "/",
+        element: <Home />
+      },
+      {
         path: "/learning",
         element: <div>Learning Page</div>
       },
@@ -377,10 +381,6 @@ const router = createBrowserRouter([
       {
         path: "/student/answerPIS",
         element: <StudentAnswerPIS />
-      },
-      {
-        path: "/student",
-        element: <Home />
       },
       {
         path: "/student/dashboard",

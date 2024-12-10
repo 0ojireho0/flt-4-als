@@ -26,7 +26,7 @@ export default function NavbarStudent({children}) {
     const navItems = [
         {
             id: 1,
-            title: "Dashboard",
+            title: "My Profile",
             path: '/student/dashboard'
         },
         {

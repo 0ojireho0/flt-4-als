@@ -103,7 +103,7 @@ export default function ALSStudents() {
   }
 
   const handleGetStudentData = (student) =>{
-    // console.log(student)
+    console.log(student)
     setGender(student.gender)
     sethouseNumber(student.house_number)
     setbarangay(student.barangay)

@@ -9,7 +9,7 @@ export default function RegularTeacherDashboard() {
   const [getActiveStudents, setGetActiveStudents] = useState(0)
   const [getFullName, setgetFullName] = useState("")
   const [getPosition, setGetPosition] = useState("")
-
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
 //   useEffect(()=>{
 //     const user = JSON.parse(localStorage.getItem('user'))
 //     console.log(user)
@@ -70,16 +70,24 @@ useEffect(()=>{
   fetchStudent()
 },[])
 
-const handleLogout = () =>{
-  localStorage.removeItem('user'); 
-  // console.log('Item removed from localStorage');
-  navigate('/teacher/sign-in')
 
-}
+
+  const handleLogout = () =>{
+    setShowLogoutConfirmation(true)
+
+  }
+
+  const handleConfirmLogout = () => {
+    localStorage.removeItem('user'); 
+    // console.log('Item removed from localStorage');
+    navigate('/teacher/sign-in')
+  }
+
 
 
 
   return (
+    <>
     <div className="min-h-screen bg-gray-100 p-6">
     <p>{getFullName} </p>
     <p>{getPosition}</p>
@@ -134,5 +142,21 @@ const handleLogout = () =>{
       <button className="bg-yellow-500 text-black px-4 py-2 rounded-md">FLT Results</button>
     </div>
   </div>
+
+  {showLogoutConfirmation && (
+      <div className='fixed inset-0 top-0 left-0 w-full h-full bg-black/30 flex justify-center items-center'> 
+        <div className='bg-white w-full flex justify-center items-center h-32 flex-col'>
+            <h1>Are you sure you want to Logout?</h1>
+            <div className='flex gap-10 mt-3'>
+              <h1 className='p-2 bg-red-500 rounded-lg text-white hover:bg-red-600 cursor-pointer' onClick={handleConfirmLogout}>Confirm</h1>
+              <h1 className='p-2 bg-blue-500 rounded-lg text-white hover:bg-blue-600 cursor-pointer' onClick={() => setShowLogoutConfirmation(false)}>Cancel</h1>
+            </div>
+        </div>
+      </div>
+    )}
+
+
+
+    </>
   )
 }

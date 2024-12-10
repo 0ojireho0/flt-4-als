@@ -124,7 +124,7 @@ export default function LS6PreTestDigital() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerDigital',sendAnswer);
             console.log(response);
-            alert('Done')
+            alert('Great job! Your assessment has been submitted. Keep up the good work!')
             navigate('/student/pretest')
 
         } catch (error) {

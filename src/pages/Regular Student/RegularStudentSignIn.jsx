@@ -86,10 +86,10 @@ export default function RegularStudentSignIn() {
 
         {/* Forgot Password Link */}
         <div className="flex justify-end ">
-          <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a>
+          {/* <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a> */}
         </div>
         <div className="flex justify-start mb-6 md:gap-2">
-          <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Employee</Link>
+          <Link to="/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>ALS Student</Link>
           {/* <Link to="/regular-student/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Student</Link> */}
         </div>
 

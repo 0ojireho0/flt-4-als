@@ -5,7 +5,7 @@ import axios from 'axios'
 import {Button} from '@material-tailwind/react'
 
 import question5 from "../../../assets/ls1-filipino-assessments/habang-ikaw.mp3"
-import q1 from "../../../assets/ls1-filipino-assessments/LS1 Q1 F.png"
+import q1 from "../../../assets/ls1-filipino-assessments/LS1 Q1 FIL.png"
 import q2 from "../../../assets/ls1-filipino-assessments/LS1 Q2 F.png"
 import q3 from "../../../assets/ls1-filipino-assessments/LS1 Q3 F.png"
 
@@ -123,7 +123,7 @@ export default function LS1PreTestFilipino() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerFilipino',formData);
             console.log(response);
-            alert('Done')
+            alert('Great job! Your assessment has been submitted. Keep up the good work!')
             navigate('/student/pretest')
 
         } catch (error) {

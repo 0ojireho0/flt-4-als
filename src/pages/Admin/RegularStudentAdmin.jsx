@@ -236,7 +236,7 @@ export default function RegularStudentAdmin() {
         <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600" onClick={handleLogout}>Logout</button>
       </div>
       <div className='mt-3'>
-        <h1 className='text-2xl font-bold'>ALS Student</h1>
+        <h1 className='text-2xl font-bold'>Regular Student</h1>
       </div>
 
       <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3 '>
@@ -245,10 +245,10 @@ export default function RegularStudentAdmin() {
             <p className="text-gray-600">S.Y. 2024 - 2025</p>
         </div>
         <div className="bg-white p-4 shadow rounded-md flex flex-col items-center justify-center">
-          <h2 className="text-lg font-bold">ALS Student</h2>
+          <h2 className="text-lg font-bold">Regular Student</h2>
           <p className="text-gray-600">{fullname}</p>
           <span className="bg-yellow-400 text-white text-sm py-1 px-2 rounded-full">
-            {getStatus} ALS Student
+            {getStatus} Regular Student
           </span>
           {showSettingsModal ? (
             <Button size="sm" className="mt-3 bg-black/80 w-44 hover:bg-black/50" onClick={handleShowSettingsModal}>Back to Main </Button>

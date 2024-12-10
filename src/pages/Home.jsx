@@ -9,15 +9,6 @@ import footerImg from "../assets/footer-img.png";
 
 
 export default function Home() {
-    const navigate = useNavigate(); 
-
-    useEffect(() => {
-
-        const user = localStorage.getItem('user'); 
-        if (!user) {
-            navigate('/sign-in'); 
-        }
-    }, []); 
 
     return (
         <>
@@ -25,10 +16,10 @@ export default function Home() {
                 <img src={bgLogo} className="object-cover w-full h-[80rem] opacity-50 md:h-[40rem] xl:h-[30rem]" alt="" />
                 <div className='absolute top-16 w-full flex flex-col justify-center items-center'>
                     <div className='w-3/4 mt-10'>
-                        <Typography className='text-center' variant='h3'>Take the Functional Literacy Test</Typography>
-                        <Typography className='text-center mt-5' variant='h6'>This is a test on readiness of applicants for the different levels in the curriculum of Alternative Learning System in the Department of Education.</Typography>
+                        <Typography className='text-center' variant='h3'>Welcome to MHSLEARN!</Typography>
+                        {/* <Typography className='text-center mt-5' variant='h6'>This is a test on readiness of applicants for the different levels in the curriculum of Alternative Learning System in the Department of Education.</Typography> */}
                         <div className='flex justify-center items-center mt-5'>
-                            <Button className='bg-[#006299]'><Link to="/student/dashboard">Go to Account</Link></Button>
+                            {/* <Button className='bg-[#006299]'><Link to="/student/dashboard">Go to Account</Link></Button> */}
                         </div>
 
                         <div className='flex flex-col justify-center items-center gap-24 mt-24 md:grid md:grid-cols-3 md:ml-[-2rem] lg:ml-[-5rem] xl:ml-0 '>

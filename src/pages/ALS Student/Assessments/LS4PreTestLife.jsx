@@ -120,7 +120,7 @@ export default function LS4PreTestLife() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/getStudentAnswerLife',sendAnswer);
             console.log(response);
-            alert('Done')
+            alert('Great job! Your assessment has been submitted. Keep up the good work!')
             navigate('/student/pretest')
 
         } catch (error) {

@@ -85,13 +85,13 @@ export default function RegularTeacherSignIn() {
 
         {/* Forgot Password Link */}
         <div className="flex justify-end ">
-          <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a>
+          {/* <a href="#" className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</a> */}
         </div>
         <div className="flex flex-col gap-2 justify-start mb-6">
-          <Link to="/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Student</Link>
+          <Link to="/teacher/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Teacher</Link>
           <div className='flex flex-row gap-3'>
-          <Link to="/employee/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Admin</Link>
-          <Link to="/regularTeacher/sign-in" className='text-sm text-gray-500 hover:text-gray-700'>Regular Teacher</Link>
+      
+          
           </div>
         </div>
 
